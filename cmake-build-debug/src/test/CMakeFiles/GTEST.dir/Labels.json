@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/GTEST"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/GTEST.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/GTEST-complete.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-FORCED_INSTALL.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-build.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-configure.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-download.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-install.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-mkdir.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-patch.rule"
+		},
+		{
+			"file" : "/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"GTEST"
+		],
+		"name" : "GTEST"
+	}
+}

@@ -1,0 +1,14 @@
+# Target labels
+ GTEST
+# Source files and their labels
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/GTEST
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/GTEST.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/GTEST-complete.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-FORCED_INSTALL.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-build.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-configure.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-download.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-install.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-mkdir.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-patch.rule
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/GTEST-prefix/src/GTEST-stamp/GTEST-update.rule
