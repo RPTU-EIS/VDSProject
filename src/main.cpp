@@ -9,5 +9,7 @@
 
 int main(int argc, char* argv[])
 {
-    std::cout << "Nothing implemented, yet" << std::endl;
+    std::cout << "Nothing implemented, yet1" << std::endl;
+    ClassProject::Manager *myObj = new ClassProject::Manager();
+    return 0;
 }
