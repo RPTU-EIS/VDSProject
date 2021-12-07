@@ -8,4 +8,8 @@
 #include "gtest/gtest.h"
 #include "../Manager.h"
 
+class ClassName{
+
+};
+
 #endif
