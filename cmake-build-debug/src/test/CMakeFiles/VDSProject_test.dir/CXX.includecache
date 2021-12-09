@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/src/Manager.h
+ManagerInterface.h
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/src/ManagerInterface.h
+
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/src/ManagerInterface.h
+string
+-
+set
+-
+
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/src/test/Tests.h
+gtest/gtest.h
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/src/test/gtest/gtest.h
+../Manager.h
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/src/Manager.h
+
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/src/test/main_test.cpp
+Tests.h
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/src/test/Tests.h
+

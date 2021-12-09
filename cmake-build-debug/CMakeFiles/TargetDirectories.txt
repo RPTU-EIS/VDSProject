@@ -1,0 +1,10 @@
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/CMakeFiles/VDSProject.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/CMakeFiles/edit_cache.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/CMakeFiles/Manager.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/rebuild_cache.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/edit_cache.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/VDSProject_test.dir
+/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/cmake-build-debug/src/test/CMakeFiles/GTEST.dir
