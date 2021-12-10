@@ -36,3 +36,11 @@ BDD_ID Manager::uniqueTableSize(){
     number_nodes = unique_table.size();
     return number_nodes;
 }
+
+const BDD_ID &Manager::True() {
+    return unique_table[0].id;
+}
+
+const BDD_ID &Manager::False(){
+    return unique_table[1].id;
+}
