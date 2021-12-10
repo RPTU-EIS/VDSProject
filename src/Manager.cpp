@@ -11,6 +11,10 @@ Manager::Manager(){
     unique_table.push_back(node2);
 }
 
+BDD_ID Manager::createVar(const std::string &label) {
+    return 0;
+}
+
 BDD_ID Manager::uniqueTableSize(){
     size_t number_nodes;
     number_nodes = unique_table.size();

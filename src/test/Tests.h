@@ -14,6 +14,13 @@ using namespace ClassProject;
 class UniqueTableTests : public testing::Test {
 public:
     Manager managerTest;
+
+    void SetUp() override{
+        managerTest.createVar("a");
+        managerTest.createVar("b");
+        managerTest.createVar("c");
+        managerTest.createVar("d");
+    }
 };
 
 #endif
