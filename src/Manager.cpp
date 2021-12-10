@@ -38,9 +38,9 @@ BDD_ID Manager::uniqueTableSize(){
 }
 
 const BDD_ID &Manager::True() {
-    return unique_table[0].id;
+    return unique_table[1].id;
 }
 
 const BDD_ID &Manager::False(){
-    return unique_table[1].id;
+    return unique_table[0].id;
 }
