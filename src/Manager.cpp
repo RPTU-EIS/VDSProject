@@ -10,3 +10,7 @@ Manager::Manager(){
     unique_table.push_back(node1);
     unique_table.push_back(node2);
 }
+
+BDD_ID Manager::uniqueTableSize(){
+    return 0;
+}

@@ -8,6 +8,11 @@ TEST_F(UniqueTableTests, constructor_sizeok){
     EXPECT_EQ(2,table_size);
 }
 
+TEST_F(UniqueTableTests, uniqueTableSize_sizeok){
+    BDD_ID table_size = managerTest.uniqueTableSize();
+    EXPECT_EQ(2,table_size);
+}
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
