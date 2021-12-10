@@ -44,10 +44,12 @@ BDD_ID Manager::uniqueTableSize(){
 }
 
 const BDD_ID &Manager::True() {
+
     return unique_table[1].id;
 }
 
 const BDD_ID &Manager::False(){
+
     return unique_table[0].id;
 }
 
@@ -91,5 +93,15 @@ void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
     }
 
 bool Manager::isConstant(BDD_ID f) {
-    return false;
+
+    bool is_leaf = true;
+
+    if (unique_table[f].id == 0 or unique_table[f].id == 1){
+        is_leaf = true;
+    }
+    else{
+        is_leaf = false;
+    }
+
+    return is_leaf;
 }
