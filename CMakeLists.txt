@@ -9,5 +9,5 @@ include_directories(${CMAKE_SOURCE_DIR}/src/test/)
 link_directories(${CMAKE_SOURCE_DIR}/src/test/)
 
 add_subdirectory(src)
-add_executable(VDSProject src/main.cpp)
+add_executable(VDSProject src/main.cpp src/BDD_node.cpp src/BDD_node.h)
 target_link_libraries(VDSProject Manager)
