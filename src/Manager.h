@@ -44,6 +44,7 @@ namespace ClassProject {
         *   Returns True if the node is False.
        */
         const BDD_ID &False() override;
+
         /**
               *   isVariable Function.
               *   Returns True if the node represents a variable.
@@ -65,6 +66,8 @@ namespace ClassProject {
         void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) override;
 
         void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) override;
+
+	bool isConstant(BDD_ID f) override;
     };
 
 };
