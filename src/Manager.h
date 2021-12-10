@@ -13,11 +13,11 @@ namespace ClassProject {
     class Manager : public ManagerInterface {
 
     public:
-        /// Manager Constructor Definition.
-        ///
-        /// The unique table object is initialized with two default entries, False and True nodes.
         std::vector<BDD_node> unique_table;
 
+        /** Manager Constructor Definition.
+        *   The unique table object is initialized with two default entries, False and True nodes.
+        */
         Manager();
     };
 
