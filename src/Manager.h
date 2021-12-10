@@ -21,6 +21,8 @@ namespace ClassProject {
         */
         Manager();
 
+        BDD_ID createVar(const std::string &label) override;
+
         /**
         *   UniqueTableSize Definition.
         *   Returns the number of nodes currently existing in the unique table of the Manager class.
