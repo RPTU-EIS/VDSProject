@@ -32,6 +32,19 @@ namespace ClassProject {
          *   Returns the number of nodes currently existing in the unique table of the Manager class.
         */
         size_t uniqueTableSize() override;
+
+        /**
+        *   IsTrue Function.
+        *   Returns True if the node is True.
+       */
+        const BDD_ID &True() override;
+
+        /**
+        *   IsFalse Function.
+        *   Returns True if the node is False.
+       */
+        const BDD_ID &False() override;
+
     };
 
 };

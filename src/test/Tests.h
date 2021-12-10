@@ -11,8 +11,23 @@
 
 using namespace ClassProject;
 
+class constructorTest : public testing::Test {
+public:
+
+    Manager managerTest;
+
+};
+
+class TableSizeTest : public testing::Test {
+public:
+
+    Manager managerTest;
+
+};
+
 class UniqueTableTests : public testing::Test {
 public:
+
     Manager managerTest;
 
     void SetUp() override{
@@ -20,6 +35,8 @@ public:
         managerTest.createVar("b");
         managerTest.createVar("c");
         managerTest.createVar("d");
+        managerTest.createVar("a");
+        managerTest.createVar("b");
     }
 };
 
