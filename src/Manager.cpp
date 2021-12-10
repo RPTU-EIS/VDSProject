@@ -12,5 +12,7 @@ Manager::Manager(){
 }
 
 BDD_ID Manager::uniqueTableSize(){
-    return 0;
+    size_t number_nodes;
+    number_nodes = unique_table.size();
+    return number_nodes;
 }

@@ -15,11 +15,16 @@ namespace ClassProject {
     public:
         std::vector<BDD_node> unique_table;
 
-        /** Manager Constructor Definition.
+        /**
+        *   Manager Constructor Definition.
         *   The unique table object is initialized with two default entries, False and True nodes.
         */
         Manager();
 
+        /**
+        *   UniqueTableSize Definition.
+        *   Returns the number of nodes currently existing in the unique table of the Manager class.
+        */
         size_t uniqueTableSize() override;
     };
 
