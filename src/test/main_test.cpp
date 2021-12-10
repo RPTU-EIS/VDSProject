@@ -1,23 +1,11 @@
 #include "Tests.h"
 
-using testing::Eq;
+using namespace ClassProject;
 
-namespace {
-    class ClassDeclaration : public testing::Test {
-    public:
-        ClassName obj;
-        ClassDeclaration(){
-            obj;
-        }
-    };
-}
+TEST_F(UniqueTableTests, constructor_sizeok){
 
-TEST_F(ClassDeclaration, nameOfTheTest1){
-    ASSERT_EQ("","");
-}
-
-TEST_F(ClassDeclaration, nameOfTheTest2){
-    ASSERT_EQ("","1");
+    BDD_ID table_size = managerTest.unique_table.size();
+    EXPECT_EQ(2,table_size);
 }
 
 int main(int argc, char* argv[])

@@ -7,9 +7,13 @@
 
 #include "gtest/gtest.h"
 #include "../Manager.h"
+#include "BDD_node.h"
 
-class ClassName{
+using namespace ClassProject;
 
+class UniqueTableTests : public testing::Test {
+public:
+    Manager managerTest;
 };
 
 #endif
