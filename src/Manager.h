@@ -16,16 +16,20 @@ namespace ClassProject {
         std::vector<BDD_node> unique_table;
 
         /**
-        *   Manager Constructor Definition.
-        *   The unique table object is initialized with two default entries, False and True nodes.
+         *   Manager Constructor Definition.
+         *   The unique table object is initialized with two default entries, False and True nodes.
         */
         Manager();
 
+        /**
+         *   Create Variable Function Definition.
+         *   @param[in] label Name of the label of the new variable.
+        */
         BDD_ID createVar(const std::string &label) override;
 
         /**
-        *   UniqueTableSize Definition.
-        *   Returns the number of nodes currently existing in the unique table of the Manager class.
+         *   UniqueTableSize Definition.
+         *   Returns the number of nodes currently existing in the unique table of the Manager class.
         */
         size_t uniqueTableSize() override;
     };
