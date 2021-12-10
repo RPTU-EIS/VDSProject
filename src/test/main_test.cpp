@@ -37,6 +37,14 @@ TEST_F(UniqueTableTests, true_node_found){
     ASSERT_EQ(1,managerTest.True());
 }
 
+TEST_F(UniqueTableTests, is_variable){
+    BDD_ID a[6]={0,1,2,3,4,5};
+    bool result_exp[6]={false,false,true,true,true,true};
+    for(int i=2;i<6;i++) {
+        ASSERT_EQ(result_exp[i], managerTest.isVariable(a[i]));
+    }
+}
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
