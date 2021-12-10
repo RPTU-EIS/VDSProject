@@ -90,6 +90,6 @@ void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
         }
     }
 
-
-
-
+bool Manager::isConstant(BDD_ID f) {
+    return false;
+}
