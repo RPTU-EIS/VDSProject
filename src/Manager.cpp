@@ -44,3 +44,7 @@ const BDD_ID &Manager::True() {
 const BDD_ID &Manager::False(){
     return unique_table[0].id;
 }
+
+bool Manager::isVariable(BDD_ID x){
+    return false;
+}

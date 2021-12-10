@@ -45,6 +45,8 @@ namespace ClassProject {
        */
         const BDD_ID &False() override;
 
+        bool isVariable(BDD_ID x) override;
+
     };
 
 };
