@@ -31,7 +31,11 @@ BDD_ID Manager::createVar(const std::string &label) {
     return 0;
 }
 
+void Manager::AddNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e){
+     BDD_node new_var(a,b,c,d, (std::string&)e);
+     unique_table.push_back(new_var);
 
+}
 BDD_ID Manager::uniqueTableSize(){
     size_t number_nodes;
     number_nodes = unique_table.size();
