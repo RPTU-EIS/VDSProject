@@ -40,4 +40,18 @@ public:
     }
 };
 
+class RecursiveTest1 : public testing::Test {
+public:
+
+    Manager managerTest;
+
+    void SetUp() override{
+        managerTest.createVar("a");
+        managerTest.createVar("b");
+        std::string m="a+b";
+        managerTest.AddNode(4,1 ,3, 2,m);
+
+    }
+};
+
 #endif

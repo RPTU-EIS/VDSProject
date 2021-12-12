@@ -53,9 +53,10 @@ namespace ClassProject {
         virtual std::string getTopVarName(const BDD_ID &root) = 0;
 
         virtual void AddNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e) = 0;
-/*        virtual void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) = 0;
 
-        virtual void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) = 0;*/
+        virtual void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) = 0;
+
+       /* virtual void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) = 0;*/
 
         virtual size_t uniqueTableSize() = 0;
     };
