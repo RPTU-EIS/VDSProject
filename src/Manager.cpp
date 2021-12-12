@@ -78,8 +78,18 @@ void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
 
     }
 void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
+    std::set<BDD_ID> a={};
+    findNodes(root,a);
+    for ( std::set<BDD_ID>::iterator itr = a.begin(); itr != a.end(); itr++) {
+
+        if(*itr !=0 and *itr!=1){     //we can replace this by Is_constant function
+            vars_of_root.insert(unique_table[*itr].topvar);
+
+        }
+
+        }
+    }
 
 
-}
 
 
