@@ -24,7 +24,7 @@ BDD_ID Manager::createVar(const std::string &label) {
         }
     }
     if (!var_already_registered) {
-        BDD_node new_var(number_nodes_table,1,number_nodes_table,number_nodes_table, (std::string&)label);
+        BDD_node new_var(number_nodes_table,1,0,number_nodes_table, (std::string&)label);
         unique_table.push_back(new_var);
         return new_var.id;
     }
@@ -64,8 +64,18 @@ std::string Manager::getTopVarName(const BDD_ID &root) {
     return unique_table[id].label;
 }
 void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
-    BDD_ID t=5;
-    nodes_of_root.insert(t);
+
+    if(nodes_of_root.find(root)==nodes_of_root.end()){
+        std::cout<<"h";
+        nodes_of_root.insert(root);
+    }
+
+    if (root !=1 and root !=0){
+
+        findNodes(unique_table[root].high,nodes_of_root);
+        findNodes(unique_table[root].low,nodes_of_root);
+    }
+
+    }
 
 
-}
