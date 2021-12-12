@@ -47,6 +47,8 @@ namespace ClassProject {
 
         bool isVariable(BDD_ID x) override;
 
+        std::string getTopVarName(const BDD_ID &root) override;
+
     };
 
 };
