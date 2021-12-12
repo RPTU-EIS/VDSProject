@@ -64,6 +64,7 @@ namespace ClassProject {
 
         void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) override;
 
+        void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) override;
     };
 
 };
