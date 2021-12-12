@@ -44,10 +44,23 @@ namespace ClassProject {
         *   Returns True if the node is False.
        */
         const BDD_ID &False() override;
-
+        /**
+              *   isVariable Function.
+              *   Returns True if the node represents a variable.
+             */
         bool isVariable(BDD_ID x) override;
-
+        /**
+              *   getTopVarName.
+              *   Returns the name of the rop variable for a given node.
+             */
         std::string getTopVarName(const BDD_ID &root) override;
+        /**
+             *   AddNode.
+             *  add a node to our table with a given id, true node, false node,topVariable, label
+             *  this function is used during the tests.
+            */
+
+        void AddNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e) override;
 
     };
 
