@@ -53,6 +53,17 @@ TEST_F(UniqueTableTests, getTopVarName_test){
     }
 }
 
+TEST_F(RecursiveTest1,FindNode_test){
+    std::set<BDD_ID> a={};
+    BDD_ID result_exp[4]={4,1,3,0};
+    managerTest.findNodes(4, (std::set<BDD_ID> &) a);
+    std::_Rb_tree_const_iterator<unsigned long long int> x = a.find(5);
+    for(int i=0;i<4;i++) {
+        ASSERT_NE(a.end(),a.find(result_exp[i]));
+    }
+
+}
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);

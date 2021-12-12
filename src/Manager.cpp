@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Manager.h"
 
 using namespace ClassProject;
@@ -61,4 +62,10 @@ std::string Manager::getTopVarName(const BDD_ID &root) {
 
     BDD_ID id=unique_table[root].topvar;
     return unique_table[id].label;
+}
+void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
+    BDD_ID t=5;
+    nodes_of_root.insert(t);
+
+
 }
