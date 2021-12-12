@@ -31,6 +31,7 @@ BDD_ID Manager::createVar(const std::string &label) {
     return 0;
 }
 
+
 BDD_ID Manager::uniqueTableSize(){
     size_t number_nodes;
     number_nodes = unique_table.size();
@@ -50,4 +51,9 @@ bool Manager::isVariable(BDD_ID x){
         return true;
     }
     return false;
+}
+
+std::string Manager::getTopVarName(const BDD_ID &root) {
+
+    return  "NA";
 }

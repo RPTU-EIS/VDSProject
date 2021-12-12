@@ -45,6 +45,14 @@ TEST_F(UniqueTableTests, is_variable){
     }
 }
 
+TEST_F(UniqueTableTests, getTopVarName_test){
+    BDD_ID a[6]={0,1,2,3,4,5};
+    std::string result_exp[6]={"False","True","a","b","c","d"};
+    for(int i=0;i<6;i++) {
+        ASSERT_EQ(result_exp[i], managerTest.getTopVarName(a[i]));
+    }
+}
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
