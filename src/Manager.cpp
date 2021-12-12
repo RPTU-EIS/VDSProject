@@ -55,5 +55,6 @@ bool Manager::isVariable(BDD_ID x){
 
 std::string Manager::getTopVarName(const BDD_ID &root) {
 
-    return  "NA";
+    BDD_ID id=unique_table[root].topvar;
+    return unique_table[id].label;
 }
