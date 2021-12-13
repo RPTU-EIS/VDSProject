@@ -8,6 +8,7 @@
 #include "ManagerInterface.h"
 #include "BDD_node.h"
 #include <vector>
+
 namespace ClassProject {
 
     class Manager : public ManagerInterface {
@@ -75,6 +76,8 @@ namespace ClassProject {
         void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) override;
 
 	    bool isConstant(BDD_ID f) override;
+
+        void printUniqueTable( void );
     };
 
 };
