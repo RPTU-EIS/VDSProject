@@ -49,8 +49,24 @@ public:
         managerTest.createVar("a");
         managerTest.createVar("b");
         std::string m="a+b";
-        managerTest.AddNode(4,1 ,3, 2,m);
+        managerTest.addNode(4,1 ,3, 2,m);
 
+    }
+};
+
+class CoFactorsTest : public testing::Test {
+public:
+    Manager managerTest;
+
+    void SetUp() override{
+        managerTest.createVar("a");
+        managerTest.createVar("b");
+        managerTest.createVar("c");
+        managerTest.createVar("d");
+        std::string label_a_or_b="a+b";
+        managerTest.addNode(6,1 ,3, 2,label_a_or_b);
+        std::string label_c_and_d="c*d";
+        managerTest.addNode(7,5 ,0, 4,label_c_and_d);
     }
 };
 
