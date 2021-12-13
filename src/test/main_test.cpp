@@ -113,6 +113,20 @@ TEST_F(CoFactorsTest,CoFactorTrueTwoInputs){
     }
 }
 
+TEST_F(CoFactorsTest,CoFactorFalseTwoInputs){
+    for(int i = 2; i < managerTest.uniqueTableSize()-2; i++) {
+        EXPECT_EQ(managerTest.coFactorFalse(0, i), 0);
+        EXPECT_EQ(managerTest.coFactorFalse(1, i), 1);
+    }
+    for(int i = 2; i < managerTest.uniqueTableSize()-2; i++){
+        for( int j = 2; j < managerTest.uniqueTableSize(); j++ )
+            if( i == managerTest.topVar(j) )
+                EXPECT_EQ(managerTest.coFactorFalse( j, i ), 0);
+            else
+                EXPECT_EQ(managerTest.coFactorFalse( j, i ), j);
+    }
+}
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
