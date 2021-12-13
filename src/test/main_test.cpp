@@ -92,6 +92,13 @@ TEST_F(CoFactorsTest,CoFactorTrueSimple){
         EXPECT_EQ(managerTest.coFactorTrue( i ), 1);
 }
 
+TEST_F(CoFactorsTest,CoFactorFalseSimple){
+    EXPECT_EQ(managerTest.coFactorFalse( 0 ), 0);
+    EXPECT_EQ(managerTest.coFactorFalse( 1 ), 1);
+    for( int i = 2; i < managerTest.uniqueTableSize(); i++ )
+        EXPECT_EQ(managerTest.coFactorFalse( i ), 0);
+}
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);

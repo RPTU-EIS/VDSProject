@@ -132,5 +132,5 @@ BDD_ID Manager::coFactorTrue(BDD_ID f){
 }
 
 BDD_ID Manager::coFactorFalse(BDD_ID f){
-    return unique_table[0].id;
+    return unique_table[1].id;
 }
