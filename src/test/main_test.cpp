@@ -84,7 +84,10 @@ TEST_F(RecursiveTest1,FindVars_test){
     for(int i=0;i<2;i++) {
         ASSERT_NE(a.end(),a.find(result_exp[i]));
     }
+}
 
+TEST_F(RecursiveTest1,CoFactorTrueSimple){
+    EXPECT_EQ(managerTest.coFactorTrue( 6 ), 2);
 }
 
 int main(int argc, char* argv[])

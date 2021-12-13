@@ -11,14 +11,14 @@ using namespace ClassProject;
 int main(int argc, char* argv[])
 {
     std::cout << "Something implemented, already" << std::endl;
-    Manager managerTest;
+    Manager managerTest2;
 
-    managerTest.createVar("a");
-    managerTest.createVar("b");
-    managerTest.createVar("c");
-    managerTest.createVar("d");
-    managerTest.createVar("a");
-    managerTest.createVar("b");
+    managerTest2.createVar("a");
+    managerTest2.createVar("b");
+    managerTest2.createVar("c");
+    managerTest2.createVar("d");
+    managerTest2.createVar("a");
+    managerTest2.createVar("b");
 
-    managerTest.printUniqueTable();
+    managerTest2.printUniqueTable();
 }

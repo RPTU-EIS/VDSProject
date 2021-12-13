@@ -64,18 +64,26 @@ namespace ClassProject {
          */
         std::string getTopVarName(const BDD_ID &root) override;
 
-        /**
-         *   AddNode.
-         *  add a node to our table with a given id, true node, false node,topVariable, label
-         *  this function is used during the tests.
-        */
-        void AddNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e) override;
-
         void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) override;
 
         void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) override;
 
 	    bool isConstant(BDD_ID f) override;
+
+        BDD_ID coFactorTrue(BDD_ID f, BDD_ID x) override;
+
+        BDD_ID coFactorFalse(BDD_ID f, BDD_ID x) override;
+
+        BDD_ID coFactorTrue(BDD_ID f) override;
+
+        BDD_ID coFactorFalse(BDD_ID f) override;
+
+        /**
+         *   AddNode.
+         *  add a node to our table with a given id, true node, false node,topVariable, label
+         *  this function is used during the tests.
+        */
+        void addNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e);
 
         void printUniqueTable( void );
     };

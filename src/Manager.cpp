@@ -32,9 +32,9 @@ BDD_ID Manager::createVar(const std::string &label) {
     return 0;
 }
 
-void Manager::AddNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e){
-     BDD_node new_var(a,b,c,d, (std::string&)e);
-     unique_table.push_back(new_var);
+void Manager::addNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e){
+    BDD_node new_var(a,b,c,d, (std::string&)e);
+    unique_table.push_back(new_var);
 }
 
 BDD_ID Manager::uniqueTableSize(){
@@ -115,4 +115,20 @@ void Manager::printUniqueTable( void ){
         std::cout << unique_table[i].id << "\t" << unique_table[i].label << "\t" << unique_table[i].high << "\t" <<
         unique_table[i].low << "\t" << unique_table[i].topvar << "\t\n";
     }
+}
+
+BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x){
+    return unique_table[0].id;
+}
+
+BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x) {
+    return unique_table[0].id;
+}
+
+BDD_ID Manager::coFactorTrue(BDD_ID f){
+    return unique_table[0].id;
+}
+
+BDD_ID Manager::coFactorFalse(BDD_ID f){
+    return unique_table[0].id;
 }
