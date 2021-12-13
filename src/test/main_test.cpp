@@ -29,12 +29,22 @@ TEST_F(UniqueTableTests, createVar_itemsok){
 
 /// False Node Function TESTS:
 TEST_F(UniqueTableTests, false_node_found){
-    ASSERT_EQ(0,managerTest.False());
+    EXPECT_EQ(0,managerTest.False());
 }
+
 /// True Node Function TESTS:
 TEST_F(UniqueTableTests, true_node_found){
 
-    ASSERT_EQ(1,managerTest.True());
+    EXPECT_EQ(1,managerTest.True());
+}
+
+/// IsConstant Function TESTS:
+TEST_F(UniqueTableTests, is_constant){
+    BDD_ID id[5]={0,1,2,3,4};
+    bool result_exp[5]={true,true,false,false,false};
+    for (int i=0;i<5;i++){
+        EXPECT_EQ(result_exp[i],managerTest.isConstant(id[i]));
+    }
 }
 
 TEST_F(UniqueTableTests, is_variable){
