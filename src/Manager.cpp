@@ -52,7 +52,7 @@ const BDD_ID &Manager::False(){
 }
 
 bool Manager::isVariable(BDD_ID x){
-    if (unique_table[1].high==1 and unique_table[0].low==0){
+    if (unique_table[x].high==1 and unique_table[x].low==0){
         return true;
     }
     return false;
