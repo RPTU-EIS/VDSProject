@@ -132,5 +132,10 @@ BDD_ID Manager::coFactorTrue(BDD_ID f){
 }
 
 BDD_ID Manager::coFactorFalse(BDD_ID f){
-    return unique_table[1].id;
+    if( isConstant(f) == true )
+        return f;
+    else if( isVariable(f) == true )
+        return unique_table[f].low;
+    else
+        return unique_table[topVar(f)].low;
 }
