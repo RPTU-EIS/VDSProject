@@ -20,5 +20,10 @@ int main(int argc, char* argv[])
     managerTest2.createVar("a");
     managerTest2.createVar("b");
 
+    std::string label_a_or_b="a+b";
+    managerTest2.addNode(6,1 ,3, 2,label_a_or_b);
+    std::string label_c_and_d="c*d";
+    managerTest2.addNode(7,5 ,0, 4,label_c_and_d);
+
     managerTest2.printUniqueTable();
 }

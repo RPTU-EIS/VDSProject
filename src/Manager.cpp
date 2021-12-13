@@ -83,14 +83,11 @@ void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
     std::set<BDD_ID> a={};
     findNodes(root,a);
     for ( std::set<BDD_ID>::iterator itr = a.begin(); itr != a.end(); itr++) {
-
         if(*itr !=0 and *itr!=1){     //we can replace this by Is_constant function
             vars_of_root.insert(unique_table[*itr].topvar);
-
-        }
-
         }
     }
+}
 
 bool Manager::isConstant(BDD_ID f) {
     bool is_leaf = true;
@@ -126,7 +123,12 @@ BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x) {
 }
 
 BDD_ID Manager::coFactorTrue(BDD_ID f){
-    return unique_table[0].id;
+    if( isConstant(f) == true )
+        return f;
+    else if( isVariable(f) == true )
+        return unique_table[f].high;
+    else
+        return unique_table[topVar(f)].high;
 }
 
 BDD_ID Manager::coFactorFalse(BDD_ID f){

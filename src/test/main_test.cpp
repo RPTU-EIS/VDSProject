@@ -86,8 +86,10 @@ TEST_F(RecursiveTest1,FindVars_test){
     }
 }
 
-TEST_F(RecursiveTest1,CoFactorTrueSimple){
-    EXPECT_EQ(managerTest.coFactorTrue( 6 ), 2);
+TEST_F(CoFactorsTest,CoFactorTrueSimple){
+    EXPECT_EQ(managerTest.coFactorTrue( 0 ), 0);
+    for( int i = 1; i < managerTest.uniqueTableSize(); i++ )
+        EXPECT_EQ(managerTest.coFactorTrue( i ), 1);
 }
 
 int main(int argc, char* argv[])
