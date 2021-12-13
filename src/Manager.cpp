@@ -35,8 +35,8 @@ BDD_ID Manager::createVar(const std::string &label) {
 void Manager::AddNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e){
      BDD_node new_var(a,b,c,d, (std::string&)e);
      unique_table.push_back(new_var);
-
 }
+
 BDD_ID Manager::uniqueTableSize(){
     size_t number_nodes;
     number_nodes = unique_table.size();
@@ -63,6 +63,7 @@ std::string Manager::getTopVarName(const BDD_ID &root) {
     BDD_ID id=unique_table[root].topvar;
     return unique_table[id].label;
 }
+
 void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
 
     if(nodes_of_root.find(root)==nodes_of_root.end()){
@@ -76,7 +77,8 @@ void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
         findNodes(unique_table[root].low,nodes_of_root);
     }
 
-    }
+}
+
 void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
     std::set<BDD_ID> a={};
     findNodes(root,a);
@@ -91,7 +93,6 @@ void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
     }
 
 bool Manager::isConstant(BDD_ID f) {
-
     bool is_leaf = true;
 
     if (unique_table[f].id == 0 or unique_table[f].id == 1){
@@ -103,6 +104,15 @@ bool Manager::isConstant(BDD_ID f) {
 
     return is_leaf;
 }
+
 BDD_ID Manager::topVar(BDD_ID f){
     return unique_table[f].topvar;
+}
+
+void Manager::printUniqueTable( void ){
+    std::cout << "ID\t" << "Label\t" << "High\t" << "Low\t" << "TopVar\t\n";
+    for( int i = 0; i < uniqueTableSize(); i++){
+        std::cout << unique_table[i].id << "\t" << unique_table[i].label << "\t" << unique_table[i].high << "\t" <<
+        unique_table[i].low << "\t" << unique_table[i].topvar << "\t\n";
+    }
 }
