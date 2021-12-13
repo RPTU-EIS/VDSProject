@@ -44,12 +44,10 @@ BDD_ID Manager::uniqueTableSize(){
 }
 
 const BDD_ID &Manager::True() {
-
     return unique_table[1].id;
 }
 
 const BDD_ID &Manager::False(){
-
     return unique_table[0].id;
 }
 
@@ -104,4 +102,7 @@ bool Manager::isConstant(BDD_ID f) {
     }
 
     return is_leaf;
+}
+BDD_ID Manager::topVar(BDD_ID f){
+    return unique_table[f].topvar;
 }
