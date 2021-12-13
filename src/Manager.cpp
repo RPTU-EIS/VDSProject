@@ -115,26 +115,35 @@ void Manager::printUniqueTable( void ){
 }
 
 BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x){
-    if( ( isConstant(f) == true ) || ( unique_table[f].topvar != x ) )
+    //Also works when f is constant or variable, because
+    //a constant or a variable's top var is itself.
+    if( unique_table[f].topvar != x )
         return f;
     else
         return unique_table[topVar(f)].high;
 }
 
 BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x) {
-    return unique_table[1].id;
-}
-
-BDD_ID Manager::coFactorTrue(BDD_ID f){
-    if( isConstant(f) == true )
-        return f;
-    else
-        return unique_table[topVar(f)].high;
-}
-
-BDD_ID Manager::coFactorFalse(BDD_ID f){
-    if( isConstant(f) == true )
+    //Also works when f is constant or variable, because
+    //a constant or a variable's top var is itself.
+    if( unique_table[f].topvar != x )
         return f;
     else
         return unique_table[topVar(f)].low;
+}
+
+BDD_ID Manager::coFactorTrue(BDD_ID f){
+    //if it is a constant, should return f,
+    //if it is a variable, should return f.high,
+    //if it is none of those, should return the high from f.topvar.
+    //all of these results  can be achieved with the expression bellow.
+    return unique_table[topVar(f)].high;
+}
+
+BDD_ID Manager::coFactorFalse(BDD_ID f){
+    //if it is a constant, should return f,
+    //if it is a variable, should return f.low,
+    //if it is none of those, should return the low from f.topvar.
+    //all of these results  can be achieved with the expression bellow.
+    return unique_table[topVar(f)].low;
 }
