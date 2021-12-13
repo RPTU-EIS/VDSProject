@@ -115,7 +115,10 @@ void Manager::printUniqueTable( void ){
 }
 
 BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x){
-    return unique_table[0].id;
+    if( ( isConstant(f) == true ) || ( unique_table[f].topvar != x ) )
+        return f;
+    else
+        return unique_table[topVar(f)].high;
 }
 
 BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x) {
@@ -125,8 +128,6 @@ BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x) {
 BDD_ID Manager::coFactorTrue(BDD_ID f){
     if( isConstant(f) == true )
         return f;
-    else if( isVariable(f) == true )
-        return unique_table[f].high;
     else
         return unique_table[topVar(f)].high;
 }
@@ -134,8 +135,6 @@ BDD_ID Manager::coFactorTrue(BDD_ID f){
 BDD_ID Manager::coFactorFalse(BDD_ID f){
     if( isConstant(f) == true )
         return f;
-    else if( isVariable(f) == true )
-        return unique_table[f].low;
     else
         return unique_table[topVar(f)].low;
 }
