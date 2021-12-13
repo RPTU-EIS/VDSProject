@@ -46,6 +46,10 @@ namespace ClassProject {
         const BDD_ID &False() override;
 
         /**
+        *   Top Variable Function.
+        *   Returns the ID of a node's top variable.
+        */
+        BDD_ID topVar(BDD_ID f) override;
               *   isVariable Function.
               *   Returns True if the node represents a variable.
              */

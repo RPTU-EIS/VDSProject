@@ -34,8 +34,13 @@ TEST_F(UniqueTableTests, false_node_found){
 
 /// True Node Function TESTS:
 TEST_F(UniqueTableTests, true_node_found){
-
     EXPECT_EQ(1,managerTest.True());
+}
+
+/// Top Variable Function TESTS:
+TEST_F(UniqueTableTests, top_variable_of_variables){
+    for( BDD_ID i = 2; i < managerTest.uniqueTableSize(); i++ )
+        EXPECT_EQ(managerTest.topVar(i), i);
 }
 
 /// IsConstant Function TESTS:
@@ -81,7 +86,6 @@ TEST_F(RecursiveTest1,FindVars_test){
     }
 
 }
-
 
 int main(int argc, char* argv[])
 {
