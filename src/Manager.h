@@ -82,6 +82,7 @@ namespace ClassProject {
 
         BDD_ID ite(BDD_ID i, BDD_ID t, BDD_ID e) override;
 
+        BDD_ID iteAssist(BDD_ID i, BDD_ID t, BDD_ID e);
         /**
          *   AddNode.
          *  add a node to our table with a given id, true node, false node,topVariable, label

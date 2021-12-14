@@ -141,6 +141,8 @@ BDD_ID Manager::coFactorFalse(BDD_ID f){
 }
 
 BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
+
+
     return unique_table[i].high;
 }
 
