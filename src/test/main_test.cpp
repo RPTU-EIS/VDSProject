@@ -178,7 +178,7 @@ TEST_F(IteTest,ITETest){
     EXPECT_EQ(4,managerTest.unique_table[managerTest.uniqueTableSize()-1].topvar);
 
     //ite of ((a+b)*(c*d))
-    ite_id_result =managerTest.ite(4,5,0);
+    ite_id_result =managerTest.ite(6,7,0);
 
     EXPECT_EQ(10,managerTest.uniqueTableSize());
 

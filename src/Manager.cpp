@@ -142,8 +142,36 @@ BDD_ID Manager::coFactorFalse(BDD_ID f){
 
 BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
 
+    BDD_ID  highSuccessor=iteAssist(coFactorTrue(i), coFactorTrue(t,unique_table[i].topvar),
+                                    coFactorTrue(e,unique_table[i].topvar));
 
-    return unique_table[i].high;
+    BDD_ID lowSuccessor=iteAssist(coFactorFalse(i), coFactorTrue(t,unique_table[i].topvar),
+                                  coFactorTrue(e,unique_table[i].topvar));
+
+    BDD_ID exist=checkExistance(highSuccessor,lowSuccessor,unique_table[i].topvar);
+
+    if(exist==0){ //check if there is another node with the same top_var high Low
+        std::string x ="newNode";
+        addNode(uniqueTableSize(), highSuccessor, lowSuccessor, unique_table[i].topvar, (std::string &) x);
+        return uniqueTableSize()-1;
+    }
+    else
+        return exist;
+}
+
+BDD_ID Manager::iteAssist(BDD_ID i, BDD_ID t, BDD_ID e){
+
+    if(i==1){
+        return t; //if it is a terminal case return the id
+    }
+    else{
+        if(i==0){
+            return e; //if it is a terminal case return the id
+        }
+        else{
+            return ite(i,t,e); //if it is not a terminal case start our recursion method
+        }
+    }
 }
 
 BDD_ID Manager::checkExistance(BDD_ID highSuccessor,BDD_ID lowSuccessor,BDD_ID topVariable_i) {
