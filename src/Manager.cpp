@@ -145,8 +145,8 @@ BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
     BDD_ID  highSuccessor=iteAssist(coFactorTrue(i), coFactorTrue(t,unique_table[i].topvar),
                                     coFactorTrue(e,unique_table[i].topvar));
 
-    BDD_ID lowSuccessor=iteAssist(coFactorFalse(i), coFactorTrue(t,unique_table[i].topvar),
-                                  coFactorTrue(e,unique_table[i].topvar));
+    BDD_ID lowSuccessor=iteAssist(coFactorFalse(i), coFactorFalse(t,unique_table[i].topvar),
+                                  coFactorFalse(e,unique_table[i].topvar));
 
     BDD_ID exist=checkExistance(highSuccessor,lowSuccessor,unique_table[i].topvar);
 
