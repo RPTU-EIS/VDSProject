@@ -145,5 +145,12 @@ BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
 }
 
 BDD_ID Manager::checkExistance(BDD_ID highSuccessor,BDD_ID lowSuccessor,BDD_ID topVariable_i) {
-    return highSuccessor;
+
+    for (BDD_ID i = 0; i < uniqueTableSize(); i++) {
+        if(unique_table[i].high==highSuccessor and unique_table[i].low==lowSuccessor
+           and unique_table[i].topvar==topVariable_i){
+            return i;
+        }
+    }
+    return 0 ;
 }
