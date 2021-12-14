@@ -115,35 +115,45 @@ void Manager::printUniqueTable( void ){
 }
 
 BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x){
-    //Also works when f is constant or variable, because
-    //a constant or a variable's top var is itself.
-    if( unique_table[f].topvar != x )
+    BDD_ID T, F;
+    //The topVar is the variable with smaller ID in an expression
+    //If topVar(f) > x, then x won't compose f, hence it makes no
+    //difference for f if x is 1, hence it's a terminal case.
+    if( isConstant(f) || isConstant(x) || topVar(f) > x )
         return f;
-    else
-        return unique_table[topVar(f)].high;
+    if( topVar(f) == x )
+        return unique_table[f].high;
+    else{ //if topVar(f) < x, then f may depend on x, hence the need of recursion
+        T = coFactorTrue( unique_table[f].high, x );
+        F = coFactorTrue( unique_table[f].low, x );
+        return ite( topVar(f), T, F );
+    }
 }
 
 BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x) {
-    //Also works when f is constant or variable, because
-    //a constant or a variable's top var is itself.
-    if( unique_table[f].topvar != x )
+    BDD_ID T, F;
+    //The topVar is the variable with smaller ID in an expression
+    //If topVar(f) > x, then x won't compose f, hence it makes no
+    //difference for f if x is 0, hence it's a terminal case.
+    if( isConstant(f) || isConstant(x) || topVar(f) > x )
         return f;
-    else
-        return unique_table[topVar(f)].low;
+    if( topVar(f) == x )
+        return unique_table[f].low;
+    else{ //if topVar(f) < x, then f may depend on x, hence the need of recursion
+        T = coFactorFalse( unique_table[f].high, x );
+        F = coFactorFalse( unique_table[f].low, x );
+        return ite( topVar(f), T, F );
+    }
 }
 
 BDD_ID Manager::coFactorTrue(BDD_ID f){
-    //if it is a constant, should return f,
-    //if it is a variable, should return f.high,
-    //if it is none of those, should return the high from f.topvar.
-    //all of these results  can be achieved with the expression bellow.
-    return unique_table[topVar(f)].high;
+    return unique_table[f].high;
 }
 
 BDD_ID Manager::coFactorFalse(BDD_ID f){
-    //if it is a constant, should return f,
-    //if it is a variable, should return f.low,
-    //if it is none of those, should return the low from f.topvar.
-    //all of these results  can be achieved with the expression bellow.
-    return unique_table[topVar(f)].low;
+    return unique_table[f].low;
+}
+
+BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
+    return unique_table[i].high;
 }

@@ -88,42 +88,72 @@ TEST_F(RecursiveTest1,FindVars_test){
 
 TEST_F(CoFactorsTest,CoFactorTrueSimple){
     EXPECT_EQ(managerTest.coFactorTrue( 0 ), 0);
-    for( int i = 1; i < managerTest.uniqueTableSize(); i++ )
+    for( int i = 1; i < managerTest.uniqueTableSize()-2; i++ )
         EXPECT_EQ(managerTest.coFactorTrue( i ), 1);
+    EXPECT_EQ(managerTest.coFactorTrue( 6 ), 1);
+    EXPECT_EQ(managerTest.coFactorTrue( 7 ), 5);
 }
 
 TEST_F(CoFactorsTest,CoFactorFalseSimple){
     EXPECT_EQ(managerTest.coFactorFalse( 0 ), 0);
     EXPECT_EQ(managerTest.coFactorFalse( 1 ), 1);
-    for( int i = 2; i < managerTest.uniqueTableSize(); i++ )
+    for( int i = 2; i < managerTest.uniqueTableSize()-2; i++ )
         EXPECT_EQ(managerTest.coFactorFalse( i ), 0);
+    EXPECT_EQ(managerTest.coFactorFalse( 6 ), 3);
+    EXPECT_EQ(managerTest.coFactorFalse( 7 ), 0);
 }
 
+//Test for terminal cases, since there's no ite yet
 TEST_F(CoFactorsTest,CoFactorTrueTwoInputs){
+    //Test when f is constant, i is a variable
     for(int i = 2; i < managerTest.uniqueTableSize()-2; i++) {
         EXPECT_EQ(managerTest.coFactorTrue(0, i), 0);
         EXPECT_EQ(managerTest.coFactorTrue(1, i), 1);
     }
-    for(int i = 2; i < managerTest.uniqueTableSize()-2; i++){
-        for( int j = 2; j < managerTest.uniqueTableSize(); j++ )
-            if( i == managerTest.topVar(j) )
-                EXPECT_EQ(managerTest.coFactorTrue( j, i ), 1);
+
+    //Test when x is constant, i is a variable
+    for(int i = 2; i < managerTest.uniqueTableSize()-2; i++) {
+        EXPECT_EQ(managerTest.coFactorTrue(i, 0), i);
+        EXPECT_EQ(managerTest.coFactorTrue(i, 1), i);
+    }
+
+    //Test when topVar(f) >= x, j is variable
+    for(int i = 2; i < managerTest.uniqueTableSize(); i++){
+        for( int j = 2; j < managerTest.uniqueTableSize()-2; j++ ){
+            if ( managerTest.topVar(i) == j )
+                EXPECT_EQ(managerTest.coFactorTrue(i, j), managerTest.unique_table[i].high);
+            else if ( managerTest.topVar(i) > j )
+                EXPECT_EQ(managerTest.coFactorTrue(i, j), managerTest.unique_table[i].id);
             else
-                EXPECT_EQ(managerTest.coFactorTrue( j, i ), j);
+                break;
+        }
     }
 }
 
-TEST_F(CoFactorsTest,CoFactorFalseTwoInputs){
+//Test for terminal cases, since there's no ite yet
+TEST_F(CoFactorsTest,CoFactorFalseTwoInputsSimple){
+    //Test when f is constant, i is a variable
     for(int i = 2; i < managerTest.uniqueTableSize()-2; i++) {
         EXPECT_EQ(managerTest.coFactorFalse(0, i), 0);
         EXPECT_EQ(managerTest.coFactorFalse(1, i), 1);
     }
-    for(int i = 2; i < managerTest.uniqueTableSize()-2; i++){
-        for( int j = 2; j < managerTest.uniqueTableSize(); j++ )
-            if( i == managerTest.topVar(j) )
-                EXPECT_EQ(managerTest.coFactorFalse( j, i ), 0);
+
+    //Test when x is constant, i is a variable
+    for(int i = 2; i < managerTest.uniqueTableSize()-2; i++) {
+        EXPECT_EQ(managerTest.coFactorFalse(i, 0), i);
+        EXPECT_EQ(managerTest.coFactorFalse(i, 1), i);
+    }
+
+    //Test when topVar(f) >= x, j is variable
+    for(int i = 2; i < managerTest.uniqueTableSize(); i++){
+        for( int j = 2; j < managerTest.uniqueTableSize()-2; j++ ){
+            if ( managerTest.topVar(i) == j )
+                EXPECT_EQ(managerTest.coFactorFalse(i, j), managerTest.unique_table[i].low);
+            else if ( managerTest.topVar(i) > j )
+                EXPECT_EQ(managerTest.coFactorFalse(i, j), managerTest.unique_table[i].id);
             else
-                EXPECT_EQ(managerTest.coFactorFalse( j, i ), j);
+                break;
+        }
     }
 }
 
