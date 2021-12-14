@@ -157,6 +157,39 @@ TEST_F(CoFactorsTest,CoFactorFalseTwoInputsSimple){
         }
     }
 }
+TEST_F(IteTest,ITETest){
+
+    //ite of (a+b)
+    managerTest.ite(2,1,3);
+    EXPECT_EQ(7,managerTest.uniqueTableSize());
+    EXPECT_EQ(1,managerTest.unique_table[managerTest.uniqueTableSize()-1].high);
+    EXPECT_EQ(3,managerTest.unique_table[managerTest.uniqueTableSize()-1].low);
+    EXPECT_EQ(2,managerTest.unique_table[managerTest.uniqueTableSize()-1].topvar);
+
+    //ite of (c*d)
+    managerTest.ite(4,5,0);
+    EXPECT_EQ(8,managerTest.uniqueTableSize());
+    EXPECT_EQ(5,managerTest.unique_table[managerTest.uniqueTableSize()-1].high);
+    EXPECT_EQ(0,managerTest.unique_table[managerTest.uniqueTableSize()-1].low);
+    EXPECT_EQ(4,managerTest.unique_table[managerTest.uniqueTableSize()-1].topvar);
+
+    //ite of ((a+b)*(c*d))
+    managerTest.ite(4,5,0);
+    EXPECT_EQ(10,managerTest.uniqueTableSize());
+
+    //check that the node of b*c*d was created correctly
+    EXPECT_EQ(7,managerTest.unique_table[managerTest.uniqueTableSize()-2].high);
+    EXPECT_EQ(0,managerTest.unique_table[managerTest.uniqueTableSize()-2].low);
+    EXPECT_EQ(3,managerTest.unique_table[managerTest.uniqueTableSize()-2].topvar);
+
+    //check that the node of the Output was created correctly
+    EXPECT_EQ(7,managerTest.unique_table[managerTest.uniqueTableSize()-1].high);
+    EXPECT_EQ(8,managerTest.unique_table[managerTest.uniqueTableSize()-1].low);
+    EXPECT_EQ(2,managerTest.unique_table[managerTest.uniqueTableSize()-1].topvar);
+
+
+
+}
 
 TEST_F(IteTest,checkExistanceTest){
 
