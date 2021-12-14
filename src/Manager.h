@@ -90,6 +90,8 @@ namespace ClassProject {
         void addNode(BDD_ID p_id, BDD_ID p_high, BDD_ID p_low, BDD_ID p_topvar, std::string &p_label);
 
         void printUniqueTable( void );
+
+        BDD_ID checkExistance(BDD_ID highSuccessor,BDD_ID lowSuccessor,BDD_ID topVariable_i);
     };
 
 };

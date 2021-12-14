@@ -158,6 +158,13 @@ TEST_F(CoFactorsTest,CoFactorFalseTwoInputsSimple){
     }
 }
 
+TEST_F(IteTest,checkExistanceTest){
+
+    EXPECT_EQ(2,managerTest.checkExistance(1,0,2));
+    EXPECT_EQ(0,managerTest.checkExistance(1,3,2));
+}
+
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
