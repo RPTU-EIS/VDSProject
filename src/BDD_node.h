@@ -15,7 +15,7 @@ namespace ClassProject {
         BDD_ID topvar;
         std::string label;
 
-        BDD_node(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e);
+        BDD_node(BDD_ID p_id, BDD_ID p_high, BDD_ID p_low, BDD_ID p_topvar, std::string &p_label);
 
     };
 

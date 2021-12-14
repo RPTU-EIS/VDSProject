@@ -35,8 +35,6 @@ public:
         managerTest.createVar("b");
         managerTest.createVar("c");
         managerTest.createVar("d");
-        managerTest.createVar("a");
-        managerTest.createVar("b");
     }
 };
 

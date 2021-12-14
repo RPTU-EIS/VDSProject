@@ -8,6 +8,8 @@
 #include "ManagerInterface.h"
 #include "BDD_node.h"
 #include <vector>
+#include <stdio.h>
+#include <string.h>
 
 namespace ClassProject {
 
@@ -85,7 +87,7 @@ namespace ClassProject {
          *  add a node to our table with a given id, true node, false node,topVariable, label
          *  this function is used during the tests.
         */
-        void addNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e);
+        void addNode(BDD_ID p_id, BDD_ID p_high, BDD_ID p_low, BDD_ID p_topvar, std::string &p_label);
 
         void printUniqueTable( void );
     };

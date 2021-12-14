@@ -17,10 +17,10 @@ TEST_F(TableSizeTest, uniqueTableSize_sizeok){
 
 /// CreateVar Function TESTS:
 TEST_F(UniqueTableTests, createVar_sizeok){
-
     BDD_ID table_size = managerTest.uniqueTableSize();
     EXPECT_EQ(6,table_size);
 }
+
 /// CreateVar Function TESTS:
 TEST_F(UniqueTableTests, createVar_itemsok){
     for (int i = 0; i < 6; i++)
@@ -88,6 +88,7 @@ TEST_F(RecursiveTest1,FindVars_test){
 
 TEST_F(CoFactorsTest,CoFactorTrueSimple){
     EXPECT_EQ(managerTest.coFactorTrue( 0 ), 0);
+    EXPECT_EQ(managerTest.coFactorFalse( 1 ), 1);
     for( int i = 1; i < managerTest.uniqueTableSize()-2; i++ )
         EXPECT_EQ(managerTest.coFactorTrue( i ), 1);
     EXPECT_EQ(managerTest.coFactorTrue( 6 ), 1);

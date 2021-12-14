@@ -13,27 +13,13 @@ Manager::Manager(){
 }
 
 BDD_ID Manager::createVar(const std::string &label) {
-    int number_nodes_table;
-    bool var_already_registered = false;
-    number_nodes_table = uniqueTableSize();
-
-    for (int i=0; i <= number_nodes_table; i++) {
-        if (unique_table[i].label == label) {
-            var_already_registered = true;
-            break;
-        }
-    }
-    if (!var_already_registered) {
-        BDD_node new_var(number_nodes_table,1,0,number_nodes_table, (std::string&)label);
-        unique_table.push_back(new_var);
-        return new_var.id;
-    }
-
-    return 0;
+    BDD_node new_var(uniqueTableSize(),1,0,uniqueTableSize(), (std::string&)label);
+    unique_table.push_back(new_var);
+    return new_var.id;
 }
 
-void Manager::addNode(BDD_ID a, BDD_ID b, BDD_ID c, BDD_ID d, std::string &e){
-    BDD_node new_var(a,b,c,d, (std::string&)e);
+void Manager::addNode(BDD_ID p_id, BDD_ID p_high, BDD_ID p_low, BDD_ID p_topvar, std::string &p_label){
+    BDD_node new_var(p_id,p_high,p_low,p_topvar, (std::string&)p_label);
     unique_table.push_back(new_var);
 }
 
