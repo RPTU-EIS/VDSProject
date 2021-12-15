@@ -145,9 +145,16 @@ BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
     BDD_ID  highSuccessor=iteAssist(coFactorTrue(i), coFactorTrue(t,unique_table[i].topvar),
                                     coFactorTrue(e,unique_table[i].topvar));
 
-    BDD_ID lowSuccessor=iteAssist(coFactorFalse(i), coFactorTrue(t,unique_table[i].topvar),
-                                  coFactorTrue(e,unique_table[i].topvar));
+    BDD_ID lowSuccessor=iteAssist(coFactorFalse(i), coFactorFalse(t,unique_table[i].topvar),
+                                  coFactorFalse(e,unique_table[i].topvar));
 
+
+    if(highSuccessor==1 and lowSuccessor==1){//check if it is the true node
+        return 1;
+    }
+    if(highSuccessor==0 and lowSuccessor==0){ //check if it is a false node
+        return 0;
+    }
     BDD_ID exist=checkExistance(highSuccessor,lowSuccessor,unique_table[i].topvar);
 
     if(exist==0){ //check if there is another node with the same top_var high Low
@@ -180,6 +187,9 @@ BDD_ID Manager::checkExistance(BDD_ID highSuccessor,BDD_ID lowSuccessor,BDD_ID t
         if(unique_table[i].high==highSuccessor and unique_table[i].low==lowSuccessor
            and unique_table[i].topvar==topVariable_i){
             return i;
+        }
+        if(highSuccessor==1 and lowSuccessor==1){
+            return 1;
         }
     }
     return 0 ;

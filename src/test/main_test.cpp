@@ -104,7 +104,7 @@ TEST_F(CoFactorsTest,CoFactorFalseSimple){
     EXPECT_EQ(managerTest.coFactorFalse( 7 ), 0);
 }
 
-//Test for terminal cases, since there's no ite yet
+
 TEST_F(CoFactorsTest,CoFactorTrueTwoInputs){
     //Test when f is constant, i is a variable
     for(int i = 2; i < managerTest.uniqueTableSize()-2; i++) {
@@ -129,9 +129,14 @@ TEST_F(CoFactorsTest,CoFactorTrueTwoInputs){
                 break;
         }
     }
+
+    //test when it is not a terminal case nor the topVar of F equal to x
+    EXPECT_EQ(managerTest.coFactorTrue(6, 3),1);
+    EXPECT_EQ(managerTest.coFactorTrue(7, 5),4);
+
 }
 
-//Test for terminal cases, since there's no ite yet
+
 TEST_F(CoFactorsTest,CoFactorFalseTwoInputsSimple){
     //Test when f is constant, i is a variable
     for(int i = 2; i < managerTest.uniqueTableSize()-2; i++) {
@@ -156,6 +161,9 @@ TEST_F(CoFactorsTest,CoFactorFalseTwoInputsSimple){
                 break;
         }
     }
+    //test when it is not a terminal case nor the topVar of F equal to x
+    EXPECT_EQ(managerTest.coFactorFalse(6, 3),2);
+    EXPECT_EQ(managerTest.coFactorFalse(7, 5),0);
 }
 TEST_F(IteTest,ITETest){
 
