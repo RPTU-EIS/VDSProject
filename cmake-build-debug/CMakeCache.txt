@@ -225,7 +225,7 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 GIT_EXECUTABLE:FILEPATH=/usr/bin/git
 
 //Path to a library.
-GTest:FILEPATH=GTest-NOTFOUND
+GTest:FILEPATH=/Users/paula/Desktop/TUK/Semester 1/Verification of Digital Systems/Project/VDSProject_Group4/lib/libgtest.a
 
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
