@@ -167,8 +167,15 @@ TEST_F(CoFactorsTest,CoFactorFalseTwoInputsSimple){
 }
 TEST_F(IteTest,ITETest){
 
+    //testing two special cases
+    BDD_ID ite_id_result = managerTest.ite(0,0,0);
+    EXPECT_EQ(0,ite_id_result);
+    ite_id_result = managerTest.ite(0,2,3);
+    std::cout << ite_id_result << std::endl;
+    EXPECT_EQ(3,ite_id_result);
+    managerTest.printUniqueTable();
     //ite of (a+b)
-    BDD_ID ite_id_result = managerTest.ite(2,1,3);
+   ite_id_result = managerTest.ite(2,1,3);
 
     EXPECT_EQ(6,ite_id_result);
     EXPECT_EQ(7,managerTest.uniqueTableSize());

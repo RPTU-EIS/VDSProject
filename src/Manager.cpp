@@ -76,7 +76,7 @@ void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
 }
 
 bool Manager::isConstant(BDD_ID f) {
-    bool is_leaf = true;
+    bool is_leaf;
 
     if (unique_table[f].id == 0 or unique_table[f].id == 1){
         is_leaf = true;
@@ -148,15 +148,11 @@ BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
     BDD_ID lowSuccessor=iteAssist(coFactorFalse(i), coFactorFalse(t,unique_table[i].topvar),
                                   coFactorFalse(e,unique_table[i].topvar));
 
+    if(highSuccessor==lowSuccessor){
+        return highSuccessor ;
+    }
 
-    if(highSuccessor==1 and lowSuccessor==1){//check if it is the true node
-        return 1;
-    }
-    if(highSuccessor==0 and lowSuccessor==0){ //check if it is a false node
-        return 0;
-    }
     BDD_ID exist=checkExistance(highSuccessor,lowSuccessor,unique_table[i].topvar);
-
     if(exist==0){ //check if there is another node with the same top_var high Low
         std::string x ="newNode";
         addNode(uniqueTableSize(), highSuccessor, lowSuccessor, unique_table[i].topvar, (std::string &) x);
@@ -169,17 +165,26 @@ BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
 BDD_ID Manager::iteAssist(BDD_ID i, BDD_ID t, BDD_ID e){
 
     if(i==1){
-        return t; //if it is a terminal case return the id
+        return t;         //if it is a terminal case return the id
     }
     else{
         if(i==0){
-            return e; //if it is a terminal case return the id
+            return e;     //if it is a terminal case return the id
         }
         else{
-            return ite(i,t,e); //if it is not a terminal case start our recursion method
+            if(t==0 and e==0)
+                return 0;
+
+            else{
+                if(t==1 and e==1)
+                    return 1;
+                else
+                    return ite(i,t,e);  //if it is not a terminal case start our recursion method
+            }
         }
     }
 }
+
 
 BDD_ID Manager::checkExistance(BDD_ID highSuccessor,BDD_ID lowSuccessor,BDD_ID topVariable_i) {
 
