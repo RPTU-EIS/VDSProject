@@ -5,7 +5,7 @@
 #ifndef VDSPROJECT_TESTS_H
 #define VDSPROJECT_TESTS_H
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "../Manager.h"
 
 #endif
