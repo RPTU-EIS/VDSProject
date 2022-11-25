@@ -18,4 +18,4 @@ jobs:
     - name: make
       run: cd build && make
     - name: Run Test
-      run: ./home/runner/work/VDSProject_22Group7/VDSProject_22Group7/build/src/test/VDSProject_test
+      run: ./home/runner/work/VDSProject_22Group7/
