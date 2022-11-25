@@ -4,6 +4,13 @@
 
 
 #include "Tests.h"
+TEST(test1, t1) {
+    ASSERT_EQ(1, 1);
+}
+
+TEST(test2, t2) {
+ASSERT_EQ(1, 2);
+}
 
 int main(int argc, char* argv[])
 {
