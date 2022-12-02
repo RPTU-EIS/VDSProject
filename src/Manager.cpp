@@ -28,7 +28,7 @@ bool Group7Manager::isConstant(BDD_ID f) {
 
 bool Group7Manager::isVariable(BDD_ID x) {
     return false;
-}uniqueTableSize
+}
 
 BDD_ID Group7Manager::topVar(BDD_ID f) {
     return BDD_UNIMPLEMENTED;
