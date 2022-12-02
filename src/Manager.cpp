@@ -15,11 +15,11 @@ BDD_ID Group7Manager::createVar(const std::string &label) {
 }
 
 const BDD_ID &Group7Manager::True() {
-    return BDD_UNIMPLEMENTED;
+    return BDD_TRUE;
 }
 
 const BDD_ID &Group7Manager::False() {
-    return BDD_UNIMPLEMENTED;
+    return BDD_FALSE;
 }
 
 bool Group7Manager::isConstant(BDD_ID f) {
