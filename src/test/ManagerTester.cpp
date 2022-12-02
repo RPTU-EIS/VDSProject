@@ -24,11 +24,9 @@ void ManagerTester::SetUp() {
 void ManagerTester::TearDown() {
 }
 
-TEST_F(ManagerTester, true_fn) {
-    int result = 1;
-    int expected_result = 0;
+TEST_F(ManagerTester, fn_uniqueTableSize) {
+    size_t expected_result = 2;
+    size_t result = manager->uniqueTableSize();
 
-    result = manager->True();
-
-    ASSERT_EQ(result, expected_result);
+    EXPECT_EQ(result, expected_result);
 }

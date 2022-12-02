@@ -10,7 +10,7 @@
 namespace ClassProject {
     class Group7Manager : public ClassProject::ManagerInterface {
     public:
-        Group7Manager() = default;
+        Group7Manager();
         ~Group7Manager() = default;
 
         // Creates a new variable with the given label and returns its ID
@@ -86,6 +86,9 @@ namespace ClassProject {
 
         // Returns the number of nodes currently existing in the unique table of the Manager class
         size_t uniqueTableSize() override;
+
+    public:
+
     };
 }
 
