@@ -2,6 +2,13 @@
 
 using namespace ClassProject;
 constexpr BDD_ID BDD_UNIMPLEMENTED = 101;
+constexpr BDD_ID BDD_FALSE = 0;
+constexpr BDD_ID BDD_TRUE = 1;
+
+Group7Manager::Group7Manager() {
+    nodes[0] = Node::False();
+    nodes[1] = Node::True();
+}
 
 BDD_ID Group7Manager::createVar(const std::string &label) {
     return 0;
@@ -21,7 +28,7 @@ bool Group7Manager::isConstant(BDD_ID f) {
 
 bool Group7Manager::isVariable(BDD_ID x) {
     return false;
-}
+}uniqueTableSize
 
 BDD_ID Group7Manager::topVar(BDD_ID f) {
     return BDD_UNIMPLEMENTED;
@@ -86,5 +93,13 @@ void Group7Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root)
 }
 
 size_t Group7Manager::uniqueTableSize() {
-    return BDD_UNIMPLEMENTED;
+    return nodes.size();
+}
+
+Node Node::True() {
+    return Node{1, 1, 1};
+}
+
+Node Node::False() {
+    return Node{0, 0, 0};
 }

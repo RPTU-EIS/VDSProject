@@ -6,8 +6,18 @@
 #define VDSPROJECT_MANAGER_H
 
 #include "ManagerInterface.h"
+#include <map>
 
 namespace ClassProject {
+    struct Node {
+        BDD_ID high;
+        BDD_ID low;
+        BDD_ID top_var;
+
+        static Node True();
+        static Node False();
+    };
+
     class Group7Manager : public ClassProject::ManagerInterface {
     public:
         Group7Manager();
@@ -88,7 +98,7 @@ namespace ClassProject {
         size_t uniqueTableSize() override;
 
     public:
-
+        std::map<BDD_ID, Node> nodes;
     };
 }
 
