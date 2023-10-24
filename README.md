@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/TUK-EIS/VDSProject">
-    <img src="doc/figures/TUKL_LOGO_4C.png" alt="Logo" width="400" height="200">
+    <img src="doc/figures/RPTU-Logo-RGB.png" alt="Logo" width="400" height="200">
   </a>
   <h3 align="center">
   VDS Class Project
@@ -41,7 +41,7 @@
   </h3>
 
   <p align="center">
-    GitHub repository for Verification of Digital Systems Class Project
+    GitHub repository for the Verification of Digital Systems Class Project
     <br />
     <br />
     <a href="https://github.com/TUK-EIS/VDSProject/issues">Report Bug</a>
@@ -77,9 +77,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-In the course of this Lab assignment students are going to implement a minimal BDD package in C++. This package implements the fundamental manipulation methods for ROBDDs as they were introduced in the lecture Verification of Digital Systems by Prof. Kunz. The package will be implemented using the Test Driven Development (TDD) paradigm presented by Dr. Wedler.
+In the course of this Lab assignment, students are going to implement a minimal BDD package in C++. This package implements the fundamental manipulation methods for ROBDDs as they were introduced in the lecture *Verification of Digital Systems* by Prof. Kunz. The package will be implemented using the Test Driven Development (TDD) paradigm presented by Dr. Wedler.
 
-The project is split into three parts:
+The project is split into three parts.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 #### Part1:
@@ -222,7 +222,7 @@ _Below is an example of how you can instruct your audience on installing and set
 ## Contact
 
 <!-- Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com -->
-Lucas Deutschmann & Philipp Schmitz - vds_cp@eit.uni-kl.de
+Lucas Deutschmann & Philipp Schmitz - eit-vds-cp@rptu.de
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
