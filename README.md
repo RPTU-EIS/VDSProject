@@ -224,6 +224,12 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com -->
 Lucas Deutschmann & Philipp Schmitz - eit-vds-cp@rptu.de
 
+### Collaborators
+
+1. [Piotr Mikulowski](github.com/rureverek) - xal27fes@rptu.de
+2. Johannes Stegmann - 
+3. Emanuel Cortez - 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
