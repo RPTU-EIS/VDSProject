@@ -16,4 +16,4 @@ jobs:
     - name: Build project
       run:  cmake --build build
     - name: Run test
-      run: cd build/src/test && VDSProject_test
+      run: cd build/src/test && ./VDSProject_test
