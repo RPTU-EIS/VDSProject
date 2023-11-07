@@ -18,4 +18,4 @@ jobs:
     - name: Run test
       run: cd build/src/test && ./VDSProject_test
     - name: Run doxygen
-      run: apt-get install doxygen && config.doxygen
+      run: sudo apt-get install -y doxygen && config.doxygen
