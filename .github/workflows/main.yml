@@ -1,0 +1,19 @@
+name: GTest
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configure CMake
+      run: cmake -S . -B build
+    - name: Build project
+      run:  cmake --build build
+    - name: Run test
+      run: cd build/src/test && VDSProject_test
