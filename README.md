@@ -35,9 +35,9 @@
   <h3 align="center">
   VDS Class Project
   <br />
-  Group #X
+  Group 04
   <br />
-  Winter Semester 2022/2023
+  Winter Semester 2023/2024
   </h3>
 
   <p align="center">
@@ -69,7 +69,7 @@
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#contributors">Contributors</a></li>
   </ol>
 </details>
 
@@ -229,8 +229,10 @@ Lucas Deutschmann & Philipp Schmitz - eit-vds-cp@rptu.de
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-Thank you Veli Durmuşcan, Shreya Vithal Kulhalli and Osama Omar Youssif Ayoub for the work on this README.md.
+### Contributors
+1. [Piotr Mikulowski](github.com/rureverek) - xal27fes@rptu.de
+2. Emanuel Cortez
+3. [Adam Gebregziabher](github.com/Adhaywe) - adam.gebregziabher@rptu.de
 
 
 You might find helpful links below.
