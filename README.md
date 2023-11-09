@@ -35,7 +35,7 @@
   <h3 align="center">
   VDS Class Project
   <br />
-  Group #X
+  Group #4
   <br />
   Winter Semester 2022/2023
   </h3>
@@ -230,8 +230,8 @@ Lucas Deutschmann & Philipp Schmitz - eit-vds-cp@rptu.de
 ### Collaborators
 
 1. [Piotr Mikulowski](github.com/rureverek) - xal27fes@rptu.de
-2. Johannes Stegmann - 
-3. Emanuel Cortez - 
+2. [Adam Firay Gebregziabher](github.com/adhaywe) - cot71rop@rptu.de
+3. [Emanuel Cortez](github.com/emanuelacm) - 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
