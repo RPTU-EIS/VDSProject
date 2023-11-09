@@ -35,7 +35,7 @@
   <h3 align="center">
   VDS Class Project
   <br />
-  Group #X
+  Group #4
   <br />
   Winter Semester 2022/2023
   </h3>
@@ -204,18 +204,21 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- ROADMAP -->
 ## Roadmap
 #### Part-1
-- [ ] TODO
-- [X] DONE
+- [X] Set up and maintain a Git repository
+- [X] Use CMake as a build system of the project
+- [ ] Verify the code using GTest
+- [X] Set up a Continuous Integration (CI) pipeline with GitHub Actions (Mandatory)
+- [ ] Use Doxygen (or a similar tool) to generate documentation for the API. (Optional)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 #### Part-2
-- [ ] TODO
-- [X] DONE
+- [ ] learning how to identify performance bottlenecks within the code.
+- [ ] Analyzing benchmark results.
+- [ ] How to overcome bottlenecks.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 #### Part-3
-- [ ] TODO
-- [X] DONE
+- [ ] Extending the existing implementation by a practical application of BDD. Using BDDs, it is possible to symbolically represent a state-space. This representation allows to check quickly, whether a specific state is within the reachable state space or not.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTACT -->
@@ -223,6 +226,12 @@ _Below is an example of how you can instruct your audience on installing and set
 
 <!-- Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com -->
 Lucas Deutschmann & Philipp Schmitz - eit-vds-cp@rptu.de
+
+### Collaborators
+
+1. [Piotr Mikulowski](github.com/rureverek) - xal27fes@rptu.de
+2. [Adam Firay Gebregziabher](github.com/adhaywe) - cot71rop@rptu.de
+3. [Emanuel Cortez](github.com/emanuelacm) - 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
