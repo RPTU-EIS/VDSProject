@@ -26,21 +26,14 @@ namespace ClassProject {
 
         std::vector<ClassProject::BDD_ID_Entry> Table;
 
-        ManagerInterface(){
-            ClassProject::BDD_ID_Entry entry = {"False", 0, 0, 0, 0};
-            Table.push_back(entry);
-
-            entry = {"True", 1, 1, 1, 1};
-            Table.push_back(entry);
-        };
-        
+        ManagerInterface();
 /*
         virtual BDD_ID createVar(const std::string &label) = 0;
+*/
+        virtual const BDD_ID &True();
 
-        virtual const BDD_ID &True() = 0;
-
-        virtual const BDD_ID &False() = 0;
-
+        virtual const BDD_ID &False();
+/*
         virtual bool isConstant(BDD_ID f) = 0;
 
         virtual bool isVariable(BDD_ID x) = 0;

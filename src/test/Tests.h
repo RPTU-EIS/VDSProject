@@ -25,4 +25,20 @@ TEST(ManagerInterface, InitTableSize){
     EXPECT_EQ(manager.Table.size(), 2);
 }
 
+TEST(ManagerInterface, TrueID){
+
+    ClassProject::ManagerInterface manager;
+    ClassProject::BDD_ID id = manager.True();
+
+    EXPECT_EQ(id, 1);
+}
+
+TEST(ManagerInterface, FalseID){
+
+    ClassProject::ManagerInterface manager;
+    ClassProject::BDD_ID id = manager.False();
+
+    EXPECT_EQ(id, 0);
+}
+
 #endif
