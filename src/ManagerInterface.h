@@ -7,13 +7,34 @@
 
 #include <string>
 #include <set>
+#include <vector>
 
 namespace ClassProject {
 
     typedef size_t BDD_ID;
 
+    struct BDD_ID_Entry {
+        std::string label;
+        ClassProject::BDD_ID id;
+        int high;
+        int low;
+        int TopVar;
+    };
+
     class ManagerInterface {
     public:
+
+        std::vector<ClassProject::BDD_ID_Entry> Table;
+
+        ManagerInterface(){
+            ClassProject::BDD_ID_Entry entry = {"False", 0, 0, 0, 0};
+            Table.push_back(entry);
+
+            entry = {"True", 1, 1, 1, 1};
+            Table.push_back(entry);
+        };
+        
+/*
         virtual BDD_ID createVar(const std::string &label) = 0;
 
         virtual const BDD_ID &True() = 0;
@@ -59,6 +80,7 @@ namespace ClassProject {
         virtual size_t uniqueTableSize() = 0;
 
         virtual void visualizeBDD(std::string filepath, BDD_ID &root) = 0;
+        */
     };
 }
 
