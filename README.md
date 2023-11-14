@@ -206,6 +206,35 @@ _Below is an example of how you can instruct your audience on installing and set
 #### Part-1
 - [ ] TODO
 - [X] DONE
+
+| Function Name                       | Implemented | Tested | Person |
+|--------------------------------------|-------------|--------|-------|
+| OBDDManager(0,3)       |      [ ]    |  [ ]   | Victor |
+| createVar(const std::string &label)       |      [ ]    |  [ ]   | Victor |
+| True()                                     |      [ ]    |  [ ]   | Victor|
+| False()                                    |      [ ]    |  [ ]   | Victor|
+| isConstant(BDD_ID f)                       |      [ ]    |  [ ]   | Victor|
+| isVariable(BDD_ID x)                       |      [ ]    |  [ ]   | Victor|
+| topVar(BDD_ID f)                           |      [ ]    |  [ ]   | Kamel |
+| ite(BDD_ID i, BDD_ID t, BDD_ID e)          |      [ ]    |  [ ]   | Victor|
+| createVar(const std::string &label)  |      [ ]    |  [ ]   | Kamel |
+| coFactorTrue(BDD_ID f, BDD_ID x)          |      [ ]    |  [ ]   | Kamel |
+| coFactorFalse(BDD_ID f, BDD_ID x)    |      [ ]    |  [ ]   | Kamel|
+| coFactorTrue(BDD_ID f)               |      [ ]    |  [ ]   | Kamel |
+| coFactorFalse(BDD_ID f)              |      [ ]    |  [ ]   | Kamel |
+| and2(BDD_ID a, BDD_ID b)             |      [ ]    |  [ ]   | Victor|
+| or2(BDD_ID a, BDD_ID b)              |      [ ]    |  [ ]   | Victor|
+| xor2(BDD_ID a, BDD_ID b)             |      [ ]    |  [ ]   | Victor|
+| neg(BDD_ID a)                        |      [ ]    |  [ ]   | Victor|
+| nand2(BDD_ID a, BDD_ID b)            |      [ ]    |  [ ]   | Victor|
+| nor2(BDD_ID a, BDD_ID b)             |      [ ]    |  [ ]   | Victor|
+| xnor2(BDD_ID a, BDD_ID b)            |      [ ]    |  [ ]   | Victor|
+| getTopVarName(const BDD_ID &root)    |      [ ]    |  [ ]   | Kamel |
+| findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root)  [ ] |  [ ]   | Kamel |
+| findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root)   | [ ] |  [ ]   | Kamel |
+| uniqueTableSize()                    |      [ ]    |  [ ]   | Kamel |
+| visualizeBDD(std::string filepath, BDD_ID &root) |      [ ]    |  [ ]   | Victor|
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 #### Part-2
