@@ -1,0 +1,86 @@
+\doxysection{Manager\+Interface.\+h}
+\hypertarget{ManagerInterface_8h_source}{}\label{ManagerInterface_8h_source}\index{src/ManagerInterface.h@{src/ManagerInterface.h}}
+\mbox{\hyperlink{ManagerInterface_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ ludwig\ on\ 01.03.16}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ VDSPROJECT\_MANAGERINTERFACE\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ VDSPROJECT\_MANAGERINTERFACE\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceClassProject}{ClassProject}}\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespaceClassProject_a1649f9445dc25f1b1708fa7e04f18faa}{BDD\_ID}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structClassProject_1_1BDD__ID__Entry}{BDD\_ID\_Entry}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structClassProject_1_1BDD__ID__Entry_ab3fba020d5abb6b54d7f6bf77d4d1d92}{label}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClassProject_a1649f9445dc25f1b1708fa7e04f18faa}{ClassProject::BDD\_ID}}\ \mbox{\hyperlink{structClassProject_1_1BDD__ID__Entry_ab08846c41756d6c833649def4b1acbbc}{id}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structClassProject_1_1BDD__ID__Entry_a30090cb67fb28f945916a1e33004e756}{high}};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structClassProject_1_1BDD__ID__Entry_a5e8dcd8a5762b910192b0716976ef035}{low}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structClassProject_1_1BDD__ID__Entry_a02b97536682da0e78a6f05ace23618f9}{TopVar}};}
+\DoxyCodeLine{00022\ \ \ \ \ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classClassProject_1_1ManagerInterface}{ManagerInterface}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::vector<ClassProject::BDD\_ID\_Entry>\ \mbox{\hyperlink{classClassProject_1_1ManagerInterface_a855fe5a49d13d3566de711d9ab7563b8}{Table}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classClassProject_1_1ManagerInterface_ae2bf46167e81aa6c912bf8aff4202d17}{ManagerInterface}}();}
+\DoxyCodeLine{00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ createVar(const\ std::string\ \&label)\ =\ 0;}}
+\DoxyCodeLine{00032\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceClassProject_a1649f9445dc25f1b1708fa7e04f18faa}{BDD\_ID}}\ \&\mbox{\hyperlink{classClassProject_1_1ManagerInterface_a72da19fa0123b04fb0d15599211d2a53}{True}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceClassProject_a1649f9445dc25f1b1708fa7e04f18faa}{BDD\_ID}}\ \&\mbox{\hyperlink{classClassProject_1_1ManagerInterface_aae5405a6e8aeb6dccb5f4a7639f9854d}{False}}();}
+\DoxyCodeLine{00036\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ bool\ isConstant(BDD\_ID\ f)\ =\ 0;}}
+\DoxyCodeLine{00038\ \textcolor{comment}{}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ bool\ isVariable(BDD\_ID\ x)\ =\ 0;}}
+\DoxyCodeLine{00040\ \textcolor{comment}{}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ topVar(BDD\_ID\ f)\ =\ 0;}}
+\DoxyCodeLine{00042\ \textcolor{comment}{}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ ite(BDD\_ID\ i,\ BDD\_ID\ t,\ BDD\_ID\ e)\ =\ 0;}}
+\DoxyCodeLine{00044\ \textcolor{comment}{}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ coFactorTrue(BDD\_ID\ f,\ BDD\_ID\ x)\ =\ 0;}}
+\DoxyCodeLine{00046\ \textcolor{comment}{}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ coFactorFalse(BDD\_ID\ f,\ BDD\_ID\ x)\ =\ 0;}}
+\DoxyCodeLine{00048\ \textcolor{comment}{}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ coFactorTrue(BDD\_ID\ f)\ =\ 0;}}
+\DoxyCodeLine{00050\ \textcolor{comment}{}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ coFactorFalse(BDD\_ID\ f)\ =\ 0;}}
+\DoxyCodeLine{00052\ \textcolor{comment}{}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ and2(BDD\_ID\ a,\ BDD\_ID\ b)\ =\ 0;}}
+\DoxyCodeLine{00054\ \textcolor{comment}{}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ or2(BDD\_ID\ a,\ BDD\_ID\ b)\ =\ 0;}}
+\DoxyCodeLine{00056\ \textcolor{comment}{}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ xor2(BDD\_ID\ a,\ BDD\_ID\ b)\ =\ 0;}}
+\DoxyCodeLine{00058\ \textcolor{comment}{}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ neg(BDD\_ID\ a)\ =\ 0;}}
+\DoxyCodeLine{00060\ \textcolor{comment}{}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ nand2(BDD\_ID\ a,\ BDD\_ID\ b)\ =\ 0;}}
+\DoxyCodeLine{00062\ \textcolor{comment}{}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ nor2(BDD\_ID\ a,\ BDD\_ID\ b)\ =\ 0;}}
+\DoxyCodeLine{00064\ \textcolor{comment}{}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ BDD\_ID\ xnor2(BDD\_ID\ a,\ BDD\_ID\ b)\ =\ 0;}}
+\DoxyCodeLine{00066\ \textcolor{comment}{}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ std::string\ getTopVarName(const\ BDD\_ID\ \&root)\ =\ 0;}}
+\DoxyCodeLine{00068\ \textcolor{comment}{}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ void\ findNodes(const\ BDD\_ID\ \&root,\ std::set<BDD\_ID>\ \&nodes\_of\_root)\ =\ 0;}}
+\DoxyCodeLine{00070\ \textcolor{comment}{}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ void\ findVars(const\ BDD\_ID\ \&root,\ std::set<BDD\_ID>\ \&vars\_of\_root)\ =\ 0;}}
+\DoxyCodeLine{00072\ \textcolor{comment}{}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ size\_t\ uniqueTableSize()\ =\ 0;}}
+\DoxyCodeLine{00074\ \textcolor{comment}{}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ \ \ \ virtual\ void\ visualizeBDD(std::string\ filepath,\ BDD\_ID\ \&root)\ =\ 0;}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00077\ \ \ \ \ \};}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
