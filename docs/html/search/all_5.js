@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['getting_20started_0',['Getting Started',['../d0/d30/md_README.html#autotoc_md4',1,'']]],
-  ['given_20task_20links_1',['Given Task Links',['../d0/d30/md_README.html#autotoc_md15',1,'']]]
+  ['class_20project_0',['VDS Class Project',['../index.html',1,'']]],
+  ['classproject_1',['ClassProject',['../de/d23/namespaceClassProject.html',1,'']]],
+  ['collaborators_2',['Collaborators',['../index.html#autotoc_md12',1,'']]],
+  ['contact_3',['Contact',['../index.html#autotoc_md11',1,'']]]
 ];
