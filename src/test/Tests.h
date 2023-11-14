@@ -40,5 +40,14 @@ TEST(ManagerInterface, FalseID){
 
     EXPECT_EQ(id, 0);
 }
+//test isVariable function
+TEST(ManagerInterface,isVar){
+    ClassProject::ManagerInterface manager;
 
+    EXPECT_FALSE(manager.isVariable(0));
+    EXPECT_FALSE(manager.isVariable(1));
+    //EXPECT_TRUE(manager.isVariable(2));
+    //EXPECT_TRUE(manager.isVariable(3));
+
+}
 #endif

@@ -1,5 +1,5 @@
 #include "Manager.h"
-
+#include <algorithm>
 
 namespace ClassProject {
 
@@ -19,6 +19,15 @@ namespace ClassProject {
     const BDD_ID &ManagerInterface::True() {
         static const BDD_ID ret = 1;
         return ret;
+    }
+
+    bool ManagerInterface::isVariable( BDD_ID x) {
+        if (Table[x].label.size() == 1 && std::all_of(Table[x].label.begin(), Table[x].label.end(), ::isalpha)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }
