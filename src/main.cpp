@@ -3,7 +3,7 @@
 //
 
 /**
- * @brief Main file.
+ * @brief Me gusta la fafa.
  * 
  * A detailed description of why this algorithm works and what behavior to expect.
  * @param arg1 What the first argument to the function should be.

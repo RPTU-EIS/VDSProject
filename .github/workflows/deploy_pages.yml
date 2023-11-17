@@ -5,7 +5,7 @@ name: Deploy Documentation
 # Controls when the action will run. 
 on:
   push:
-    branches: [ test_ema ]
+    branches: [ "test_ema" ]
     
 jobs:
   build-documentation:
@@ -17,14 +17,18 @@ jobs:
         uses: mattnotmitt/doxygen-action@v1.2.1
         with:
           # These are default values, but included for clarity
-          doxyfile-path: ./dconfig
-          working-directory: .
-      - name: Pages Deployment
-        uses: peaceiris/actions-gh-pages@v3
+          doxyfile-path: './docs/dconfig'
+      - name: Upload
+        uses: actions/upload-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html/
-          enable_jekyll: false
-          allow_empty_commit: false
-          force_orphan: true
-          # publish_branch: github-pages
+          name: html
+          path: docs/
+      # - name: Pages Deployment
+      #  uses: peaceiris/actions-gh-pages@v3
+      #  with:
+      #    github_token: ${{ secrets.GITHUB_TOKEN }}
+      #    publish_dir: ./docs/html/
+      #    enable_jekyll: false
+      #    allow_empty_commit: false
+      #    force_orphan: true
+      #     publish_branch: github-pages
