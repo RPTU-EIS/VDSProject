@@ -18,17 +18,12 @@ jobs:
         with:
           # These are default values, but included for clarity
           doxyfile-path: './docs/dconfig'
-      - name: Upload
-        uses: actions/upload-artifact@v3
+      - name: Pages Deployment
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: html
-          path: docs/
-      # - name: Pages Deployment
-      #  uses: peaceiris/actions-gh-pages@v3
-      #  with:
-      #    github_token: ${{ secrets.GITHUB_TOKEN }}
-      #    publish_dir: ./docs/html/
-      #    enable_jekyll: false
-      #    allow_empty_commit: false
-      #    force_orphan: true
-      #     publish_branch: github-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html/
+          enable_jekyll: false
+          allow_empty_commit: false
+          force_orphan: true
+          publish_branch: github-pages
