@@ -5,7 +5,7 @@ name: Deploy Documentation
 # Controls when the action will run. 
 on:
   push:
-    branches: [ main ]
+    branches: [ "master" ]
     
 jobs:
   build-documentation:
@@ -17,8 +17,7 @@ jobs:
         uses: mattnotmitt/doxygen-action@v1.2.1
         with:
           # These are default values, but included for clarity
-          doxyfile-path: dconfig
-          working-directory: .
+          doxyfile-path: './docs/dconfig'
       - name: Pages Deployment
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -1,6 +1,15 @@
 #include "Manager.h"
 #include <algorithm>
 
+
+/**
+ * @brief ClassProject.
+ * 
+ * Me gusta la fafa.
+ * @param arg1 What the first argument to the function should be.
+ * @return What you can expect to get back from the function.
+ */
+
 namespace ClassProject {
 
     ManagerInterface::ManagerInterface() {
