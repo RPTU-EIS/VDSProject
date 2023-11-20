@@ -13,10 +13,11 @@ TEST(Manager, InitTableEntries){
     ClassProject::Manager manager;
     ClassProject::Manager::Unique_Table_Key key = {0,0,0};
 
-    EXPECT_EQ(manager.Table[key], 0);
+
+    EXPECT_EQ(manager.Table[key].id, 0);
 
     key = {1,1,1};
-    EXPECT_EQ(manager.Table[key], 1);
+    EXPECT_EQ(manager.Table[key].id, 1);
 }
 
 TEST(Manager, InitTableSize){

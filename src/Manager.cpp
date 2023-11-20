@@ -13,9 +13,9 @@ namespace ClassProject {
 
     Manager::Manager() {
     
-        Table.emplace(Unique_Table_Key{0,0,0}, 0);
+        Table.emplace(Unique_Table_Key{0,0,0}, Unique_Table_Entry{"False", 0});
 
-        Table.emplace(Unique_Table_Key{1,1,1}, 1);
+        Table.emplace(Unique_Table_Key{1,1,1}, Unique_Table_Entry{"True",1});
     }
 
     /**

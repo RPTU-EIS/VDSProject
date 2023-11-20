@@ -27,6 +27,11 @@ namespace ClassProject {
             }
         };
 
+        struct Unique_Table_Entry {
+            std::string label;
+            BDD_ID id;
+        };
+
         // Define a hash function for the Key structure
         struct KeyHash {
             std::size_t operator()(const Unique_Table_Key& k) const {
@@ -37,7 +42,7 @@ namespace ClassProject {
             }
         };
 
-        std::unordered_map<Unique_Table_Key, BDD_ID, KeyHash> Table;
+        std::unordered_map<Unique_Table_Key, Unique_Table_Entry, KeyHash> Table;
 
 //        BDD_ID createVar(const std::string &label) override;
         const BDD_ID &True() override;
