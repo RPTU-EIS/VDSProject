@@ -1,7 +1,6 @@
 #include "Manager.h"
 #include <algorithm>
 
-
 /**
  * @brief ClassProject.
  * 
@@ -13,10 +12,12 @@
 namespace ClassProject {
 
     Manager::Manager() {
-        BDD_ID_Entry entry = {"False", 0, 0, 0, 0};
-        Table.push_back(entry);
-        entry = {"True", 1, 1, 1, 1};
-        Table.push_back(entry);
+        Unique_Table_Key key = {0, 0, 0};
+
+        Table = {
+            {{0,0,0}, 0},
+            {{1,1,1}, 1}
+        }
     }
 
     /**
@@ -28,7 +29,7 @@ namespace ClassProject {
      */
     BDD_ID Manager::createVar(const std::string &label) {
 
-        BDD_ID ID = Table.size();
+        //BDD_ID ID = Table.size();
         BDD_ID_Entry entry_Var;
         entry_Var.label = label;
         entry_Var.id = ID;
@@ -36,7 +37,8 @@ namespace ClassProject {
         entry_Var.low = 0;
         entry_Var.TopVar = ID;
 
-        Table.push_back(entry_Var);
+        Table.insert(entry_Var)
+        push(entry_Var);
         return ID;
     };
 
