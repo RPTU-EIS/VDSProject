@@ -13,30 +13,18 @@ namespace ClassProject {
 
     typedef size_t BDD_ID;
 
-    struct BDD_ID_Entry {
-        std::string label;
-        ClassProject::BDD_ID id;
-        int high;
-        int low;
-        int TopVar;
-    };
-
     class ManagerInterface {
     public:
-
-        std::vector<ClassProject::BDD_ID_Entry> Table;
-
-        ManagerInterface();
-/*
+    
         virtual BDD_ID createVar(const std::string &label) = 0;
-*/
-        virtual const BDD_ID &True();
 
-        virtual const BDD_ID &False();
+        virtual const BDD_ID &True() = 0;
 
-       // virtual bool isConstant(BDD_ID f);
+        virtual const BDD_ID &False() = 0;
 
-        virtual bool isVariable(BDD_ID x);
+        virtual bool isConstant(BDD_ID f) = 0;
+
+        virtual bool isVariable(BDD_ID x) = 0;
 
 /*      virtual BDD_ID topVar(BDD_ID f) = 0;
 
