@@ -42,11 +42,6 @@ namespace ClassProject {
         bool isConstant(BDD_ID f) override;
         bool isVariable(BDD_ID x) override;
     };
-    void hash_op(){
-
-
-    }
-
 }
 
 #endif
