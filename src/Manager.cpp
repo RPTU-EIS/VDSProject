@@ -12,11 +12,10 @@
 namespace ClassProject {
 
     Manager::Manager() {
-        Unique_Table_Key key = {0, 0, 0};
-        Table.emplace(key, 0);
+    
+        Table.emplace(Unique_Table_Key{0,0,0}, 0);
 
-        key = {1,1,1};
-        Table.emplace(key, 1);
+        Table.emplace(Unique_Table_Key{1,1,1}, 1);
     }
 
     /**

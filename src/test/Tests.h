@@ -15,7 +15,7 @@ TEST(Manager, InitTableEntries){
 
     EXPECT_EQ(manager.Table[key], 0);
 
-    Unique_Table_Key key = {1,1,1};
+    key = {1,1,1};
     EXPECT_EQ(manager.Table[key], 1);
 }
 
