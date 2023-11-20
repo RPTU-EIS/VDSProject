@@ -15,15 +15,15 @@ namespace ClassProject {
     class ManagerInterface {
     public:
     
-        virtual BDD_ID createVar(const std::string &label) = 0;
+//        virtual BDD_ID createVar(const std::string &label) = 0;
 
         virtual const BDD_ID &True() = 0;
 
         virtual const BDD_ID &False() = 0;
 
-        virtual bool isConstant(BDD_ID f) = 0;
+        // virtual bool isConstant(BDD_ID f) = 0;
 
-        virtual bool isVariable(BDD_ID x) = 0;
+        // virtual bool isVariable(BDD_ID x) = 0;
 
 /*      virtual BDD_ID topVar(BDD_ID f) = 0;
 
