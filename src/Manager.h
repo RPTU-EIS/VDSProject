@@ -8,24 +8,7 @@
 #include "ManagerInterface.h"
 #include <unordered_map>
 
-// Define a structure to be used as a key in the hash map
-struct Unique_Table_Key {
-    ClassProject::BDD_ID TopVar;
-    ClassProject::BDD_ID low;
-    ClassProject::BDD_ID high;
 
-    bool operator==(const Unique_Table_Key& other) const {
-        return TopVar == other.TopVar && low == other.low && high == other.high;
-    }
-};
-
-// Define a hash function for the Key structure
-struct KeyHash {
-    std::size_t operator()(const Unique_Table_Key& k) const {
-        // A simple hash function for illustration purposes
-        return std::hash<int>()(k.TopVar) ^ std::hash<int>()(k.low) ^ std::hash<int>()(k.high);
-    }
-};
 
 namespace ClassProject {
 
@@ -33,8 +16,26 @@ namespace ClassProject {
         public:
         Manager();
 
+        // Define a structure to be used as a key in the hash map
+        struct Unique_Table_Key {
+            BDD_ID TopVar;
+            BDD_ID low;
+            BDD_ID high;
+
+            bool operator==(const Unique_Table_Key& other) const {
+                return TopVar == other.TopVar && low == other.low && high == other.high;
+            }
+        };
+
+        // Define a hash function for the Key structure
+        struct KeyHash {
+            std::size_t operator()(const Unique_Table_Key& k) const {
+                // A simple hash function for illustration purposes
+                return std::hash<BDD_ID>()(k.TopVar) ^ std::hash<BDD_ID>()(k.low) ^ std::hash<BDD_ID>()(k.high);
+            }
+        };
+
         std::unordered_map<Unique_Table_Key, BDD_ID, KeyHash> Table;
-//        std::vector<BDD_ID_Entry> Table;
 
 //        BDD_ID createVar(const std::string &label) override;
         const BDD_ID &True() override;

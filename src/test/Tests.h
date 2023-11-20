@@ -11,7 +11,7 @@
 TEST(Manager, InitTableEntries){
 
     ClassProject::Manager manager;
-    Unique_Table_Key key = {0,0,0};
+    ClassProject::Manager::Unique_Table_Key key = {0,0,0};
 
     EXPECT_EQ(manager.Table[key], 0);
 
