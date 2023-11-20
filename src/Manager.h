@@ -31,7 +31,9 @@ namespace ClassProject {
         struct KeyHash {
             std::size_t operator()(const Unique_Table_Key& k) const {
                 // A simple hash function for illustration purposes
-                return std::hash<BDD_ID>()(k.TopVar) ^ std::hash<BDD_ID>()(k.low) ^ std::hash<BDD_ID>()(k.high);
+                return ((std::hash<BDD_ID>()(k.TopVar)
+                         ^ (std::hash<BDD_ID>()(k.low) << 1)) >> 1)
+                       ^ (std::hash<BDD_ID>()(k.high) << 1);
             }
         };
 
