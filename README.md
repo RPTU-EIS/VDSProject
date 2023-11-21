@@ -215,7 +215,7 @@ _Below is an example of how you can instruct your audience on installing and set
 | False()                                    |      [ ]    |  [X]   | Victor|
 | isConstant(BDD_ID f)                       |      [ ]    |  [ ]   | Victor|
 | isVariable(BDD_ID x)                       |      [ ]    |  [ ]   | Victor|
-| topVar(BDD_ID f)                           |      [ ]    |  [ ]   | Kamel |
+| topVar(BDD_ID f)                           |      [ ]    |  [X]   | Kamel |
 | ite(BDD_ID i, BDD_ID t, BDD_ID e)          |      [ ]    |  [ ]   | Victor|
 | coFactorTrue(BDD_ID f, BDD_ID x)          |      [ ]    |  [X]   | Kamel |
 | coFactorFalse(BDD_ID f, BDD_ID x)    |      [ ]    |  [X]   | Kamel|
