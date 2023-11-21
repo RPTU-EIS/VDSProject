@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 //     ASSERT_EQ(testClass.False(), 0);  
 // }
 
+
 TEST(TestIsConstant, TestReturn) {
 
     ClassProject::OBDDManager testClass = ClassProject::OBDDManager();    
