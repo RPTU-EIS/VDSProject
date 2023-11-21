@@ -78,15 +78,18 @@ namespace ClassProject {
      * @return returns true if the ID represents a variable.
      */
     bool Manager::isVariable( BDD_ID x) {
-        Unique_Table_Key key{};
-        auto it = Table.find(key);
-        //first.label refers to the key and second.label refers to the element corresponding to the key
-        if (it != Table.end() and it->second.label.size() == 1 && std::all_of(it -> second.label.begin(), it-> second.label.end(), ::isalpha)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+
+       for (auto & it : Table) {
+           if (it.second.id == x) {
+               if (it.second.label.size() == 1 &&
+                   std::all_of(it.second.label.begin(), it.second.label.end(), ::isalpha)) {
+                   return true;
+               } else {
+                   return false;
+               }
+           }
+       }
+       return false;
+   }
 
 }

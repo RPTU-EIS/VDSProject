@@ -66,12 +66,13 @@ TEST(Manager, FalseID){
 //test isVariable function
  TEST(Manager,isVar){
     ClassProject::Manager manager;
+    manager.Table[{2,0,1}] = {"a", 2};
+    manager.Table[{3,0,1}] = {"ab", 3};
 
    EXPECT_FALSE(manager.isVariable(0));
    EXPECT_FALSE(manager.isVariable(1));
-   //EXPECT_TRUE(manager.isVariable(2));
-   //EXPECT_TRUE(manager.isVariable(3));
-
+   EXPECT_TRUE(manager.isVariable(2));
+   EXPECT_FALSE(manager.isVariable(3));
 }
 
 #endif
