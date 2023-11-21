@@ -11,11 +11,11 @@
 
 namespace ClassProject {
     class NodeData{
-        BDD_ID high, low, topVar;
+                BDD_ID high, low, topVar;
     };
 
     class Node{
-        std::string label;
+                std::string label;
         NodeData data;
     };
 
@@ -24,7 +24,7 @@ namespace ClassProject {
         std::map<NodeData, BDD_ID> unique_table;
     public:
         
-        
+               
 
 
         BDD_ID createVar(const std::string &label);
@@ -38,6 +38,10 @@ namespace ClassProject {
         bool isVariable(BDD_ID x);
 
         BDD_ID topVar(BDD_ID f);
+
+        BDD_ID high(BDD_ID f);
+
+        BDD_ID low(BDD_ID f);
 
         BDD_ID ite(BDD_ID i, BDD_ID t, BDD_ID e);
 
