@@ -12,6 +12,16 @@
 namespace ClassProject {
     struct NodeData{
         BDD_ID low, high, topVar;
+
+        bool operator < (const NodeData & other) const{
+            if(low == other.low){
+                if(high == other.high){
+                    return topVar < other.topVar;
+                }
+                return high < other.high;
+            }
+            return low < other.low;
+        }
     };
 
     struct Node{
@@ -26,8 +36,8 @@ namespace ClassProject {
         std::vector<Node> nodes;
         std::map<NodeData, BDD_ID> unique_table;
 
-        const int ZERO_ADDRESS = 0;
-        const int ONE_ADDRESS = 1;
+        const int FALSE_ADDRESS = 0;
+        const int TRUE_ADDRESS = 1;
     public:
         
         OBDDManager();
