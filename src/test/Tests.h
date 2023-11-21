@@ -63,14 +63,15 @@ TEST(Manager, FalseID){
 // }
 
 
-// //test isVariable function
-// TEST(Manager,isVar){
-//     ClassProject::Manager manager;
+//test isVariable function
+ TEST(Manager,isVar){
+    ClassProject::Manager manager;
 
-//     EXPECT_FALSE(manager.isVariable(0));
-//     EXPECT_FALSE(manager.isVariable(1));
-//     //EXPECT_TRUE(manager.isVariable(2));
-//     //EXPECT_TRUE(manager.isVariable(3));
+   EXPECT_FALSE(manager.isVariable(0));
+   EXPECT_FALSE(manager.isVariable(1));
+   //EXPECT_TRUE(manager.isVariable(2));
+   //EXPECT_TRUE(manager.isVariable(3));
 
-// }
+}
+
 #endif
