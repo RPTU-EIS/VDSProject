@@ -217,11 +217,10 @@ _Below is an example of how you can instruct your audience on installing and set
 | isVariable(BDD_ID x)                       |      [ ]    |  [ ]   | Victor|
 | topVar(BDD_ID f)                           |      [ ]    |  [ ]   | Kamel |
 | ite(BDD_ID i, BDD_ID t, BDD_ID e)          |      [ ]    |  [ ]   | Victor|
-| createVar(const std::string &label)  |      [ ]    |  [ ]   | Kamel |
-| coFactorTrue(BDD_ID f, BDD_ID x)          |      [ ]    |  [ ]   | Kamel |
-| coFactorFalse(BDD_ID f, BDD_ID x)    |      [ ]    |  [ ]   | Kamel|
-| coFactorTrue(BDD_ID f)               |      [ ]    | [ ]   | Kamel |
-| coFactorFalse(BDD_ID f)              |      [ ]    |  [ ]   | Kamel |
+| coFactorTrue(BDD_ID f, BDD_ID x)          |      [ ]    |  [X]   | Kamel |
+| coFactorFalse(BDD_ID f, BDD_ID x)    |      [ ]    |  [X]   | Kamel|
+| coFactorTrue(BDD_ID f)               |      [ ]    | [X]   | Kamel |
+| coFactorFalse(BDD_ID f)              |      [ ]    |  [X]   | Kamel |
 | and2(BDD_ID a, BDD_ID b)             |      [ ]    |  [ ]   | Victor|
 | or2(BDD_ID a, BDD_ID b)              |      [ ]    |  [ ]   | Victor|
 | xor2(BDD_ID a, BDD_ID b)             |      [ ]    |  [ ]   | Victor|
