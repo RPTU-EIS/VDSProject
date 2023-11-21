@@ -10,26 +10,33 @@
 #include <map>
 
 namespace ClassProject {
-    class NodeData{
-                BDD_ID high, low, topVar;
+    struct NodeData{
+        BDD_ID low, high, topVar;
     };
 
-    class Node{
-                std::string label;
+    struct Node{
+        std::string label;
         NodeData data;
     };
+
+    Node ZERO_NODE = {.label = "0", .data = {.topVar = 0}};
+    Node ONE_NODE =  {.label = "1", .data = {.topVar = 1}};
 
     class OBDDManager : ManagerInterface{
         std::vector<Node> nodes;
         std::map<NodeData, BDD_ID> unique_table;
+
+        const int ZERO_ADDRESS = 0;
+        const int ONE_ADDRESS = 1;
     public:
         
-               
+        OBDDManager();
 
+        BDD_ID add_unique_table(NodeData data);
 
         BDD_ID createVar(const std::string &label);
 
-        const BDD_ID &True(); //
+        const BDD_ID &True();
 
         const BDD_ID &False();
 
@@ -38,6 +45,8 @@ namespace ClassProject {
         bool isVariable(BDD_ID x);
 
         BDD_ID topVar(BDD_ID f);
+        
+        BDD_ID topVar(BDD_ID f, BDD_ID g);
 
         BDD_ID high(BDD_ID f);
 
@@ -52,6 +61,8 @@ namespace ClassProject {
         BDD_ID coFactorTrue(BDD_ID f);
 
         BDD_ID coFactorFalse(BDD_ID f);
+
+        bool updateNodeLabel(BDD_ID id, BDD_ID a, BDD_ID b, std::string op);
 
         BDD_ID and2(BDD_ID a, BDD_ID b);
 

@@ -209,7 +209,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 | Function Name                       | Implemented | Tested | Person |
 |--------------------------------------|-------------|--------|-------|
-| OBDDManager(0,3)       |      [ ]    |  [ ]   | Victor |
+| OBDDManager()       |      [ ]    |  [ ]   | Victor |
 | createVar(const std::string &label)       |      [ ]    |  [ ]   | Victor |
 | True()                                     |      [ ]    |  [X]   | Victor|
 | False()                                    |      [ ]    |  [X]   | Victor|
