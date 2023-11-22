@@ -15,7 +15,6 @@ Just writing some text to set up things
 #include "Manager.h"
 
 
-int main(int argc, char* argv[])
-{
-    std::cout << "Nothing implemented, yet" << std::endl;
+int main(int argc, char* argv[]){
+    std::cout << "Nothing in main.cpp" << std::endl;
 }

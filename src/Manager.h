@@ -29,15 +29,17 @@ namespace ClassProject {
         NodeData data;
     };
 
-    Node ZERO_NODE = {.label = "0", .data = {.topVar = 0}};
-    Node ONE_NODE =  {.label = "1", .data = {.topVar = 1}};
+    
 
     class OBDDManager : ManagerInterface{
         std::vector<Node> nodes;
         std::map<NodeData, BDD_ID> unique_table;
 
-        const int FALSE_ADDRESS = 0;
-        const int TRUE_ADDRESS = 1;
+        const static BDD_ID FALSE_ADDRESS;
+        const static BDD_ID TRUE_ADDRESS;
+
+        const static Node ZERO_NODE;
+        const static Node ONE_NODE;
     public:
         
         OBDDManager();

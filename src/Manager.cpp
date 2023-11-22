@@ -2,9 +2,13 @@
 
 namespace ClassProject {
 
-    BDD_ID OBDDManager::createVar(const std::string &label){
-        return 0;
-    }
+    const BDD_ID OBDDManager::FALSE_ADDRESS = 0;
+    const BDD_ID OBDDManager::TRUE_ADDRESS = 1;
+
+    const Node OBDDManager::ZERO_NODE = {.label = "0", .data = {.topVar = OBDDManager::FALSE_ADDRESS}};
+    const Node OBDDManager::ONE_NODE =  {.label = "1", .data = {.topVar = OBDDManager::TRUE_ADDRESS}};
+
+    BDD_ID OBDDManager::createVar(const std::string &label){}
 
     std::string OBDDManager::getTopVarName(const BDD_ID &root){}
 
@@ -12,17 +16,17 @@ namespace ClassProject {
 
     void OBDDManager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){}
 
-    size_t OBDDManager::uniqueTableSize(){}    
+    size_t OBDDManager::uniqueTableSize(){return 0;}    
     
     OBDDManager::OBDDManager(){
         nodes = {ZERO_NODE, ONE_NODE};
     }
     const BDD_ID &OBDDManager::True(){
-        return OBDDManager::TRUE_ADDRESS;
+        return TRUE_ADDRESS;
     }
 
     const BDD_ID &OBDDManager::False(){
-        return OBDDManager::FALSE_ADDRESS;
+        return FALSE_ADDRESS;
     }
 
     bool OBDDManager::isConstant(BDD_ID f){

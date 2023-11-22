@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
 TEST(TestIsConstant, TestReturn) {
 
     ClassProject::OBDDManager testClass = ClassProject::OBDDManager();    
+
     ASSERT_EQ(testClass.isConstant(0), true);  
     ASSERT_EQ(testClass.isConstant(1), true);  
     ASSERT_EQ(testClass.isConstant(2), false);  
