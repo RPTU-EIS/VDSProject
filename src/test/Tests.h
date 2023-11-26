@@ -8,23 +8,42 @@
 #include <gtest/gtest.h>
 #include "../Manager.h"
 
-TEST(Manager, InitTableEntries){
+// The fixture for testing class TestManager.
+class TestManager : public testing::Test {
+protected:
 
-    ClassProject::Manager manager;
+//    TestManager() {
+//
+//    }
+//
+//    ~TestManager() override {
+//
+//    }
+
+    void SetUp() override {
+        manager = new ClassProject::Manager;
+    }
+
+    void TearDown() override {
+        delete manager;
+    }
+
+    ClassProject::Manager *manager;
+};
+
+
+TEST_F(TestManager, InitTableEntries){
     ClassProject::Manager::Unique_Table_Key key = {0,0,0};
 
-
-    EXPECT_EQ(manager.Table[key].id, 0);
+    EXPECT_EQ(manager->Table[key].id, 0);
 
     key = {1,1,1};
-    EXPECT_EQ(manager.Table[key].id, 1);
+    EXPECT_EQ(manager->Table[key].id, 1);
 }
 
-TEST(Manager, InitTableSize){
+TEST_F(TestManager, InitTableSize){
 
-    ClassProject::Manager manager;
-
-    EXPECT_EQ(manager.Table.size(), 2);
+    EXPECT_EQ(manager->Table.size(), 2);
 }
 
 
@@ -38,18 +57,15 @@ TEST(Manager, InitTableSize){
 //     EXPECT_EQ(manager.Table[2].label, "a");
 // }
 
-TEST(Manager, TrueID){
-
-    ClassProject::Manager manager;
-    ClassProject::BDD_ID id = manager.True();
+TEST_F(TestManager, TrueID){
+    ClassProject::BDD_ID id = manager->True();
 
     EXPECT_EQ(id, 1);
 }
 
-TEST(Manager, FalseID){
+TEST_F(TestManager, FalseID){
 
-    ClassProject::Manager manager;
-    ClassProject::BDD_ID id = manager.False();
+    ClassProject::BDD_ID id = manager->False();
 
     EXPECT_EQ(id, 0);
 }
@@ -64,15 +80,14 @@ TEST(Manager, FalseID){
 
 
 //test isVariable function
- TEST(Manager,isVar){
-    ClassProject::Manager manager;
-    manager.Table[{2,0,1}] = {"a", 2};
-    manager.Table[{3,0,1}] = {"ab", 3};
+ TEST_F(TestManager,isVar){
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"ab", 3};
 
-   EXPECT_FALSE(manager.isVariable(0));
-   EXPECT_FALSE(manager.isVariable(1));
-   EXPECT_TRUE(manager.isVariable(2));
-   EXPECT_FALSE(manager.isVariable(3));
+   EXPECT_FALSE(manager->isVariable(0));
+   EXPECT_FALSE(manager->isVariable(1));
+   EXPECT_TRUE(manager->isVariable(2));
+   EXPECT_FALSE(manager->isVariable(3));
 }
 
 #endif
