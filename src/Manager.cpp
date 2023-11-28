@@ -27,7 +27,6 @@ namespace ClassProject {
      */
 
     BDD_ID Manager::createVar(const std::string &label) {
-
         Unique_Table_Key key_Var;
         BDD_ID ID = Table.size();
         key_Var.high = 1;
@@ -94,5 +93,29 @@ namespace ClassProject {
        }
        return false;
    }
+
+    /**
+      * @brief topVar
+      *
+      * returns the top variable ID of the given node.
+      * @param f: ID of the node.
+      * @return returns the ID of the top variable.
+      */
+    BDD_ID Manager::topVar(BDD_ID f) {
+        if (isVariable(f) || isConstant(f)) {
+            return f;
+        }
+
+        else {
+            for (auto & it : Table) {
+                if(it.second.id == f)
+                {
+                    return it.first.TopVar;
+                }
+            }
+        }
+
+
+    }
 
 }
