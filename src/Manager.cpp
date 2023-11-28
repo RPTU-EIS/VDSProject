@@ -26,10 +26,11 @@ namespace ClassProject
      * @param label String of the label of the variable.
      * @return returns the ID of the created variable.
      */
+  
+    
 
     BDD_ID Manager::createVar(const std::string &label)
     {
-
         Unique_Table_Key key_Var;
         BDD_ID ID = Table.size();
         key_Var.high = 1;
@@ -102,24 +103,44 @@ namespace ClassProject
      * @param x: ID of the node.
      * @return returns true if the ID represents a variable.
      */
-    bool Manager::isVariable(BDD_ID x)
-    {
+   bool Manager::isVariable( BDD_ID x) {
 
-        for (auto &it : Table)
-        {
-            if (it.second.id == x)
-            {
-                if (it.second.label.size() == 1 &&
-                    std::all_of(it.second.label.begin(), it.second.label.end(), ::isalpha))
+       for (auto & it : Table) {
+           if (it.second.id == x) {
+               if (it.second.label.size() == 1 &&
+                   std::all_of(it.second.label.begin(), it.second.label.end(), ::isalpha)) {
+                   return true;
+               } else {
+                   return false;
+               }
+           }
+       }
+       return false;
+   }
+
+    /**
+      * @brief topVar
+      *
+      * returns the top variable ID of the given node.
+      * @param f: ID of the node.
+      * @return returns the ID of the top variable.
+      */
+    BDD_ID Manager::topVar(BDD_ID f) {
+        if (isVariable(f) || isConstant(f)) {
+            return f;
+        }
+
+        else {
+            for (auto & it : Table) {
+                if(it.second.id == f)
                 {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    return it.first.TopVar;
                 }
             }
         }
-        return false;
+
+
     }
+
 }
+        
