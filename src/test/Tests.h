@@ -47,15 +47,13 @@ TEST_F(TestManager, InitTableSize){
 }
 
 
-// TEST(Manager, createVar){
+TEST_F(TestManager, createVar){
 
-//     ClassProject::Manager manager;
-//     ClassProject::BDD_ID ID = manager.createVar("a");
-
-//     EXPECT_EQ(manager.Table[2].id, 2);
-//     EXPECT_EQ(manager.Table[2].id, ID);
-//     EXPECT_EQ(manager.Table[2].label, "a");
-// }
+    ClassProject::BDD_ID ID = manager->createVar("a");
+    EXPECT_EQ(ID, 2);
+    // EXPECT_EQ(manager.Table[2].id, ID);
+    // EXPECT_EQ(manager.Table[2].label, "a");
+}
 
 TEST_F(TestManager, TrueID){
     ClassProject::BDD_ID id = manager->True();
@@ -70,13 +68,11 @@ TEST_F(TestManager, FalseID){
     EXPECT_EQ(id, 0);
 }
 
-//test isConstant
-// TEST(Manager,isConstant){
-//     ClassProject::Manager manager;
-
-//     EXPECT_TRUE(manager.isConstant(0));
-//     EXPECT_TRUE(manager.isConstant(1));
-// }
+// test isConstant
+TEST_F(TestManager, isConstant){
+    EXPECT_TRUE(manager->isConstant(0));
+    EXPECT_TRUE(manager->isConstant(1));
+}
 
 
 //test isVariable function
