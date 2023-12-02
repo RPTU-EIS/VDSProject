@@ -166,4 +166,30 @@ namespace ClassProject
         }
 
     }
+
+    /**
+    * @brief and2
+    *
+    * returns the id numbers required for the ite operation
+    * @param &a and &b: variable names
+    * @return returns the id numbers required for the ite operation
+    */
+    BDD_ID Manager::and2(std::string &a, std::string &b) {
+        BDD_ID f_op, s_op;
+
+        for (auto& it: Table ) {
+            if (it.second.label == a)
+            {
+                f_op = it.second.id;
+            }
+
+            if (it.second.label == b)
+            {
+                s_op = it.second.id;
+            }
+        }
+        return ite(f_op, s_op, 0);
+    }
+
+
 }
