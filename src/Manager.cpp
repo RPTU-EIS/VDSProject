@@ -137,10 +137,33 @@ namespace ClassProject
             return search->second.id;
         }
   }
-        
 
-        
+    BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x)
+    {
+        BDD_ID T, F;
+        Unique_Table_Key f_key;
+
+        if(isConstant(f))
+        {
+            return f;
+        }
+        for(auto &it : Table)
+        {
+            if(it.second.id == f)
+            {
+                f_key = it.first;        
+            }
+        }
+        if(f_key.TopVar == x)
+        {
+            return f_key.high;
+        }
+        else
+        {
+            T = coFactorTrue(f_key.high, x);
+            F = coFactorTrue(f_key.low, x);
+            return ite(f_key.TopVar, T, F);
+        }
+
     }
-
-
 }
