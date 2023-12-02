@@ -123,6 +123,21 @@ namespace ClassProject
         return false;
     }
 
+    BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e)
+    {
+        if (i == True()) {
+            return t;
+        } else if (t == False()) {
+            return e;
+        } else if (t == e) {
+            return t;
+        } else if (t == True() && e == False()){
+            return i;
+        } else if (auto search = Table.find({i,t,e}); search != Table.end()){
+            return search->second.id;
+        }
+  }
+
     BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x)
     {
         BDD_ID T, F;
