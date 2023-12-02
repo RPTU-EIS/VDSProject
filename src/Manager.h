@@ -8,6 +8,8 @@
 #include "ManagerInterface.h"
 #include <vector>
 #include <map>
+#include "gtest/gtest.h"
+#include "test/Tests.h"
 
 namespace ClassProject {
     struct NodeData{
@@ -31,20 +33,25 @@ namespace ClassProject {
 
     
 
-    class OBDDManager : ManagerInterface{
+    class Manager : ManagerInterface{
         std::vector<Node> nodes;
-        std::map<NodeData, BDD_ID> unique_table;
+        std::map<NodeData, BDD_ID> unique_table; //TODO use hash table
+        std::map<NodeData, BDD_ID> computed_table; //TODO use hash table
 
         const static BDD_ID FALSE_ADDRESS;
         const static BDD_ID TRUE_ADDRESS;
 
-        const static Node ZERO_NODE;
-        const static Node ONE_NODE;
-    public:
-        
-        OBDDManager();
+        const static Node FALSE_NODE;
+        const static Node TRUE_NODE;
 
         BDD_ID add_unique_table(NodeData data);
+        void bfs(const BDD_ID root, std::vector<BDD_ID> &order, std::vector<bool> &marc);
+
+        friend class Managertest;
+        FRIEND_TEST(ManagerTest, VisualizeBDDTest);
+    public:
+        
+        Manager();
 
         BDD_ID createVar(const std::string &label);
 
