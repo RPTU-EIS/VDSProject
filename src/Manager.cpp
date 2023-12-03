@@ -188,6 +188,38 @@ namespace ClassProject
         }
     }
 
+    BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x)
+    {
+        BDD_ID T, F;
+        Unique_Table_Key f_key;
+
+        /* Find Key of f, which is used later */
+        for(auto &it : Table)
+        {
+            if(it.second.id == f)
+            {
+                f_key = it.first;
+            }
+        }
+
+        /* Terminal cases */
+        if(isConstant(f) || isConstant(x) || f_key.TopVar > x)
+        {
+            return f;
+        }
+
+        if(f_key.TopVar == x)
+        {
+            return f_key.low;
+        }
+        else
+        {
+            T = coFactorFalse(f_key.high, x);
+            F = coFactorFalse(f_key.low, x);
+            return ite(f_key.TopVar, T, F);
+        }
+    }
+
     /**
     * @brief and2
     *
