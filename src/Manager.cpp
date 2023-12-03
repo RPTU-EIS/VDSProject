@@ -128,7 +128,6 @@ namespace ClassProject
         if (isVariable(f) || isConstant(f)) {
             return f;
         }
-
         else {
             for (auto & it : Table) {
                 if(it.second.id == f)
@@ -137,8 +136,7 @@ namespace ClassProject
                 }
             }
         }
-
-
+        return False(); //In case of failure.
     }
 
 
@@ -155,6 +153,7 @@ namespace ClassProject
         } else if (auto search = Table.find({i,t,e}); search != Table.end()){
             return search->second.id;
         }
+        return False(); //In case of failure.
   }
 
     BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x)
@@ -162,10 +161,7 @@ namespace ClassProject
         BDD_ID T, F;
         Unique_Table_Key f_key;
 
-        if(isConstant(f) || isConstant(x)) //f == constant
-        {
-            return f;
-        }
+        /* Find Key of f, which is used later */
         for(auto &it : Table)
         {
             if(it.second.id == f)
@@ -173,6 +169,13 @@ namespace ClassProject
                 f_key = it.first;
             }
         }
+
+        /* Terminal cases */
+        if(isConstant(f) || isConstant(x) || f_key.TopVar > x)
+        {
+            return f;
+        }
+
         if(f_key.TopVar == x)
         {
             return f_key.high;
@@ -183,7 +186,6 @@ namespace ClassProject
             F = coFactorTrue(f_key.low, x);
             return ite(f_key.TopVar, T, F);
         }
-
     }
 
     /**
