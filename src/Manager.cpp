@@ -143,7 +143,7 @@ namespace ClassProject
         BDD_ID T, F;
         Unique_Table_Key f_key;
 
-        if(isConstant(f))
+        if(isConstant(f) || isConstant(x)) //f == constant
         {
             return f;
         }
