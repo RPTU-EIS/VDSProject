@@ -102,26 +102,45 @@ namespace ClassProject
      * @param x: ID of the node.
      * @return returns true if the ID represents a variable.
      */
-    bool Manager::isVariable(BDD_ID x)
-    {
+   bool Manager::isVariable( BDD_ID x) {
 
-        for (auto &it : Table)
-        {
-            if (it.second.id == x)
-            {
-                if (it.second.label.size() == 1 &&
-                    std::all_of(it.second.label.begin(), it.second.label.end(), ::isalpha))
+       for (auto & it : Table) {
+           if (it.second.id == x) {
+               if (it.second.label.size() == 1 &&
+                   std::all_of(it.second.label.begin(), it.second.label.end(), ::isalpha)) {
+                   return true;
+               } else {
+                   return false;
+               }
+           }
+       }
+       return false;
+   }
+
+    /**
+      * @brief topVar
+      *
+      * returns the top variable ID of the given node.
+      * @param f: ID of the node.
+      * @return returns the ID of the top variable.
+      */
+    BDD_ID Manager::topVar(BDD_ID f) {
+        if (isVariable(f) || isConstant(f)) {
+            return f;
+        }
+
+        else {
+            for (auto & it : Table) {
+                if(it.second.id == f)
                 {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    return it.first.TopVar;
                 }
             }
         }
-        return false;
+
+
     }
+
 
     BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e)
     {
@@ -151,7 +170,7 @@ namespace ClassProject
         {
             if(it.second.id == f)
             {
-                f_key = it.first;        
+                f_key = it.first;
             }
         }
         if(f_key.TopVar == x)
