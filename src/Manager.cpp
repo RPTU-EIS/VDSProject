@@ -123,6 +123,9 @@ namespace ClassProject
         return false;
     }
 
+
+    BDD_ID topVar(BDD_ID f){};
+
     BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e)
     {
         if (i == True()) {
@@ -136,6 +139,21 @@ namespace ClassProject
         } else if (auto search = Table.find({i,t,e}); search != Table.end()){
             return search->second.id;
         }
+
+        BDD_ID top_variable_t = isConstant(t) ? topVar(i) : std::min(topVar(i), topVar(t));
+
+        BDD_ID top_variable_e = isConstant(e) ? topVar(i) : std::min(topVar(i), topVar(e));
+
+        BDD_ID top_variable = std::min(top_variable_t, top_variable_e);
+
+        BDD_ID r_high = ite(coFactorTrue(i, top_variable), coFactorTrue(t, top_variable), coFactorTrue(e, top_variable));
+        
+        BDD_ID r_low = ite(coFactorFalse(i, top_variable), coFactorFalse(t, top_variable), coFactorFalse(e, top_variable));
+    
+        if (r_high == r_low) return r_high;
+
+
+
   }
 
     BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x)
