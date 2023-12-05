@@ -142,5 +142,28 @@ namespace ClassProject
 
     }
 
+    /**
+    * @brief getTopVarName
+    *
+    * returns the name of the top variable of the given node.
+    * @param root: ID of the node.
+    * @return returns the name of the top variable.
+    */
+    std::string Manager::getTopVarName(const BDD_ID &root) {
+        BDD_ID temp;
+        for (auto &it: Table) {
+            if (it.second.id == root) {
+                temp = it.first.TopVar;
+            }
+        }
+        for (auto &it: Table) {
+            if (it.second.id == temp) {
+                return it.second.label;
+            }
+        }
+    }
+
+
+
 }
         
