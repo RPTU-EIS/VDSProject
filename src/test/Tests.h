@@ -121,4 +121,44 @@ TEST_F(TestManager, isVar)
     EXPECT_FALSE(manager->isVariable(3));
 }
 
+//test topVariable function
+TEST_F(TestManager, topVar) {
+
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"a+b", 6};
+    manager->Table[{4,0,5}] = {"c*d", 7};
+
+    EXPECT_EQ(manager->topVar(2), 2);
+    EXPECT_EQ(manager->topVar(3), 3);
+    EXPECT_EQ(manager->topVar(4), 4);
+    EXPECT_EQ(manager->topVar(5), 5);
+    EXPECT_EQ(manager->topVar(6), 2);
+    EXPECT_EQ(manager->topVar(7), 4);
+
+}
+
+//test ite function
+TEST_F(TestManager, ite) {
+
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"a+b", 6};
+    manager->Table[{4,0,5}] = {"c*d", 7};
+
+    EXPECT_EQ(manager->ite(1, 1, 2) , 1); //Test i==True Cases - Terminal
+    EXPECT_EQ(manager->ite(1, 4, 1) , 4); //Test i==True Cases - Not Terminal
+
+    EXPECT_EQ(manager->ite(0, 2, 0) , 0); //Test i==False Case - Terminal
+    EXPECT_EQ(manager->ite(0, 4, 2) , 2); //Test i==False Case - Not Terminal
+
+    EXPECT_EQ(manager->ite(4, 1, 0) , 4); //Test Node with 1,0 subnodes
+
+    EXPECT_EQ(manager->ite(2, 1, 3) , 6); //Test Existing node (a+b), not terminal
+
+}
 #endif

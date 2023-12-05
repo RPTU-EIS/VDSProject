@@ -102,29 +102,43 @@ namespace ClassProject
      * @param x: ID of the node.
      * @return returns true if the ID represents a variable.
      */
-    bool Manager::isVariable(BDD_ID x)
-    {
+   bool Manager::isVariable( BDD_ID x) {
 
-        for (auto &it : Table)
-        {
-            if (it.second.id == x)
-            {
-                if (it.second.label.size() == 1 &&
-                    std::all_of(it.second.label.begin(), it.second.label.end(), ::isalpha))
+       for (auto & it : Table) {
+           if (it.second.id == x) {
+               if (it.second.label.size() == 1 &&
+                   std::all_of(it.second.label.begin(), it.second.label.end(), ::isalpha)) {
+                   return true;
+               } else {
+                   return false;
+               }
+           }
+       }
+       return false;
+   }
+
+    /**
+      * @brief topVar
+      *
+      * returns the top variable ID of the given node.
+      * @param f: ID of the node.
+      * @return returns the ID of the top variable.
+      */
+    BDD_ID Manager::topVar(BDD_ID f) {
+        if (isVariable(f) || isConstant(f)) {
+            return f;
+        }
+        else {
+            for (auto & it : Table) {
+                if(it.second.id == f)
                 {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    return it.first.TopVar;
                 }
             }
         }
-        return false;
+        return False(); //In case of failure.
     }
 
-
-    BDD_ID topVar(BDD_ID f){};
 
     BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e)
     {
@@ -161,17 +175,21 @@ namespace ClassProject
         BDD_ID T, F;
         Unique_Table_Key f_key;
 
-        if(isConstant(f))
-        {
-            return f;
-        }
+        /* Find Key of f, which is used later */
         for(auto &it : Table)
         {
             if(it.second.id == f)
             {
-                f_key = it.first;        
+                f_key = it.first;
             }
         }
+
+        /* Terminal cases */
+        if(isConstant(f) || isConstant(x) || f_key.TopVar > x)
+        {
+            return f;
+        }
+
         if(f_key.TopVar == x)
         {
             return f_key.high;
@@ -182,6 +200,63 @@ namespace ClassProject
             F = coFactorTrue(f_key.low, x);
             return ite(f_key.TopVar, T, F);
         }
-
     }
+
+    BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x)
+    {
+        BDD_ID T, F;
+        Unique_Table_Key f_key;
+
+        /* Find Key of f, which is used later */
+        for(auto &it : Table)
+        {
+            if(it.second.id == f)
+            {
+                f_key = it.first;
+            }
+        }
+
+        /* Terminal cases */
+        if(isConstant(f) || isConstant(x) || f_key.TopVar > x)
+        {
+            return f;
+        }
+
+        if(f_key.TopVar == x)
+        {
+            return f_key.low;
+        }
+        else
+        {
+            T = coFactorFalse(f_key.high, x);
+            F = coFactorFalse(f_key.low, x);
+            return ite(f_key.TopVar, T, F);
+        }
+    }
+
+    /**
+    * @brief and2
+    *
+    * returns the id numbers required for the ite operation
+    * @param &a and &b: variable names
+    * @return returns the id numbers required for the ite operation
+    */
+    BDD_ID Manager::and2(std::string &a, std::string &b) {
+        BDD_ID f_op, s_op;
+
+        for (auto& it: Table ) {
+            if (it.second.label == a)
+            {
+                f_op = it.second.id;
+            }
+
+            if (it.second.label == b)
+            {
+                s_op = it.second.id;
+            }
+        }
+        return ite(f_op, s_op, 0);
+    }
+
+
 }

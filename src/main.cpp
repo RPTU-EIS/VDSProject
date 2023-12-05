@@ -18,5 +18,15 @@
 
 int main(int argc, char* argv[])
 {
+    ClassProject::Manager manager;
+    manager.createVar("a");
+    manager.createVar("b");
+    manager.createVar("c");
+    manager.createVar("d");
+
+    for(auto [key, value] : manager.Table){
+        std::cout<<value.id<<":"<<key.high<<","<<key.low<<","<<key.TopVar<<std::endl;
+    }
+
     std::cout << "Nothing implemented, yet" << std::endl;
 }
