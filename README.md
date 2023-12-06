@@ -210,11 +210,11 @@ _Below is an example of how you can instruct your audience on installing and set
 | Function Name                       | Implemented | Tested | Person |
 |--------------------------------------|-------------|--------|-------|
 | OBDDManager()       |      [ ]    |  [ ]   | Victor |
-| createVar(const std::string &label)       |      [ ]    |  [ ]   | Victor |
+| createVar(const std::string &label)       |      [ ]    |  [X]   | Victor |
 | True()                                     |      [ ]    |  [X]   | Victor|
 | False()                                    |      [ ]    |  [X]   | Victor|
-| isConstant(BDD_ID f)                       |      [ ]    |  [ ]   | Victor|
-| isVariable(BDD_ID x)                       |      [ ]    |  [ ]   | Victor|
+| isConstant(BDD_ID f)                       |      [ ]    |  [X]   | Victor|
+| isVariable(BDD_ID x)                       |      [ ]    |  [X]   | Victor|
 | topVar(BDD_ID f)                           |      [ ]    |  [X]   | Kamel |
 | ite(BDD_ID i, BDD_ID t, BDD_ID e)          |      [ ]    |  [ ]   | Victor|
 | coFactorTrue(BDD_ID f, BDD_ID x)          |      [ ]    |  [X]   | Kamel |
