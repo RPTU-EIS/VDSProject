@@ -9,9 +9,10 @@
 #include <vector>
 #include <map>
 #include "gtest/gtest.h"
-#include "test/Tests.h"
+// #include "Tests.h"
 
 namespace ClassProject {
+
     struct NodeData{
         BDD_ID low, high, topVar;
 
@@ -23,17 +24,26 @@ namespace ClassProject {
                 return high < other.high;
             }
             return low < other.low;
+        }        
+
+        bool operator== (const NodeData & other) const {
+            return (low == other.low) && (high == other.high) && (topVar == other.topVar);
         }
     };
 
     struct Node{
         std::string label;
         NodeData data;
+
+        bool operator== (const Node &other) const {
+            return data == other.data;
+        }
     };
 
     
 
     class Manager : ManagerInterface{
+
         std::vector<Node> nodes;
         std::map<NodeData, BDD_ID> unique_table; //TODO use hash table
         std::map<NodeData, BDD_ID> computed_table; //TODO use hash table
@@ -45,10 +55,13 @@ namespace ClassProject {
         const static Node TRUE_NODE;
 
         BDD_ID add_unique_table(NodeData data);
-        void bfs(const BDD_ID root, std::vector<BDD_ID> &order, std::vector<bool> &marc);
+        void bfs(const BDD_ID root, std::vector<BDD_ID> &order, std::vector<bool> &marc);        
 
-        friend class Managertest;
-        FRIEND_TEST(ManagerTest, VisualizeBDDTest);
+        friend class BasicTest;
+        FRIEND_TEST(BasicTest, Constructor);
+        FRIEND_TEST(BasicTest, CreateVarNew);
+        FRIEND_TEST(BasicTest, CreateVarDuplicate);
+
     public:
         
         Manager();
