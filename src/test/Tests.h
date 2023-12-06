@@ -11,23 +11,6 @@
 
 
 namespace ClassProject {
-    // class Managertest : public testing::Test {
-    // protected:
-
-    //     ClassProject::Manager lectureExample;
-
-    //     void SetUp() override {
-    //         lectureExample.nodes = {
-    //             ClassProject::Manager::FALSE_NODE,
-    //             ClassProject::Manager::TRUE_NODE
-    //         };
-    //     }
-
-    // };
-
-    // TEST_F(Managertest, VisualizeBDDTest) {
-    //     lectureExample.visualizeBDD("", (const BDD_ID) lectureExample.nodes.size()-1);
-    // }
 
     class BasicTest : public testing::Test {
 
@@ -37,10 +20,29 @@ namespace ClassProject {
 
         void SetUp() override {
             testObj = Manager();
-            // testObj.nodes = {
-            //     {.label = "0", .data = {.low = 0, .high = 0, .topVar = 0}}                
-            //     {.label = "0", .data = {.low = 0, .high = 0, .topVar = 0}}
-            // };
+        }
+    };
+
+    class FunctionsTest : public testing::Test {
+
+        protected:
+
+        Manager testObj;
+
+        void SetUp() override {
+            testObj.nodes = {
+                {.label = "0",   .data = {.low = 0, .high = 0, .topVar = 0}},                
+                {.label = "1",   .data = {.low = 1, .high = 1, .topVar = 1}},
+                {.label = "a",   .data = {.low = 0, .high = 1, .topVar = 2}},
+                {.label = "b",   .data = {.low = 0, .high = 1, .topVar = 3}},
+                {.label = "c",   .data = {.low = 0, .high = 1, .topVar = 4}},
+                {.label = "d",   .data = {.low = 0, .high = 1, .topVar = 5}},
+                {.label = "a+b", .data = {.low = 1, .high = 3, .topVar = 2}}
+            };
+
+            for(size_t i=0; i < testObj.nodes.size(); i++){                
+                testObj.unique_table.insert({testObj.nodes[i].data, i});                
+            }            
         }
     };
 
@@ -86,6 +88,21 @@ namespace ClassProject {
         BDD_ID id2 = testObj.createVar("a");
         ASSERT_EQ(id1, id2);        
         ASSERT_EQ(testObj.nodes[id1], exp_a);
+    }
+
+    TEST_F(FunctionsTest, Constant){
+        ASSERT_EQ(testObj.isConstant(0), true);  // false node
+        ASSERT_EQ(testObj.isConstant(1), true);  // true node
+        ASSERT_EQ(testObj.isConstant(2), false); // variable node (a)
+        ASSERT_EQ(testObj.isConstant(6), false); // function node (a+b)
+    }
+
+    TEST_F(FunctionsTest, Variable){
+        ASSERT_EQ(testObj.isVariable(0), false);  // false node
+        ASSERT_EQ(testObj.isVariable(1), false);  // true node
+        ASSERT_EQ(testObj.isVariable(2), true);   // variable node (a)
+        ASSERT_EQ(testObj.isVariable(3), true);   // variable node (b)
+        ASSERT_EQ(testObj.isVariable(6), false);  // function node (a+b)
     }
 }
 
