@@ -1,8 +1,12 @@
 #include "Manager.h"
-
-#include "iostream" //FIXME check final lib dependencies
+#include <iostream> //FIXME check final lib dependencies
 
 namespace ClassProject {
+
+    std::ostream& operator <<(std::ostream& stream, const Node& node) {
+        return stream << node.label << " : " << node.data.low << "," << node.data.high << "," << node.data.topVar;
+    }
+    
 
     const BDD_ID Manager::FALSE_ADDRESS = 0;
     const BDD_ID Manager::TRUE_ADDRESS = 1;

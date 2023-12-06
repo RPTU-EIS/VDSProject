@@ -8,6 +8,7 @@
 #include "ManagerInterface.h"
 #include <vector>
 #include <map>
+#include <iostream>
 #include "gtest/gtest.h"
 // #include "Tests.h"
 
@@ -38,9 +39,9 @@ namespace ClassProject {
         bool operator== (const Node &other) const {
             return data == other.data;
         }
-    };
 
-    
+        friend std::ostream& operator <<(std::ostream& stream, const Node& node);
+    };
 
     class Manager : ManagerInterface{
 
@@ -61,6 +62,9 @@ namespace ClassProject {
         FRIEND_TEST(BasicTest, Constructor);
         FRIEND_TEST(BasicTest, CreateVarNew);
         FRIEND_TEST(BasicTest, CreateVarDuplicate);
+
+        friend class FunctionsTest;
+        FRIEND_TEST(FunctionsTest, IteVariables);
 
     public:
         
