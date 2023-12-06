@@ -294,6 +294,7 @@ namespace ClassProject
                 return it.second.label;
             }
         }
+        return ""; //It should never reach here...
     }
 
 
