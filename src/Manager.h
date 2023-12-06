@@ -58,14 +58,6 @@ namespace ClassProject {
         BDD_ID add_unique_table(NodeData data);
         void bfs(const BDD_ID root, std::vector<BDD_ID> &order, std::vector<bool> &marc);        
 
-        friend class BasicTest;
-        FRIEND_TEST(BasicTest, Constructor);
-        FRIEND_TEST(BasicTest, CreateVarNew);
-        FRIEND_TEST(BasicTest, CreateVarDuplicate);
-
-        friend class FunctionsTest;
-        FRIEND_TEST(FunctionsTest, IteVariables);
-
     public:
         
         Manager();

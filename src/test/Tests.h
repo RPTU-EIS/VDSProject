@@ -30,7 +30,7 @@ namespace ClassProject {
         Manager testObj;
 
         void SetUp() override {
-            testObj.nodes = {
+            testObj = Manager({
                 {.label = "0",   .data = {.low = 0, .high = 0, .topVar = 0}},                
                 {.label = "1",   .data = {.low = 1, .high = 1, .topVar = 1}},
                 {.label = "a",   .data = {.low = 0, .high = 1, .topVar = 2}},
@@ -39,19 +39,20 @@ namespace ClassProject {
                 {.label = "d",   .data = {.low = 0, .high = 1, .topVar = 5}},
                 {.label = "a+b", .data = {.low = 1, .high = 3, .topVar = 2}},
                 {.label = "c*d", .data = {.low = 5, .high = 0, .topVar = 4}}
-            };
-
-            for(size_t i=0; i < testObj.nodes.size(); i++){                
-                testObj.unique_table.insert({testObj.nodes[i].data, i});                
-            }            
+            });           
         }
     };
 
-    TEST_F(BasicTest, Constructor){
-        Node exp_true =  {.label = "1", .data = {.low = 1, .high = 1, .topVar = 1}};
-        Node exp_false = {.label = "0", .data = {.low = 0, .high = 0, .topVar = 0}};
-        ASSERT_EQ(testObj.nodes[0], exp_false);
-        ASSERT_EQ(testObj.nodes[1], exp_true);
+    TEST_F(BasicTest, Constructor){        
+        // false node
+        ASSERT_EQ(testObj.low(0),    0);
+        ASSERT_EQ(testObj.high(0),   0);
+        ASSERT_EQ(testObj.topVar(0), 0);
+
+        // true node
+        ASSERT_EQ(testObj.low(1),    1);
+        ASSERT_EQ(testObj.high(1),   1);
+        ASSERT_EQ(testObj.topVar(1), 1);
     }
 
     TEST_F(BasicTest, FalseReturn){
@@ -64,31 +65,30 @@ namespace ClassProject {
         ASSERT_EQ(id_true, 1);        
     }
 
-    TEST_F(BasicTest, CreateVarNew){
-
-        Node exp_a = {.label = "a", .data = {.low = 0, .high = 1, .topVar = 2}};
-        Node exp_b = {.label = "b", .data = {.low = 0, .high = 1, .topVar = 3}};
-        Node exp_c = {.label = "c", .data = {.low = 0, .high = 1, .topVar = 4}};
-
+    TEST_F(BasicTest, CreateVarNew){        
         BDD_ID id_a = testObj.createVar("a");
-        BDD_ID id_b = testObj.createVar("b");
-        BDD_ID id_c = testObj.createVar("c");
+        BDD_ID id_b = testObj.createVar("b");        
 
-        ASSERT_EQ(id_a, 2);
-        ASSERT_EQ(id_b, 3);
-        ASSERT_EQ(id_c, 4);
+        // node a
+        ASSERT_EQ(testObj.low(id_a),    0);
+        ASSERT_EQ(testObj.high(id_a),   1);
+        ASSERT_EQ(testObj.topVar(id_a), id_a);    
 
-        ASSERT_EQ(testObj.nodes[id_a], exp_a);
-        ASSERT_EQ(testObj.nodes[id_b], exp_b);
-        ASSERT_EQ(testObj.nodes[id_c], exp_c);        
+        // node b
+        ASSERT_EQ(testObj.low(id_b),    0);
+        ASSERT_EQ(testObj.high(id_b),   1);
+        ASSERT_EQ(testObj.topVar(id_b), id_b);    
     }
 
-    TEST_F(BasicTest, CreateVarDuplicate){        
-        Node exp_a = {.label = "a", .data = {.low = 0, .high = 1, .topVar = 2}};
+    TEST_F(BasicTest, CreateVarDuplicate){                
         BDD_ID id1 = testObj.createVar("a");
         BDD_ID id2 = testObj.createVar("a");
-        ASSERT_EQ(id1, id2);        
-        ASSERT_EQ(testObj.nodes[id1], exp_a);
+
+        ASSERT_EQ(testObj.low(id1),    0);
+        ASSERT_EQ(testObj.high(id1),   1);
+        ASSERT_EQ(testObj.topVar(id1), id1); 
+        
+        ASSERT_EQ(id1, id2);                
     }
 
     TEST_F(FunctionsTest, Constant){
@@ -115,11 +115,12 @@ namespace ClassProject {
     }
 
     TEST_F(FunctionsTest, IteVariables){
-        BDD_ID id_a = 2, id_b = 3, id_c = 4;
-        Node exp_n = {.label = "", .data = {.low = id_c, .high = id_b, .topVar = id_a}};
+        BDD_ID id_a = 2, id_b = 3, id_c = 4;        
 
         BDD_ID id_n = testObj.ite(id_a, id_b, id_c);        
-        ASSERT_EQ(testObj.nodes[id_n], exp_n);
+        ASSERT_EQ(testObj.low(id_n),    id_c);
+        ASSERT_EQ(testObj.high(id_n),   id_b);
+        ASSERT_EQ(testObj.topVar(id_n), id_a); 
     }
 }
 

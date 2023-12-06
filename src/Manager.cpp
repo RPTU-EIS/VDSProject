@@ -11,8 +11,8 @@ namespace ClassProject {
     const BDD_ID Manager::FALSE_ADDRESS = 0;
     const BDD_ID Manager::TRUE_ADDRESS = 1;
 
-    const Node Manager::FALSE_NODE = {.label = "0", .data = {.topVar = Manager::FALSE_ADDRESS}};
-    const Node Manager::TRUE_NODE =  {.label = "1", .data = {.topVar = Manager::TRUE_ADDRESS}};
+    const Node Manager::FALSE_NODE = {.label = "0", .data = {.low = 0, .high = 0, .topVar = Manager::FALSE_ADDRESS}};
+    const Node Manager::TRUE_NODE =  {.label = "1", .data = {.low = 1, .high = 1, .topVar = Manager::TRUE_ADDRESS}};
 
     BDD_ID Manager::createVar(const std::string &label){}
 
@@ -38,6 +38,8 @@ namespace ClassProject {
         if(!(nodes[0] == FALSE_NODE) || !(nodes[1] == TRUE_NODE)){
             throw std::invalid_argument("true and false nodes are invalid");
         }
+
+        // TODO add more validation on input nodes
 
         for(size_t i=0; i < nodes.size(); i++){                
             unique_table.insert({nodes[i].data, i});                
