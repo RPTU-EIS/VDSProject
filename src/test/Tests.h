@@ -37,7 +37,8 @@ namespace ClassProject {
                 {.label = "b",   .data = {.low = 0, .high = 1, .topVar = 3}},
                 {.label = "c",   .data = {.low = 0, .high = 1, .topVar = 4}},
                 {.label = "d",   .data = {.low = 0, .high = 1, .topVar = 5}},
-                {.label = "a+b", .data = {.low = 1, .high = 3, .topVar = 2}}
+                {.label = "a+b", .data = {.low = 1, .high = 3, .topVar = 2}},
+                {.label = "c*d", .data = {.low = 5, .high = 0, .topVar = 4}}
             };
 
             for(size_t i=0; i < testObj.nodes.size(); i++){                
@@ -103,6 +104,22 @@ namespace ClassProject {
         ASSERT_EQ(testObj.isVariable(2), true);   // variable node (a)
         ASSERT_EQ(testObj.isVariable(3), true);   // variable node (b)
         ASSERT_EQ(testObj.isVariable(6), false);  // function node (a+b)
+    }
+
+    TEST_F(FunctionsTest, IteTerminalCases){
+        BDD_ID id_a = 2, id_b = 3;
+        ASSERT_EQ(testObj.ite(1, id_a, id_b),    id_a);
+        ASSERT_EQ(testObj.ite(0, id_a, id_b),    id_b);
+        ASSERT_EQ(testObj.ite(id_a, 1, 0),       id_a);
+        ASSERT_EQ(testObj.ite(id_a, id_b, id_b), id_b);
+    }
+
+    TEST_F(FunctionsTest, IteVariables){
+        BDD_ID id_a = 2, id_b = 3, id_c = 4;
+        Node exp_n = {.label = "", .data = {.low = id_c, .high = id_b, .topVar = id_a}};
+
+        BDD_ID id_n = testObj.ite(id_a, id_b, id_c);        
+        ASSERT_EQ(testObj.nodes[id_n], exp_n);
     }
 }
 
