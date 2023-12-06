@@ -26,6 +26,8 @@ namespace ClassProject
      * @param label String of the label of the variable.
      * @return returns the ID of the created variable.
      */
+  
+    
 
     BDD_ID Manager::createVar(const std::string &label)
     {
@@ -128,6 +130,7 @@ namespace ClassProject
         if (isVariable(f) || isConstant(f)) {
             return f;
         }
+
         else {
             for (auto & it : Table) {
                 if(it.second.id == f)
@@ -145,7 +148,7 @@ namespace ClassProject
         if (i == True()) {
             return t;
         }else if (i == False()){
-            return e; 
+            return e;
         }else if (t == False()) {
             return e;
         } else if (t == e) {
@@ -163,15 +166,15 @@ namespace ClassProject
         BDD_ID top_variable = std::min(top_variable_t, top_variable_e);
 
         BDD_ID f_high = ite(coFactorTrue(i, top_variable), coFactorTrue(t, top_variable), coFactorTrue(e, top_variable));
-        
+
         BDD_ID f_low = ite(coFactorFalse(i, top_variable), coFactorFalse(t, top_variable), coFactorFalse(e, top_variable));
-    
+
         if (f_high == f_low){
             return f_low;
         }
 
         if (auto search = computed_table.find({top_variable, f_high, f_low}); search != computed_table.end())
-        {   
+        {
             computed_table[{i, t, e}] = search->second;
             return search->second;
         }
@@ -272,4 +275,28 @@ namespace ClassProject
     }
 
 
+    /**
+    * @brief getTopVarName
+    *
+    * returns the name of the top variable of the given node.
+    * @param root: ID of the node.
+    * @return returns the name of the top variable.
+    */
+    std::string Manager::getTopVarName(const BDD_ID &root) {
+        BDD_ID temp;
+        for (auto &it: Table) {
+            if (it.second.id == root) {
+                temp = it.first.TopVar;
+            }
+        }
+        for (auto &it: Table) {
+            if (it.second.id == temp) {
+                return it.second.label;
+            }
+        }
+    }
+
+
+
 }
+        

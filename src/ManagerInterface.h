@@ -31,6 +31,8 @@ namespace ClassProject {
 
         virtual BDD_ID and2(std::string &a, std::string &b) = 0;
 
+        virtual std::string getTopVarName(const BDD_ID &root) = 0;
+
         virtual BDD_ID coFactorTrue(BDD_ID f, BDD_ID x) = 0;
 
         virtual BDD_ID coFactorFalse(BDD_ID f, BDD_ID x) = 0;

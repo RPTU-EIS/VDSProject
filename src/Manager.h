@@ -59,36 +59,6 @@ namespace ClassProject
             }
         };
 
-        // struct input_CT
-        // {
-        //     BDD_ID i;
-        //     BDD_ID t;
-        //     BDD_ID e;
-
-        //     bool operator == (const input_CT &other) const
-        //     {
-        //         return (i == other.i) && (t == other.t) && (e == other.e);
-        //     }
-        // };
-
-        // struct KeyHash_CT
-        // {
-        //     //std::size_t operator()(const input_CT &input) const
-        //     std::size_t operator()( const input_CT& k ) const
-        //     // {
-        //     //     // Compute individual hash values for first, second and third
-        //     //     std::size_t res = 17;
-        //     //     res = res * 31 + std::hash<BDD_ID>()(k.i);
-        //     //     res = res * 31 + std::hash<BDD_ID>()(k.t);
-        //     //     res = res * 31 + std::hash<BDD_ID>()(k.e);
-        //     //     return res;
-        //     // }
-        //     {
-        //         // A hash function
-        //         return ((std::hash<BDD_ID>()(k.i) ^ (std::hash<BDD_ID>()(k.t) << 1)) >> 1) ^ (std::hash<BDD_ID>()(k.e) << 1);
-        //     }
-        // };
-
         std::unordered_map<Unique_Table_Key, Unique_Table_Entry, KeyHash> Table;
         std::unordered_map<Unique_Table_Key,BDD_ID,KeyHash> computed_table;
 
@@ -98,6 +68,7 @@ namespace ClassProject
         bool isConstant(BDD_ID f) override;
         bool isVariable(BDD_ID x) override;
         BDD_ID topVar(BDD_ID f) override;
+        std::string getTopVarName(const BDD_ID &root) override;
         BDD_ID coFactorTrue(BDD_ID f, BDD_ID x) override;
         BDD_ID coFactorFalse(BDD_ID f, BDD_ID x) override;
         BDD_ID ite(BDD_ID i, BDD_ID t, BDD_ID e) override;

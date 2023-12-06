@@ -121,7 +121,11 @@ TEST_F(TestManager, isVar)
     EXPECT_FALSE(manager->isVariable(3));
 }
 
-//test topVariable function
+/**
+ * @brief topVar Test
+ *
+ */
+
 TEST_F(TestManager, topVar) {
 
     manager->Table[{2,0,1}] = {"a", 2};
@@ -170,15 +174,37 @@ TEST_F(TestManager, ite) {
     manager->Table[{5,0,1}] = {"d", 5};
 
     EXPECT_EQ(manager->Table.size(),6);
-    
+
     EXPECT_EQ(manager->ite(2, 3, 0) , 6);
 
     EXPECT_EQ(manager->ite(4, 5, 0) , 7);
 
-    EXPECT_EQ(manager->ite(6, 1, 7) , 9); 
+    EXPECT_EQ(manager->ite(6, 1, 7) , 9);
 
     EXPECT_EQ(manager->Table.size(),10);
 
     EXPECT_EQ(manager->computed_table.size(),4);
 }
+
+/**
+* @brief getTopVarName Test
+*
+*/
+
+TEST_F(TestManager, getTopVarName)
+{
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"a+b", 6};
+    manager->Table[{4,0,5}] = {"c*d", 7};
+
+    EXPECT_EQ(manager->getTopVarName(2), "a");
+    EXPECT_EQ(manager->getTopVarName(3), "b");
+    EXPECT_EQ(manager->getTopVarName(6), "a");
+    EXPECT_EQ(manager->getTopVarName(7), "c");
+
+}
+
 #endif
