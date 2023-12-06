@@ -144,7 +144,9 @@ namespace ClassProject
     {
         if (i == True()) {
             return t;
-        } else if (t == False()) {
+        }else if (i == False()){
+            return e; 
+        }else if (t == False()) {
             return e;
         } else if (t == e) {
             return t;
@@ -160,14 +162,25 @@ namespace ClassProject
 
         BDD_ID top_variable = std::min(top_variable_t, top_variable_e);
 
-        BDD_ID r_high = ite(coFactorTrue(i, top_variable), coFactorTrue(t, top_variable), coFactorTrue(e, top_variable));
+        BDD_ID f_high = ite(coFactorTrue(i, top_variable), coFactorTrue(t, top_variable), coFactorTrue(e, top_variable));
         
-        BDD_ID r_low = ite(coFactorFalse(i, top_variable), coFactorFalse(t, top_variable), coFactorFalse(e, top_variable));
+        BDD_ID f_low = ite(coFactorFalse(i, top_variable), coFactorFalse(t, top_variable), coFactorFalse(e, top_variable));
     
-        if (r_high == r_low) return r_high;
+        if (f_high == f_low){
+            return f_low;
+        }
 
+        if (auto search = computed_table.find({top_variable, f_high, f_low}); search != computed_table.end())
+        {   
+            computed_table[{i, t, e}] = search->second;
+            return search->second;
+        }
 
+        BDD_ID p = Table.size();
+        Table.emplace(Unique_Table_Key({top_variable,f_high,f_low}),Unique_Table_Entry({std::to_string(p), p}));
 
+        computed_table.emplace(Unique_Table_Key({top_variable,f_high,f_low}),Table.size());
+        return p;
   }
 
     BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x)

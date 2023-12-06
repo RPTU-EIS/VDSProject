@@ -141,7 +141,7 @@ TEST_F(TestManager, topVar) {
 }
 
 //test ite function
-TEST_F(TestManager, ite) {
+TEST_F(TestManager, ite_terminal_case) {
 
     manager->Table[{2,0,1}] = {"a", 2};
     manager->Table[{3,0,1}] = {"b", 3};
@@ -160,5 +160,25 @@ TEST_F(TestManager, ite) {
 
     EXPECT_EQ(manager->ite(2, 1, 3) , 6); //Test Existing node (a+b), not terminal
 
+}
+
+TEST_F(TestManager, ite) {
+
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+
+    EXPECT_EQ(manager->Table.size(),6);
+    
+    EXPECT_EQ(manager->ite(2, 3, 0) , 6);
+
+    EXPECT_EQ(manager->ite(4, 5, 0) , 7);
+
+    EXPECT_EQ(manager->ite(6, 1, 7) , 9); 
+
+    EXPECT_EQ(manager->Table.size(),10);
+
+    EXPECT_EQ(manager->computed_table.size(),4);
 }
 #endif
