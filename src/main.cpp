@@ -24,9 +24,11 @@ int main(int argc, char* argv[])
     manager.createVar("c");
     manager.createVar("d");
 
+    std::cout << "START!" << std::endl;
+
     for(auto [key, value] : manager.Table){
         std::cout<<value.id<<":"<<key.high<<","<<key.low<<","<<key.TopVar<<std::endl;
     }
 
-    std::cout << "Nothing implemented, yet" << std::endl;
+    
 }
