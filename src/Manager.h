@@ -69,6 +69,7 @@ namespace ClassProject {
     public:
         
         Manager();
+        Manager(std::vector<Node> nodes);
 
         BDD_ID createVar(const std::string &label);
 

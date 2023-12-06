@@ -1,12 +1,12 @@
 #include "Manager.h"
+#include <stdexcept>
 #include <iostream> //FIXME check final lib dependencies
 
 namespace ClassProject {
 
     std::ostream& operator <<(std::ostream& stream, const Node& node) {
         return stream << node.label << " : " << node.data.low << "," << node.data.high << "," << node.data.topVar;
-    }
-    
+    }  
 
     const BDD_ID Manager::FALSE_ADDRESS = 0;
     const BDD_ID Manager::TRUE_ADDRESS = 1;
@@ -32,6 +32,16 @@ namespace ClassProject {
     */
     Manager::Manager(){
         nodes = {FALSE_NODE, TRUE_NODE};
+    }
+
+    Manager::Manager(std::vector<Node> nodes) : nodes(nodes){        
+        if(!(nodes[0] == FALSE_NODE) || !(nodes[1] == TRUE_NODE)){
+            throw std::invalid_argument("true and false nodes are invalid");
+        }
+
+        for(size_t i=0; i < nodes.size(); i++){                
+            unique_table.insert({nodes[i].data, i});                
+        }  
     }
 
     /**
