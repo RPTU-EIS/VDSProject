@@ -7,6 +7,7 @@
 
 #include <string>
 #include <set>
+#include <iostream>
 
 namespace ClassProject {
 
@@ -58,7 +59,7 @@ namespace ClassProject {
 
         virtual size_t uniqueTableSize() = 0;
 
-        virtual void visualizeBDD(std::string filepath, BDD_ID &root) = 0;
+        //virtual void visualizeBDD(std::string filepath, BDD_ID &root) = 0;
     };
 }
 
