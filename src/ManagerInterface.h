@@ -29,29 +29,26 @@ namespace ClassProject {
 
         virtual BDD_ID ite(BDD_ID i, BDD_ID t, BDD_ID e) = 0;
 
-        virtual BDD_ID and2(std::string &a, std::string &b) = 0;
-
         virtual std::string getTopVarName(const BDD_ID &root) = 0;
 
         virtual BDD_ID coFactorTrue(BDD_ID f, BDD_ID x) = 0;
 
         virtual BDD_ID coFactorFalse(BDD_ID f, BDD_ID x) = 0;
 
-/*
+        virtual BDD_ID neg(BDD_ID a) = 0;
+
         virtual BDD_ID and2(BDD_ID a, BDD_ID b) = 0;
 
         virtual BDD_ID or2(BDD_ID a, BDD_ID b) = 0;
 
         virtual BDD_ID xor2(BDD_ID a, BDD_ID b) = 0;
 
-        virtual BDD_ID neg(BDD_ID a) = 0;
-
         virtual BDD_ID nand2(BDD_ID a, BDD_ID b) = 0;
 
         virtual BDD_ID nor2(BDD_ID a, BDD_ID b) = 0;
 
         virtual BDD_ID xnor2(BDD_ID a, BDD_ID b) = 0;
-
+/*
         virtual std::string getTopVarName(const BDD_ID &root) = 0;
 
         virtual void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) = 0;
