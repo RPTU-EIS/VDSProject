@@ -151,6 +151,11 @@ size_t Manager::uniqueTableSize()
 {
     return uniqueTable.size();
 }
+std::string Manager::getLabel(BDD_ID f)
+{
+    return uniqueTable[f].label;
+}
+
 
 
 /*void Manager::visualizeBDD(std::string filepath, BDD_ID &root)
