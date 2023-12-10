@@ -74,11 +74,23 @@ TEST_F(managerTest, isconstantTest)
     }*/
     for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
     {
-        bool yield = (i == manager.False() || i == manager.True());
-        ASSERT_EQ(manager.isConstant(i), yield) << "Node with ID " << i << " should be constant";
+        bool out = (i == manager.False() || i == manager.True());
+        ASSERT_EQ(manager.isConstant(i), out) << "Node with ID " << i << " should be constant";
     }
 }
-//TEST_F(managerTest, )
+
+//
+TEST_F(managerTest, isvariableTest)
+{
+    ClassProject::BDD_ID ID_a = manager.createVar("a");
+    ClassProject::BDD_ID ID_b = manager.createVar("b");
+    ClassProject::BDD_ID ID_c = manager.createVar("c");
+    for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
+    {
+        bool out = (i == a || i == b || i == c);
+        ASSERT_EQ(manager.isVariable(i), out) << "Incorrect assertion for isVariable";
+    }
+}
 
 /*TEST_F(managerTest, CreateNodeTest) {
 
