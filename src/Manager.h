@@ -78,14 +78,18 @@ namespace ClassProject {
 
         BDD_ID createNode(BDD_ID l, BDD_ID h, BDD_ID x, std::string label);
 
+        BDD_ID highSuccesor(BDD_ID a);
 
+        BDD_ID lowSuccesor(BDD_ID a);
 
+        std::string getLabel(BDD_ID f);
         //Constructor & destructor
         Manager();
 
         ~Manager();
 
     private:
+        //These are only accessible from within the class itself. They're used to implement the internal workings of the class that should not be exposed to the outside.
         BDD_ID TrueID;
 
         BDD_ID FalseID;

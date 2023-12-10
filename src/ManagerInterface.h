@@ -50,7 +50,7 @@ namespace ClassProject {
         virtual BDD_ID nor2(BDD_ID a, BDD_ID b) = 0;
 
         virtual BDD_ID xnor2(BDD_ID a, BDD_ID b) = 0;
-
+        //returns the label of the top variable of the root.
         virtual std::string getTopVarName(const BDD_ID &root) = 0;
 
         virtual void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) = 0;

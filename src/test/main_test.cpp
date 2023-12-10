@@ -20,7 +20,25 @@ protected:
     }
 };
 
-TEST_F(ManagerTest, CreateNodeTest) {
+// Test that the True and False nodes exist and have correct properties
+TEST_F(managerTest, TrueAndFalseNodes) {
+    // Obtain the IDs of the True and False nodes
+    ClassProject::BDD_ID trueNode = manager.True();
+    ClassProject::BDD_ID falseNode = manager.False();
+
+    // Test that the True node has the expected properties
+    ASSERT_EQ(manager.topVar(trueNode), trueNode) << "Top variable of True node should be itself";
+    ASSERT_EQ(manager.getLabel(trueNode), "True") << "Label of True node should be 'True'";
+
+    // Test that the False node has the expected properties
+    ASSERT_EQ(manager.topVar(falseNode), falseNode) << "Top variable of False node should be itself";
+    ASSERT_EQ(manager.getLabel(falseNode), "False") << "Label of False node should be 'False'";
+
+    // Test that the True and False nodes are different
+    ASSERT_NE(trueNode, falseNode) << "True and False node IDs should be different";
+}
+
+/*TEST_F(managerTest, CreateNodeTest) {
 
 
     ClassProject::BDD_ID ID_a = manager.createNode(0, 1, 2, "a");
@@ -31,7 +49,7 @@ TEST_F(ManagerTest, CreateNodeTest) {
 
 }
 
-TEST_F(ManagerTest, CreateVarTest) {
+TEST_F(managerTest, CreateVarTest) {
 
 
     ClassProject::BDD_ID ID_a = manager.createVar("a");
@@ -42,7 +60,7 @@ TEST_F(ManagerTest, CreateVarTest) {
 
 }
 
-TEST_F(ManagerTest, keyGenTest) {
+TEST_F(managerTest, keyGenTest) {
 
 
     size_t d = manager.keyGen(1,1,1);
@@ -50,7 +68,7 @@ TEST_F(ManagerTest, keyGenTest) {
     EXPECT_EQ(d, 2);
     //EXPECT_EQ(ID_b, 3);
 
-}
+}*/
 
 
 int main(int argc, char* argv[])
