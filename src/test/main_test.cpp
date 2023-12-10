@@ -38,6 +38,19 @@ TEST_F(managerTest, TrueAndFalseNodes) {
     ASSERT_NE(trueNode, falseNode) << "True and False node IDs should be different";
 }
 
+TEST_F(managerTest, CreateVarTest) {
+
+
+    ClassProject::BDD_ID ID_a = manager.createVar("a");
+    ClassProject::BDD_ID ID_b = manager.createVar("b");
+    ClassProject::BDD_ID ID_c = manager.createVar("c");
+
+    EXPECT_EQ(ID_a, 2);
+    EXPECT_EQ(ID_b, 3);
+    EXPECT_EQ(ID_c, 4);
+}
+//TEST_F(managerTest, )
+
 /*TEST_F(managerTest, CreateNodeTest) {
 
 
@@ -49,16 +62,7 @@ TEST_F(managerTest, TrueAndFalseNodes) {
 
 }
 
-TEST_F(managerTest, CreateVarTest) {
 
-
-    ClassProject::BDD_ID ID_a = manager.createVar("a");
-    ClassProject::BDD_ID ID_b = manager.createVar("b");
-
-    EXPECT_EQ(ID_a, 2);
-    EXPECT_EQ(ID_b, 3);
-
-}
 
 TEST_F(managerTest, keyGenTest) {
 
