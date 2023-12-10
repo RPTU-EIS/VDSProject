@@ -72,7 +72,13 @@ namespace ClassProject
         BDD_ID coFactorTrue(BDD_ID f, BDD_ID x) override;
         BDD_ID coFactorFalse(BDD_ID f, BDD_ID x) override;
         BDD_ID ite(BDD_ID i, BDD_ID t, BDD_ID e) override;
-        BDD_ID and2(std::string &a, std::string &b) override;
+        BDD_ID neg(BDD_ID a) override;
+        BDD_ID and2(BDD_ID a, BDD_ID b) override;
+        BDD_ID or2(BDD_ID a, BDD_ID b) override;
+        BDD_ID xor2(BDD_ID a, BDD_ID b) override;
+        BDD_ID nand2(BDD_ID a, BDD_ID b) override;
+        BDD_ID nor2(BDD_ID a, BDD_ID b) override;
+        BDD_ID xnor2(BDD_ID a, BDD_ID b) override;
     };
 }
 
