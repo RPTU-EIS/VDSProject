@@ -49,6 +49,16 @@ TEST_F(managerTest, CreateVarTest) {
     EXPECT_EQ(ID_b, 3);
     EXPECT_EQ(ID_c, 4);
 }
+
+TEST_F(managerTest, UniqueTableSizeIncreasesAfterCreatingVar) {
+    ClassProject::BDD_ID testVar1 = manager.createVar("testVar1");
+    size_t sizeAfterFirstVar = manager.uniqueTableSize();
+    manager.createVar("testVar2");
+    //the ASSERT_GT macro is used for comparison testing to assert that the first argument is greater than the second argument
+    ASSERT_GT(manager.uniqueTableSize(), sizeAfterFirstVar) << "Unique table size should increase after creating a new variable";
+}
+
+//Returns true if the given ID represents a leaf node
 //TEST_F(managerTest, )
 
 /*TEST_F(managerTest, CreateNodeTest) {
