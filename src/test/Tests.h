@@ -247,4 +247,126 @@ TEST_F(TestManager, CoFactorFalse) {
 
 }
 
+
+/**
+ * @brief neg Test
+ *
+ */
+
+TEST_F(TestManager, neg)
+{
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"a+b", 6};
+    manager->Table[{4,0,5}] = {"c*d", 7};
+
+    EXPECT_EQ(manager->neg(2), manager->ite(2, 0, 1));
+    EXPECT_EQ(manager->neg(6), manager->ite(6, 0, 1));
+    EXPECT_EQ(manager->neg(7), manager->ite(7, 0 ,1));
+}
+
+/**
+ * @brief and2 Test
+ *
+ */
+
+TEST_F(TestManager, and2)
+{
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"e", 6};
+    manager->Table[{4,0,5}] = {"f", 7};
+
+    EXPECT_EQ(manager->and2(2, 3), manager->ite(2, 3, 0));
+    EXPECT_EQ(manager->and2(4, 5), manager->ite(4, 5, 0));
+    EXPECT_EQ(manager->and2(2, 4), manager->ite(2, 4, 0));
+    EXPECT_EQ(manager->and2(6, 7), manager->ite(6, 7 ,0));
+}
+
+/**
+ * @brief or2 Test
+ *
+ */
+
+TEST_F(TestManager, or2)
+{
+
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"e", 6};
+    manager->Table[{4,0,5}] = {"f", 7};
+
+    EXPECT_EQ(manager->or2(2, 3), manager->ite(2, 1, 3));
+    EXPECT_EQ(manager->or2(4, 5), manager->ite(4, 1, 5));
+    EXPECT_EQ(manager->or2(6, 7), manager->ite(6, 1 ,7));
+    EXPECT_EQ(manager->or2(6, 7), manager->ite(6, 1 ,7));
+}
+
+/**
+ * @brief xor2 Test
+ *
+ */
+
+TEST_F(TestManager, xor2) //ite(a, ~b, b)
+{
+
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"e", 6};
+    manager->Table[{4,0,5}] = {"f", 7};
+
+    EXPECT_EQ(manager->xor2(2, 3), manager->ite(2, manager->neg(3), 3));
+    EXPECT_EQ(manager->xor2(4, 5), manager->ite(4, manager->neg(5), 5));
+    EXPECT_EQ(manager->xor2(6, 7), manager->ite(6, manager->neg(7) ,7));
+}
+
+
+/**
+ * @brief nor2 Test
+ *
+ */
+
+TEST_F(TestManager, nor2) //ite(a, 0, ~b)
+{
+
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"e", 6};
+    manager->Table[{4,0,5}] = {"f", 7};
+
+    EXPECT_EQ(manager->nor2(2, 3), manager->ite(2, 0, manager->neg(3)));
+    EXPECT_EQ(manager->nor2(4, 5), manager->ite(4, 0, manager->neg(5)));
+    EXPECT_EQ(manager->nor2(6, 7), manager->ite(6, 0, manager->neg(7)));
+}
+
+
+/**
+ * @brief xnor2 Test
+ *
+ */
+
+TEST_F(TestManager, xnor2) //ite(a, b, ~b)
+{
+    manager->Table[{2,0,1}] = {"a", 2};
+    manager->Table[{3,0,1}] = {"b", 3};
+    manager->Table[{4,0,1}] = {"c", 4};
+    manager->Table[{5,0,1}] = {"d", 5};
+    manager->Table[{2,1,3}] = {"e", 6};
+    manager->Table[{4,0,5}] = {"f", 7};
+
+    EXPECT_EQ(manager->xnor2(2, 3), manager->ite(2, 3, manager->neg(3)));
+    EXPECT_EQ(manager->xnor2(4, 5), manager->ite(4, 5, manager->neg(5)));
+    EXPECT_EQ(manager->xnor2(6, 7), manager->ite(6, 7, manager->neg(7)));
+};
+
 #endif
