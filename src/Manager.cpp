@@ -179,17 +179,17 @@ namespace ClassProject
             return f_low;
         }
 
-        if (auto search = computed_table.find({top_variable, f_high, f_low}); search != computed_table.end())
+        if (auto search = computed_table.find({top_variable, f_low, f_high}); search != computed_table.end())
         {
-            computed_table[{top_variable, f_high, f_low}] = search->second;
+            computed_table[{top_variable, f_low, f_high}] = search->second;
             return search->second;
         }
 
         BDD_ID p = Table.size();
 
-        computed_table.emplace(Unique_Table_Key({top_variable,f_high,f_low}),p);
+        computed_table.emplace(Unique_Table_Key({top_variable,f_low,f_high}),p);
 
-        Table.emplace(Unique_Table_Key({top_variable,f_high,f_low}),Unique_Table_Entry({std::to_string(p), p}));
+        Table.emplace(Unique_Table_Key({top_variable,f_low,f_high}),Unique_Table_Entry({std::to_string(p), p}));
 
         return p;
   }
@@ -393,12 +393,14 @@ namespace ClassProject
     void Manager::visualizeBDD(std::string filepath, BDD_ID &root) {
 
         std::cout<<"VisualizeBDD"<<std::endl;
-        std::string dot_file = "../test.gv";
-        std::string pdf_file = "../test.pdf";
-        //std::set<BDD_ID> set; //TODO: uncomment
+        std::string dot_file = filepath + "test.gv";
+        std::string pdf_file = filepath + "test.pdf";
+        std::set<BDD_ID> set;
+        std::set<BDD_ID> set_top;
 
         /* Find Nodes */
-        //virtual void findNodes(&root, &set) //TODO: uncomment
+        findNodes(root, set);
+        findVars(root, set_top);
 
         /* Create Gvc object */
         GVC_t *gvc = gvContext();
@@ -411,13 +413,12 @@ namespace ClassProject
         Agedge_t *e;
         Agedge_t *f;
 
-        BDD_ID IDS[6] = {0,1,5,7,8,9}; //TODO: comment
+        //BDD_ID IDS[6] = {0,1,5,7,8,9}; //TODO: comment
 
         /* Vector type to assign size dynamically depending on number of nodes in Table */
         std::vector<Agnode_t*> nodes (Table.size());
 
-        //for(auto i : set) - assuming set is sorted and ascending //TODO: uncomment
-        for(auto i : IDS)
+        for(auto i : set)
         {
             Unique_Table_Key key;
 
