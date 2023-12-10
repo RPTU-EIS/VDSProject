@@ -168,22 +168,38 @@ TEST_F(TestManager, ite_terminal_case) {
 
 TEST_F(TestManager, ite) {
 
-    manager->Table[{2,0,1}] = {"a", 2};
-    manager->Table[{3,0,1}] = {"b", 3};
-    manager->Table[{4,0,1}] = {"c", 4};
-    manager->Table[{5,0,1}] = {"d", 5};
+    manager->createVar("a");
+    manager->createVar("b");
+    manager->createVar("c");
+    manager->createVar("d");
 
     EXPECT_EQ(manager->Table.size(),6);
 
+    EXPECT_EQ(manager->computed_table.size(), 0);
+
     EXPECT_EQ(manager->ite(2, 3, 0) , 6);
+
+    EXPECT_EQ(manager->computed_table.size(), 1);
 
     EXPECT_EQ(manager->ite(4, 5, 0) , 7);
 
+    EXPECT_EQ(manager->computed_table.size(), 2);
+
+    EXPECT_EQ(manager->Table.size(), 8);
+
     EXPECT_EQ(manager->ite(6, 1, 7) , 9);
 
-    EXPECT_EQ(manager->Table.size(),10);
+    EXPECT_EQ(manager->computed_table.size(), 4);
 
-    EXPECT_EQ(manager->computed_table.size(),4);
+    EXPECT_EQ(manager->ite(6, 1, 7) , 9);
+
+    EXPECT_EQ(manager->computed_table.size(), 4);
+
+    EXPECT_EQ(manager->ite(6, 1, 7) , 9);
+
+    EXPECT_EQ(manager->computed_table.size(), 4);
+
+    EXPECT_EQ(manager->Table.size(),10);
 }
 
 /**
@@ -245,6 +261,47 @@ TEST_F(TestManager, CoFactorFalse) {
     //Case: if else: ret ite(f_key.TopVar, T, F);
     EXPECT_EQ(manager->coFactorFalse(6,5), manager->ite(2, manager->coFactorFalse(3, 5), manager->coFactorFalse(1,5)));
 
+}
+
+
+
+TEST_F(TestManager, findNodes){
+
+    manager->createVar("a");
+    manager->createVar("b");
+    manager->createVar("c");
+    manager->createVar("d");
+
+    EXPECT_EQ(manager->ite(2, 3, 0) , 6);
+
+    EXPECT_EQ(manager->ite(4, 5, 0) , 7);
+
+    EXPECT_EQ(manager->ite(6, 1, 7) , 9);
+
+    std::set<ClassProject::BDD_ID> nodes_of_root,vars_of_root;
+
+    std::set<ClassProject::BDD_ID> correct_answer = {0, 1, 5, 7, 8, 9};
+
+    manager->findNodes(9, nodes_of_root);
+    
+    for(auto i : nodes_of_root){
+        std::cout << ' ' << i;
+    }
+    std::cout << '\n';
+    
+    EXPECT_EQ(correct_answer, nodes_of_root);
+
+    manager->findVars(9, vars_of_root);
+
+    for (auto i : vars_of_root)
+    {
+        std::cout << ' ' << i;
+    }
+    std::cout << '\n';
+    
+    correct_answer = { 2, 3, 4, 5 };
+
+    EXPECT_EQ(correct_answer, vars_of_root);
 }
 
 
