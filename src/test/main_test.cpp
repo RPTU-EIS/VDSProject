@@ -87,7 +87,7 @@ TEST_F(managerTest, isvariableTest)
     ClassProject::BDD_ID ID_c = manager.createVar("c");
     for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
     {
-        bool out = (i == a || i == b || i == c);
+        bool out = (i == ID_a || i == ID_b || i == ID_c);
         ASSERT_EQ(manager.isVariable(i), out) << "Incorrect assertion for isVariable";
     }
 }
