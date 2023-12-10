@@ -23,12 +23,17 @@ int main(int argc, char* argv[])
     manager.createVar("b");
     manager.createVar("c");
     manager.createVar("d");
+    manager.Table[{2,3,1}] = {"a+b", 6};
+    manager.Table[{4,0,5}] = {"c*d", 7};
+    manager.Table[{3,0,7}] = {"b*c*d", 8};
+    manager.Table[{2,8,7}] = {"f", 9};
+
 
     std::cout << "START!" << std::endl;
 
     for(auto [key, value] : manager.Table){
         std::cout<<value.id<<":"<<key.high<<","<<key.low<<","<<key.TopVar<<std::endl;
     }
-
-    
+    ClassProject::BDD_ID id;
+    manager.visualizeBDD("Test", id);
 }

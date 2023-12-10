@@ -7,6 +7,7 @@
 
 #include "ManagerInterface.h"
 #include <unordered_map>
+#include <string>
 
 namespace ClassProject
 {
@@ -79,6 +80,9 @@ namespace ClassProject
         BDD_ID nand2(BDD_ID a, BDD_ID b) override;
         BDD_ID nor2(BDD_ID a, BDD_ID b) override;
         BDD_ID xnor2(BDD_ID a, BDD_ID b) override;
+
+        void visualizeBDD(std::string filepath, BDD_ID &root) override;
+
     };
 }
 

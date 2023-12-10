@@ -1,5 +1,11 @@
 #include "Manager.h"
 #include <algorithm>
+#include <iostream>
+#include <graphviz/gvc.h>
+#include <graphviz/cgraph.h>
+#include <string>
+#include <set>
+#include <vector>
 
 /**
  * @brief ClassProject Class.
@@ -362,7 +368,86 @@ namespace ClassProject
     }
 
 
+    void Manager::visualizeBDD(std::string filepath, BDD_ID &root) {
 
+        std::cout<<"VisualizeBDD"<<std::endl;
+        std::string dot_file = "../test.gv";
+        std::string pdf_file = "../test.pdf";
+        //std::set<BDD_ID> set; //TODO: uncomment
+
+        /* Find Nodes */
+        //virtual void findNodes(&root, &set) //TODO: uncomment
+
+        /* Create Gvc object */
+        GVC_t *gvc = gvContext();
+
+        // Create a simple digraph
+        Agraph_t *g = agopen("g", Agdirected, 0);
+        if(!g)std::cout<<"ERROR: g"<<std::endl;
+        Agnode_t *r;
+        Agedge_t *e;
+        Agedge_t *f;
+
+        BDD_ID IDS[6] = {0,1,5,7,8,9}; //TODO: comment
+
+        /* Vector type to assign size dynamically depending on number of nodes in Table */
+        std::vector<Agnode_t*> nodes (Table.size());
+
+        //for(auto i : set) - assuming set is sorted and ascending //TODO: uncomment
+        for(auto i : IDS)
+        {
+            Unique_Table_Key key;
+
+            for(auto &j : Table)
+            {
+                if(j.second.id == i)
+                {
+                    key = j.first;
+                }
+            }
+
+            if(isConstant(i))
+            {
+                /* Create Constant Node */
+                r = agnode(g, (char *)std::to_string(i).c_str() , 1);
+                nodes[i] = r;
+            }
+            else
+            {
+                /* Create Non-constant Node */
+                r = agnode(g, (char *)getTopVarName(i).c_str() , 1);
+                nodes[i] = r;
+
+                /* Create low and high edges */
+                e = agedge(g, r, nodes[key.low], 0, 1);
+                f = agedge(g, r, nodes[key.high], 0, 1);
+            }
+        }
+
+
+        /* Set Root node to red color */
+        int ret = agsafeset(r, "color", "red", "");
+        if (ret != 0)std::cout<<"ERROR: agsafeset"<<std::endl;
+
+        // Use the directed graph layout engine
+        ret = gvLayout(gvc, g, "dot");
+        if (ret != 0)std::cout<<"ERROR: gvLayout"<<std::endl;
+
+        // Output in .dot and .pdf format
+        ret = gvRenderFilename(gvc, g, "dot", dot_file.c_str());
+        ret = gvRenderFilename(gvc, g, "pdf", pdf_file.c_str());
+        if (ret != 0)std::cout<<"ERROR: gvRenderFilename"<<std::endl;
+
+        gvFreeLayout(gvc, g);
+
+        // Free graph structures
+        agclose(g);
+
+        // close output file, free context, and return number of errors
+        ret = gvFreeContext(gvc);
+        if(ret != 0)std::cout<<"ERROR";
+
+    }
 
 }
         
