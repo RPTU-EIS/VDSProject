@@ -257,31 +257,6 @@ namespace ClassProject
     }
 
     /**
-    * @brief and2
-    *
-    * returns the id numbers required for the ite operation
-    * @param &a and &b: variable names
-    * @return returns the id numbers required for the ite operation
-    */
-    BDD_ID Manager::and2(std::string &a, std::string &b) {
-        BDD_ID f_op, s_op;
-
-        for (auto& it: Table ) {
-            if (it.second.label == a)
-            {
-                f_op = it.second.id;
-            }
-
-            if (it.second.label == b)
-            {
-                s_op = it.second.id;
-            }
-        }
-        return ite(f_op, s_op, 0);
-    }
-
-
-    /**
     * @brief getTopVarName
     *
     * returns the name of the top variable of the given node.
@@ -302,6 +277,96 @@ namespace ClassProject
         }
         return ""; //It should never reach here...
     }
+
+    /**
+   * @brief neg
+   *
+   * Creates a negated version of a given function and returns its ID.
+   * @param a ID of the function to be negated.
+   * @return: Returns the ID representing the negation of the given function.
+   */
+
+    BDD_ID Manager::neg(BDD_ID a)
+    {
+        return ite(a, 0 ,1);
+    }
+
+
+    /**
+    * @brief and2
+    *
+    * returns the id numbers required for the ite operation
+    * @param a and b: ID's of variables
+    * @return returns the id numbers required for the ite operation
+    */
+    BDD_ID Manager::and2(BDD_ID a, BDD_ID b)
+    {
+        return ite(a, b, 0);
+    }
+
+    /**
+    * @brief or2
+    *
+    * returns the id numbers required for the ite operation
+    * @param a and b: ID's of variables
+    * @return returns the id numbers required for the ite operation
+    */
+    BDD_ID Manager::or2(BDD_ID a, BDD_ID b) //ite(a, 1, b)
+    {
+        return ite(a, 1, b);
+    }
+
+    /**
+    * @brief xor2
+    *
+    * returns the id numbers required for the ite operation
+    * @param a and b: ID's of variables
+    * @return returns the id numbers required for the ite operation
+    */
+    BDD_ID Manager::xor2(BDD_ID a, BDD_ID b) //ite(a, ~b, b)
+    {
+        return ite(a, neg(b), b);
+    }
+
+    /**
+    * @brief nand2
+    *
+    * returns the id numbers required for the ite operation
+    * @param a and b: ID's of variables
+    * @return returns the id numbers required for the ite operation
+    */
+
+    BDD_ID Manager::nand2(BDD_ID a, BDD_ID b)
+    {
+        return ite(a, 1, b);
+    }
+
+    /**
+    * @brief nor2
+    *
+    * returns the id numbers required for the ite operation
+    * @param a and b: ID's of variables
+    * @return returns the id numbers required for the ite operation
+    */
+
+    BDD_ID Manager::nor2(BDD_ID a, BDD_ID b)  //ite(a, 0, ~b)
+    {
+        return ite(a, 0, neg(b));
+    }
+
+    /**
+    * @brief xnor2
+    *
+    * returns the id numbers required for the ite operation
+    * @param a and b: ID's of variables
+    * @return returns the id numbers required for the ite operation
+    */
+
+    BDD_ID Manager::xnor2(BDD_ID a, BDD_ID b) //ite(a, b, ~b)
+    {
+        return ite(a, b, neg(b));
+    }
+
 
     void Manager::visualizeBDD(std::string filepath, BDD_ID &root) {
 
