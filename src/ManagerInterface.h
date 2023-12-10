@@ -37,6 +37,7 @@ namespace ClassProject {
 
         virtual BDD_ID coFactorFalse(BDD_ID f, BDD_ID x) = 0;
 
+        virtual void visualizeBDD(std::string filepath, BDD_ID &root) = 0;
 /*
         virtual BDD_ID and2(BDD_ID a, BDD_ID b) = 0;
 
@@ -63,6 +64,7 @@ namespace ClassProject {
         virtual void visualizeBDD(std::string filepath, BDD_ID &root) = 0;
         */
     };
+
 }
 
 #endif
