@@ -49,7 +49,7 @@ TEST_F(managerTest, CreateVarTest) {
     EXPECT_EQ(ID_b, 3);
     EXPECT_EQ(ID_c, 4);
 }
-
+//We make sure that the size of the unique table in the BDD manager increases when a new variable is created.
 TEST_F(managerTest, UniqueTableSizeIncreasesAfterCreatingVar) {
     ClassProject::BDD_ID testVar1 = manager.createVar("testVar1");
     size_t sizeAfterFirstVar = manager.uniqueTableSize();
@@ -59,6 +59,25 @@ TEST_F(managerTest, UniqueTableSizeIncreasesAfterCreatingVar) {
 }
 
 //Returns true if the given ID represents a leaf node
+TEST_F(managerTest, isconstantTest)
+{
+    // Create a set of known constant IDs
+   /* std::set<ClassProject::BDD_ID> constants = {manager.True(), manager.False()};
+    for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i) {
+        if (constants.find(i) != constants.end()) {
+            // If 'i' is in the set of known constants, isConstant should return true
+            ASSERT_TRUE(manager.isConstant(i)) << "Node with ID " << i << " should be constant";
+        } else {
+            // If 'i' is not in the set of known constants, isConstant should return false
+            ASSERT_FALSE(manager.isConstant(i)) << "Node with ID " << i << " should not be constant";
+        }
+    }*/
+    for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
+    {
+        bool yield = (i == manager.False() || i == manager.True());
+        ASSERT_EQ(manager.isConstant(i), yield) << "Node with ID " << i << " should be constant";
+    }
+}
 //TEST_F(managerTest, )
 
 /*TEST_F(managerTest, CreateNodeTest) {
