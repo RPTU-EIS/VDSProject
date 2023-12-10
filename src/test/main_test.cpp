@@ -28,11 +28,11 @@ TEST_F(managerTest, TrueAndFalseNodes) {
 
     // Test that the True node has the expected properties
     ASSERT_EQ(manager.topVar(trueNode), trueNode) << "Top variable of True node should be itself";
-    ASSERT_EQ(manager.getLabel(trueNode), "True") << "Label of True node should be 'True'";
+    ASSERT_EQ(manager.getLabel( manager.True()), "True") << "Label of True node should be 'True'";
 
     // Test that the False node has the expected properties
     ASSERT_EQ(manager.topVar(falseNode), falseNode) << "Top variable of False node should be itself";
-    ASSERT_EQ(manager.getLabel(falseNode), "False") << "Label of False node should be 'False'";
+    ASSERT_EQ(manager.getLabel(manager.False()), "False") << "Label of False node should be 'False'";
 
     // Test that the True and False nodes are different
     ASSERT_NE(trueNode, falseNode) << "True and False node IDs should be different";
