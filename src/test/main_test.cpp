@@ -185,7 +185,18 @@ TEST_F(managerTest, and2Test)
     ASSERT_EQ(manager.highSuccessor(f), b);
     ASSERT_EQ(manager.lowSuccessor(f), manager.False());
 }
-
+TEST_F(managerTest, or2Test)
+{
+    ClassProject::BDD_ID f = manager.or2(a,b);
+    ASSERT_EQ(manager.highSuccessor(f), manager.True());
+    ASSERT_EQ(manager.lowSuccessor(f),b);
+}
+TEST_F(managerTest, xor2Test)
+{
+    ClassProject::BDD_ID f = manager.xor2(a,b);
+    ASSERT_EQ(manager.highSuccessor(f), manager.neg(b));
+    ASSERT_EQ(manager.lowSuccessor(f), b);
+}
 /*
 TEST_F(managerTest, topVarTest)
 {
