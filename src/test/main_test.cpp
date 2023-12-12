@@ -217,10 +217,11 @@ TEST_F(managerTest, xnor2Test)
 
 TEST_F(managerTest, topVarTest)
 {
-    andNode();
+    //andNode();
+    ClassProject::BDD_ID f = manager.and2(a,b);
     //checks whether the top variable ID for the BDD node with ID 5 is indeed 3.
     ASSERT_EQ(manager.topVar(5), 3);
-    // checks whether the top variable name for the BDD node with ID 6 is "c".
+    // checks whether the top variable name for the BDD node with ID 5 is "a".
     ASSERT_EQ(manager.getTopVarName(5), "a");
 }
 /*TEST_F(managerTest, GetTopVarNameTest) {
