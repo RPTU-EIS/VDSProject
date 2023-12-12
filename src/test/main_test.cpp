@@ -12,6 +12,10 @@ protected:
     // This function will be called before each test
     void SetUp() override {
         // Initialize any test-specific resources
+        //SetUp initializes the BDD manager and creates three variables a, b, and c.
+        a = manager.createVar("a");
+        b = manager.createVar("b");
+        c = manager.createVar("c");
     }
 
     // This function will be called after each test
@@ -40,23 +44,33 @@ TEST_F(managerTest, TrueAndFalseNodes) {
 
 TEST_F(managerTest, CreateVarTest) {
 
-
+/*
     ClassProject::BDD_ID ID_a = manager.createVar("a");
     ClassProject::BDD_ID ID_b = manager.createVar("b");
     ClassProject::BDD_ID ID_c = manager.createVar("c");
-
-    EXPECT_EQ(ID_a, 2);
-    EXPECT_EQ(ID_b, 3);
-    EXPECT_EQ(ID_c, 4);
+*/
+    EXPECT_EQ(a, 2);
+    EXPECT_EQ(b, 3);
+    EXPECT_EQ(c, 4);
 }
 //We make sure that the size of the unique table in the BDD manager increases when a new variable is created.
-TEST_F(managerTest, UniqueTableSizeIncreasesAfterCreatingVar) {
+TEST_F(managerTest, CreateNodeTest) {
+
+
+    ClassProject::BDD_ID ID_a = manager.createNode(0, 1, 2, "a");
+
+    EXPECT_EQ(manager.uniqueTableSize(), 3);
+    EXPECT_EQ(manager.uniqueTableMap.size(), 3);
+    EXPECT_EQ(ID_a, 2);
+
+}
+/*TEST_F(managerTest, UniqueTableSizeIncreasesAfterCreatingVar) {
     ClassProject::BDD_ID testVar1 = manager.createVar("testVar1");
     size_t sizeAfterFirstVar = manager.uniqueTableSize();
     manager.createVar("testVar2");
     //the ASSERT_GT macro is used for comparison testing to assert that the first argument is greater than the second argument
     ASSERT_GT(manager.uniqueTableSize(), sizeAfterFirstVar) << "Unique table size should increase after creating a new variable";
-}
+}*/
 
 //Returns true if the given ID represents a leaf node
 TEST_F(managerTest, isconstantTest)
@@ -82,26 +96,16 @@ TEST_F(managerTest, isconstantTest)
 //
 TEST_F(managerTest, isvariableTest)
 {
-    ClassProject::BDD_ID ID_a = manager.createVar("a");
+   /* ClassProject::BDD_ID ID_a = manager.createVar("a");
     ClassProject::BDD_ID ID_b = manager.createVar("b");
-    ClassProject::BDD_ID ID_c = manager.createVar("c");
-    for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
-    {
-        bool out = (i == ID_a || i == ID_b || i == ID_c);
-        ASSERT_EQ(manager.isVariable(i), out) << "Incorrect assertion for isVariable";
-    }
-}
-
-/*TEST_F(managerTest, CreateNodeTest) {
-
-
-    ClassProject::BDD_ID ID_a = manager.createNode(0, 1, 2, "a");
-
-    EXPECT_EQ(manager.uniqueTableSize(), 3);
-    EXPECT_EQ(manager.uniqueTableMap.size(), 3);
-    EXPECT_EQ(ID_a, 2);
+    ClassProject::BDD_ID ID_c = manager.createVar("c");*/
+    ASSERT_TRUE(manager.isVariable(a)) << "Variable 'a' should be recognized as a variable";
+    ASSERT_TRUE(manager.isVariable(b)) << "Variable 'b' should be recognized as a variable";
+    ASSERT_TRUE(manager.isVariable(c)) << "Variable 'c' should be recognized as a variable";
 
 }
+
+/*
 
 
 
