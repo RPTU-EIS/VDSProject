@@ -179,6 +179,12 @@ TEST_F(managerTest, negTest)
     ASSERT_EQ(manager.neg(a), manager.ite(a, manager.False(), manager.True()));
 }
 
+TEST_F(managerTest, and2Test)
+{
+    ClassProject::BDD_ID f=manager.and2(a,b);
+    ASSERT_EQ(manager.uniqueTable[f].low, manager.False());
+    ASSERT_EQ(manager.highSuccesor(f), b);
+}
 
 /*
 TEST_F(managerTest, topVarTest)
