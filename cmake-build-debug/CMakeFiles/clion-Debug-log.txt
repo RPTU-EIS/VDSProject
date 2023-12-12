@@ -1,0 +1,41 @@
+/snap/clion/259/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/259/bin/ninja/linux/x64/ninja -G Ninja -S /home/hatjce/CLionProjects/VDSProject_23Group3 -B /home/hatjce/CLionProjects/VDSProject_23Group3/cmake-build-debug
+-- The CXX compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done (0.6s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/hatjce/CLionProjects/VDSProject_23Group3/gtest/googletest-download
+[1/9] Creating directories for 'googletest'
+[2/9] Performing download step (git clone) for 'googletest'
+Cloning into 'googletest-src'...
+error: RPC failed; curl 56 GnuTLS recv error (-9): Error decoding the received TLS packet.
+error: 7214 bytes of body are still expected
+fetch-pack: unexpected disconnect while reading sideband packet
+fatal: early EOF
+fatal: fetch-pack: invalid index-pack output
+Cloning into 'googletest-src'...
+-- Had to git clone more than once: 2 times.
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+[3/9] Performing update step for 'googletest'
+[4/9] No patch step for 'googletest'
+[5/9] No configure step for 'googletest'
+[6/9] No build step for 'googletest'
+[7/9] No install step for 'googletest'
+[8/9] No test step for 'googletest'
+[9/9] Completed 'googletest'
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (278.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/hatjce/CLionProjects/VDSProject_23Group3/cmake-build-debug

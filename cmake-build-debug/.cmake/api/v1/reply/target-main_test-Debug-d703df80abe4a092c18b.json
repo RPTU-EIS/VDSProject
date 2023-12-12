@@ -1,0 +1,257 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "main_test"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"link_directories",
+			"target_link_libraries",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 57,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 36,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 39,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 42,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 45,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 48,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 61,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 38,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 44,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 47,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -fPIC -std=c++17   -g -fdiagnostics-color=always"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 8,
+					"path" : "/home/hatjce/CLionProjects/VDSProject_23Group3/lib"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/hatjce/CLionProjects/VDSProject_23Group3/src"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/home/hatjce/CLionProjects/VDSProject_23Group3/src/test"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "/home/hatjce/CLionProjects/VDSProject_23Group3/src/bench"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "/home/hatjce/CLionProjects/VDSProject_23Group3/src/verify"
+				},
+				{
+					"backtrace" : 7,
+					"isSystem" : true,
+					"path" : "/home/hatjce/CLionProjects/VDSProject_23Group3/gtest/googletest-src/googletest/include"
+				},
+				{
+					"backtrace" : 7,
+					"isSystem" : true,
+					"path" : "/home/hatjce/CLionProjects/VDSProject_23Group3/gtest/googletest-src/googletest"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 7,
+			"id" : "gtest::@0109da58961391bde30a"
+		},
+		{
+			"backtrace" : 7,
+			"id" : "gtest_main::@0109da58961391bde30a"
+		},
+		{
+			"backtrace" : 7,
+			"id" : "Manager::@145eef247bfb46b6828c"
+		}
+	],
+	"id" : "main_test::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-fPIC -std=c++17   -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/home/hatjce/CLionProjects/VDSProject_23Group3/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-L/home/hatjce/CLionProjects/VDSProject_23Group3/src",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/hatjce/CLionProjects/VDSProject_23Group3/src/test",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-L/home/hatjce/CLionProjects/VDSProject_23Group3/src/bench",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "-L/home/hatjce/CLionProjects/VDSProject_23Group3/src/verify",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/hatjce/CLionProjects/VDSProject_23Group3/lib:/home/hatjce/CLionProjects/VDSProject_23Group3/src:/home/hatjce/CLionProjects/VDSProject_23Group3/src/test:/home/hatjce/CLionProjects/VDSProject_23Group3/src/bench:/home/hatjce/CLionProjects/VDSProject_23Group3/src/verify",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "lib/libgtest.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "lib/libgtest_main.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "src/libManager.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "lib/libgtest.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "main_test",
+	"nameOnDisk" : "main_test",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/test/main_test.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
