@@ -128,45 +128,45 @@ TEST_F(managerTest, keyGenTest) {
 TEST_F(managerTest, iteTest)
 {
     // Test ite when the first argument is a constant
-    EXPECT_EQ(manager.ite(trueNode, a, b), a); // i is constant True, should return t
-    EXPECT_EQ(manager.ite(falseNode, a, b), b); // i is constant False, should return e
+    ASSERT_EQ(manager.ite(trueNode, a, b), a); // i is constant True, should return t
+    ASSERT_EQ(manager.ite(falseNode, a, b), b); // i is constant False, should return e
 
     // Test ite when then and else branches are the same
-    EXPECT_EQ(manager.ite(a, b, b), b); // t and e are the same, should return t (or e)
+    ASSERT_EQ(manager.ite(a, b, b), b); // t and e are the same, should return t (or e)
 
     // Test ite when it retrieves a result from the computed table
     // Assuming the operation was previously computed and stored
     ClassProject::BDD_ID result = manager.ite(a, trueNode, falseNode);
-    EXPECT_EQ(manager.ite(a, trueNode, falseNode), result);
+    ASSERT_EQ(manager.ite(a, trueNode, falseNode), result);
 
     // Test ite with a non-constant condition and different then/else branches
     result = manager.ite(a, b, trueNode);
     // Check that the result is a valid BDD ID and not the same as any of the inputs
-    EXPECT_NE(result, a);
-    EXPECT_NE(result, b);
-    EXPECT_NE(result, trueNode);
-    EXPECT_NE(result, falseNode);
+    ASSERT_NE(result, a);
+    ASSERT_NE(result, b);
+    ASSERT_NE(result, trueNode);
+    ASSERT_NE(result, falseNode);
 }
 
 TEST_F(managerTest, coFactorTrueTest)
 {
 //Test coFactorTrue with a constant function
-    EXPECT_EQ(manager.coFactorTrue(manager.True(), a), manager.True());
-    EXPECT_EQ(manager.coFactorTrue(manager.False(), a), manager.False());
+    ASSERT_EQ(manager.coFactorTrue(manager.True(), a), manager.True());
+    ASSERT_EQ(manager.coFactorTrue(manager.False(), a), manager.False());
 
 // Assuming a is the top variable of some expression
     ClassProject::BDD_ID f = manager.and2(a, b); // f has a as top variable
-    EXPECT_EQ(manager.coFactorTrue(f, a), manager.highSuccessor(f));
+    ASSERT_EQ(manager.coFactorTrue(f, a), manager.highSuccessor(f));
 }
 
 TEST_F(managerTest, coFactorFalseTest)
 {
 // Test coFactorFalse with a constant function
-    EXPECT_EQ(manager.coFactorFalse(manager.True(), a), manager.True());
-    EXPECT_EQ(manager.coFactorFalse(manager.False(), a), manager.False());
+    ASSERT_EQ(manager.coFactorFalse(manager.True(), a), manager.True());
+    ASSERT_EQ(manager.coFactorFalse(manager.False(), a), manager.False());
 
     ClassProject::BDD_ID f = manager.and2(a, b); // f has a as top variable
-    EXPECT_EQ(manager.coFactorFalse(f, a), manager.uniqueTable[f].low);
+    ASSERT_EQ(manager.coFactorFalse(f, a), manager.uniqueTable[f].low);
 }
 
 TEST_F(managerTest, negTest)
@@ -214,6 +214,11 @@ TEST_F(managerTest, xnor2Test)
     ClassProject::BDD_ID f = manager.xnor2(a,b);
     ASSERT_EQ(manager.lowSuccessor(f), manager.neg(b));
     ASSERT_EQ(manager.highSuccessor(f), b);
+}
+TEST_F(managerTest, GetTopVarNameTest) {
+    ClassProject::BDD_ID andNode = manager.and2(a, b);
+    // Assuming a is the top variable in the expression and2(a, b)
+    ASSERT_EQ(manager.getTopVarName(andNode), "a");
 }
 /*
 TEST_F(managerTest, topVarTest)
