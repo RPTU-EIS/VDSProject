@@ -102,13 +102,23 @@ TEST_F(managerTest, isvariableTest)
 //hash table key(top, low, high)
 //(1,1,1) is the true node and the node that is gonna be vreated after that, will take the key =2.
 TEST_F(managerTest, keyGenTest) {
-
-
+    /*
     ClassProject::BDD_ID d = manager.keyGen(1,1,1);
 
-    EXPECT_EQ(d, 2);
-    //EXPECT_EQ(ID_b, 3);
+    EXPECT_EQ(d, 2);*/
+// Example values for testing
+    ClassProject::BDD_ID a = 1, b = 2, c = 3;
+    ClassProject::BDD_ID d = 4, e = 5, f = 6;
 
+    // Generate two different keys
+    size_t key1 = manager.keyGen(a, b, c);
+    size_t key2 = manager.keyGen(f, e, d);
+
+    // Assert that the keys are unique, not equal
+    ASSERT_NE(key1, key2) << "Keys should be unique for different inputs.";
+
+    // Assert that the same inputs produce the same key
+    ASSERT_EQ(key1, manager.keyGen(a, b, c)) << "Same inputs should produce the same key.";
 }
 
 
