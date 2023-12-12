@@ -107,8 +107,8 @@ TEST_F(managerTest, keyGenTest) {
 
     EXPECT_EQ(d, 2);*/
 // Example values for testing
-    ClassProject::BDD_ID a = 1, b = 2, c = 3;
-    ClassProject::BDD_ID d = 4, e = 5, f = 6;
+    ClassProject::BDD_ID a = 3, b = 1, c = 2;
+    ClassProject::BDD_ID d = 6, e = 4, f = 5;
 
     // Generate two different keys
     size_t key1 = manager.keyGen(a, b, c);
