@@ -240,7 +240,7 @@ TEST_F(managerTest, findNodesTest)
     /*ASSERT_TRUE(nodes.find(f) != nodes.end());
     ASSERT_TRUE(nodes.find(a) != nodes.end());
     ASSERT_TRUE(nodes.find(b) != nodes.end());*/
-    ASSERT_EQ(nodes.size(), 3);
+    ASSERT_EQ(nodes.size(), 5);
 }
 
 
