@@ -231,6 +231,8 @@ BDD_ID Manager::findOrAdd(BDD_ID a, BDD_ID b, BDD_ID c)
 }
 
 //Function to generate unique key to the uniqueTableMap: keyGen(TopVar, low, high)
+//<< 21 shifts the bits by 21 places, which is equivalent to multiplying by 2^21.
+//The expression a << 21 takes the ID a and multiplies it by 2^21, creating a large number that has 21 bits of space to accommodate the next ID b without overlapping.
 size_t Manager::keyGen(BDD_ID a, BDD_ID b, BDD_ID c)
 {
     return (((a << 21) + b) << 21) + c;

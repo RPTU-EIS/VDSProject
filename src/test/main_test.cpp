@@ -99,11 +99,8 @@ TEST_F(managerTest, isvariableTest)
     }
 
 }
-
-
-/*
-
-
+//hash table key(top, low, high)
+//(1,1,1) is the true node and the node that is gonna be vreated after that, will take the key =2.
 TEST_F(managerTest, keyGenTest) {
 
 
@@ -112,7 +109,7 @@ TEST_F(managerTest, keyGenTest) {
     EXPECT_EQ(d, 2);
     //EXPECT_EQ(ID_b, 3);
 
-}*/
+}
 
 
 int main(int argc, char* argv[])
