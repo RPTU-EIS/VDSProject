@@ -9,13 +9,14 @@ class managerTest : public ::testing::Test
 {
 protected:
     ClassProject::Manager manager;
+
     // This function will be called before each test
     void SetUp() override {
         // Initialize any test-specific resources
         //SetUp initializes the BDD manager and creates three variables a, b, and c.
-        a = manager.createVar("a");
-        b = manager.createVar("b");
-        c = manager.createVar("c");
+        ClassProject::BDD_ID a = manager.createVar("a");
+        ClassProject::BDD_ID b = manager.createVar("b");
+        ClassProject::BDD_ID c = manager.createVar("c");
     }
 
     // This function will be called after each test
