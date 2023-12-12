@@ -236,11 +236,14 @@ TEST_F(managerTest, findNodesTest)
     std::set<ClassProject::BDD_ID> nodes;
     manager.findNodes(f, nodes);
 
-    // Check if the set contains all nodes of the expression
-    /*ASSERT_TRUE(nodes.find(f) != nodes.end());
-    ASSERT_TRUE(nodes.find(a) != nodes.end());
-    ASSERT_TRUE(nodes.find(b) != nodes.end());*/
+    // Check if the set contains exactly 5 nodes.
+    // This includes a, b, f, TRUE, and FALSE nodes.
     ASSERT_EQ(nodes.size(), 5);
+
+    // Additionally, you can check if the known nodes are indeed in the set.
+    ASSERT_TRUE(nodes.find(a) != nodes.end());
+    ASSERT_TRUE(nodes.find(b) != nodes.end());
+    ASSERT_TRUE(nodes.find(f) != nodes.end());
 }
 
 
