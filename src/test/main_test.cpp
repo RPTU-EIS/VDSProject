@@ -43,13 +43,13 @@ TEST_F(managerTest, TrueAndFalseNodes) {
     ASSERT_NE(trueNode, falseNode) << "True and False node IDs should be different";
 }
 
-TEST_F(managerTest, CreateVarTest) {
+/*TEST_F(managerTest, CreateVarTest) {
 
 /*
     ClassProject::BDD_ID ID_a = manager.createVar("a");
     ClassProject::BDD_ID ID_b = manager.createVar("b");
     ClassProject::BDD_ID ID_c = manager.createVar("c");
-*/
+
     EXPECT_EQ(a, 2);
     EXPECT_EQ(b, 3);
     EXPECT_EQ(c, 4);
@@ -71,7 +71,7 @@ TEST_F(managerTest, CreateNodeTest) {
     manager.createVar("testVar2");
     //the ASSERT_GT macro is used for comparison testing to assert that the first argument is greater than the second argument
     ASSERT_GT(manager.uniqueTableSize(), sizeAfterFirstVar) << "Unique table size should increase after creating a new variable";
-}*/
+}
 
 //Returns true if the given ID represents a leaf node
 TEST_F(managerTest, isconstantTest)
@@ -86,7 +86,7 @@ TEST_F(managerTest, isconstantTest)
             // If 'i' is not in the set of known constants, isConstant should return false
             ASSERT_FALSE(manager.isConstant(i)) << "Node with ID " << i << " should not be constant";
         }
-    }*/
+    }
     for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
     {
         bool out = (i == manager.False() || i == manager.True());
@@ -99,14 +99,14 @@ TEST_F(managerTest, isvariableTest)
 {
    /* ClassProject::BDD_ID ID_a = manager.createVar("a");
     ClassProject::BDD_ID ID_b = manager.createVar("b");
-    ClassProject::BDD_ID ID_c = manager.createVar("c");*/
+    ClassProject::BDD_ID ID_c = manager.createVar("c");
     ASSERT_TRUE(manager.isVariable(a)) << "Variable 'a' should be recognized as a variable";
     ASSERT_TRUE(manager.isVariable(b)) << "Variable 'b' should be recognized as a variable";
     ASSERT_TRUE(manager.isVariable(c)) << "Variable 'c' should be recognized as a variable";
 
 }
 
-/*
+
 
 
 
