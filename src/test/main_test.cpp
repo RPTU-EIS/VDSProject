@@ -43,19 +43,19 @@ TEST_F(managerTest, TrueAndFalseNodes) {
     ASSERT_NE(trueNode, falseNode) << "True and False node IDs should be different";
 }
 
-/*TEST_F(managerTest, CreateVarTest) {
+TEST_F(managerTest, CreateVarTest) {
 
 /*
     ClassProject::BDD_ID ID_a = manager.createVar("a");
     ClassProject::BDD_ID ID_b = manager.createVar("b");
     ClassProject::BDD_ID ID_c = manager.createVar("c");
-
+*/
     EXPECT_EQ(a, 2);
     EXPECT_EQ(b, 3);
     EXPECT_EQ(c, 4);
 }
 //We make sure that the size of the unique table in the BDD manager increases when a new variable is created.
-TEST_F(managerTest, CreateNodeTest) {
+/*TEST_F(managerTest, CreateNodeTest) {
 
 
     ClassProject::BDD_ID ID_a = manager.createNode(0, 1, 2, "a");
