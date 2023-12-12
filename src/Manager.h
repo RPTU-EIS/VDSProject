@@ -78,13 +78,13 @@ namespace ClassProject {
 
         BDD_ID createNode(BDD_ID l, BDD_ID h, BDD_ID x, std::string label);
 
+        size_t keyGen(BDD_ID a, BDD_ID b, BDD_ID c);
+
         BDD_ID highSuccesor(BDD_ID a);
 
         BDD_ID lowSuccesor(BDD_ID a);
 
         std::string getLabel(BDD_ID f);
-
-        static size_t keyGen(BDD_ID a, BDD_ID b, BDD_ID c);
 
         //Constructor & destructor
         Manager();
