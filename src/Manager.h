@@ -80,9 +80,9 @@ namespace ClassProject {
 
         size_t keyGen(BDD_ID a, BDD_ID b, BDD_ID c);
 
-        BDD_ID highSuccesor(BDD_ID a);
+        BDD_ID highSuccessor(BDD_ID a);
 
-        BDD_ID lowSuccesor(BDD_ID a);
+        //BDD_ID lowSuccessor(BDD_ID a);
 
         std::string getLabel(BDD_ID f);
 
@@ -100,8 +100,6 @@ namespace ClassProject {
         std::unordered_map<size_t, BDD_ID> computedTable;
 
         BDD_ID findOrAdd(BDD_ID a, BDD_ID b, BDD_ID c);
-
-
     };
 
 
