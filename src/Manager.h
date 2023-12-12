@@ -83,6 +83,9 @@ namespace ClassProject {
         BDD_ID lowSuccesor(BDD_ID a);
 
         std::string getLabel(BDD_ID f);
+
+        static size_t keyGen(BDD_ID a, BDD_ID b, BDD_ID c);
+
         //Constructor & destructor
         Manager();
 
@@ -98,7 +101,6 @@ namespace ClassProject {
 
         BDD_ID findOrAdd(BDD_ID a, BDD_ID b, BDD_ID c);
 
-        static size_t keyGen(BDD_ID a, BDD_ID b, BDD_ID c);
 
     };
 
