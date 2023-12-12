@@ -159,7 +159,7 @@ TEST_F(managerTest, coFactorTrueTest)
     EXPECT_EQ(manager.coFactorTrue(f, a), manager.highSuccessor(f));
 }
 
-TEST_F(managerTest, coFactorFlaseTest)
+TEST_F(managerTest, coFactorFalseTest)
 {
 // Test coFactorFalse with a constant function
     EXPECT_EQ(manager.coFactorFalse(manager.True(), a), manager.True());
@@ -168,14 +168,19 @@ TEST_F(managerTest, coFactorFlaseTest)
     ClassProject::BDD_ID f = manager.and2(a, b); // f has a as top variable
     EXPECT_EQ(manager.coFactorFalse(f, a), manager.uniqueTable[f].low);
 }
-/*1TEST_F(managerTest, negTest)
+
+TEST_F(managerTest, negTest)
 {
+    //negation for constant variables
     ASSERT_EQ(manager.neg(manager.True()), manager.False());
     ASSERT_EQ(manager.neg(manager.False()), manager.True());
+
+    //negation for nonconstant variables. In ite we change the low and high successors
     ASSERT_EQ(manager.neg(a), manager.ite(a, manager.False(), manager.True()));
 }
 
 
+/*
 TEST_F(managerTest, topVarTest)
 {
     //ClassProject::BDD_ID varA = manager.createVar("a");
