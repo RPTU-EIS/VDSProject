@@ -9,11 +9,13 @@ class managerTest : public ::testing::Test
 {
 protected:
     ClassProject::Manager manager;
-    ClassProject::BDD_ID a,b,c;
+    ClassProject::BDD_ID trueNode, falseNode,a,b,c;
     // This function will be called before each test
     void SetUp() override {
         // Initialize any test-specific resources
         //SetUp initializes the BDD manager and creates three variables a, b, and c.
+        trueNode = manager.True();
+        falseNode = manager.False();
         a = manager.createVar("a");
         b = manager.createVar("b");
         c = manager.createVar("c");
@@ -28,8 +30,6 @@ protected:
 // Test that the True and False nodes exist and have correct properties
 TEST_F(managerTest, TrueAndFalseNodes) {
     // Obtain the IDs of the True and False nodes
-    ClassProject::BDD_ID trueNode = manager.True();
-    ClassProject::BDD_ID falseNode = manager.False();
 
     // Test that the True node has the expected properties
     ASSERT_EQ(manager.topVar(trueNode), trueNode) << "Top variable of True node should be itself";
@@ -126,9 +126,21 @@ TEST_F(managerTest, keyGenTest) {
     ASSERT_EQ(key1, manager.keyGen(a, b, c)) << "Same inputs should produce the same key.";
 }
 
+TEST_F(managerTest, iteTest)
+{
+    ClassProject::BDD_ID result = manager.ite(a, trueNode, falseNode);
+    EXPECT_EQ(manager.ite(a, trueNode, falseNode), result);
+}
+
+/*TEST_F(managerTest, negTest)
+{
+    ASSERT_EQ(manager.neg(manager.True()), manager.False());
+    ASSERT_EQ(manager.neg(manager.False()), manager.True());
+    ASSERT_EQ(manager.neg(a), manager.ite(a, manager.False(), manager.True()));
+}
 
 
-/*TEST_F(managerTest, topVarTest)
+TEST_F(managerTest, topVarTest)
 {
     //ClassProject::BDD_ID varA = manager.createVar("a");
     // Check that topVar of a variable ID returns its own ID
