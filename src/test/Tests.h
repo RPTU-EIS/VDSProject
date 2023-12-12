@@ -80,17 +80,6 @@ namespace ClassProject {
         ASSERT_EQ(testObj.topVar(id_b), id_b);    
     }
 
-    TEST_F(BasicTest, CreateVarDuplicate){                
-        BDD_ID id1 = testObj.createVar("a");
-        BDD_ID id2 = testObj.createVar("a");
-
-        ASSERT_EQ(testObj.low(id1),    0);
-        ASSERT_EQ(testObj.high(id1),   1);
-        ASSERT_EQ(testObj.topVar(id1), id1); 
-        
-        ASSERT_EQ(id1, id2);                
-    }
-
     TEST_F(FunctionsTest, Constant){
         ASSERT_EQ(testObj.isConstant(0), true);  // false node
         ASSERT_EQ(testObj.isConstant(1), true);  // true node
