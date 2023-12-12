@@ -82,7 +82,7 @@ namespace ClassProject {
 
         BDD_ID highSuccessor(BDD_ID a);
 
-        //BDD_ID lowSuccessor(BDD_ID a);
+        BDD_ID lowSuccessor(BDD_ID a);
 
         std::string getLabel(BDD_ID f);
 

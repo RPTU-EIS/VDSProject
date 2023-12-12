@@ -160,10 +160,10 @@ BDD_ID Manager::highSuccessor(BDD_ID a)
  * Returns low successor of node
  * @param a id to be evaluated
  */
-/*BDD_ID Manager::lowSuccessor(BDD_ID a)
+BDD_ID Manager::lowSuccessor(BDD_ID a)
 {
     return uniqueTable[a].low;
-}*/
+}
 std::string Manager::getLabel(BDD_ID f)
 {
     return uniqueTable[f].label;
