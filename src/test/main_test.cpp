@@ -99,6 +99,17 @@ TEST_F(managerTest, isvariableTest)
     }
 
 }
+
+TEST_F(managerTest, topVarTest)
+{
+    //ClassProject::BDD_ID varA = manager.createVar("a");
+
+    // Check that topVar of a variable ID returns its own ID
+    ASSERT_EQ(manager.topVar(a), a) << "Top variable of 'a' should be 'a' itself.";
+    ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
+    ASSERT_EQ(manager.topVar(c), c) << "Top variable of 'c' should be 'c' itself.";
+
+}
 //hash table key(top, low, high)
 //(1,1,1) is the true node and the node that is gonna be vreated after that, will take the key =2.
 TEST_F(managerTest, keyGenTest) {
@@ -112,7 +123,7 @@ TEST_F(managerTest, keyGenTest) {
 
     // Generate two different keys
     size_t key1 = manager.keyGen(a, b, c);
-    size_t key2 = manager.keyGen(f, e, d);
+    size_t key2 = manager.keyGen(d, e, f);
 
     // Assert that the keys are unique, not equal
     ASSERT_NE(key1, key2) << "Keys should be unique for different inputs.";
