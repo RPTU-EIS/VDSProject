@@ -21,10 +21,9 @@ protected:
         c = manager.createVar("c");
     }
 
-    // This function will be called after each test
-    void TearDown() override {
-        // Clean up any test-specific resources
-    }
+    ClassProject::BDD_ID andNode() {
+        return manager.and2(a, b);
+    };
 };
 
 // Test that the True and False nodes exist and have correct properties
@@ -215,21 +214,20 @@ TEST_F(managerTest, xnor2Test)
     ASSERT_EQ(manager.lowSuccessor(f), manager.neg(b));
     ASSERT_EQ(manager.highSuccessor(f), b);
 }
-TEST_F(managerTest, GetTopVarNameTest) {
-    ClassProject::BDD_ID andNode = manager.and2(a, b);
-    // Assuming a is the top variable in the expression and2(a, b)
-    ASSERT_EQ(manager.getTopVarName(andNode), "a");
-}
-/*
+
 TEST_F(managerTest, topVarTest)
 {
-    //ClassProject::BDD_ID varA = manager.createVar("a");
-    // Check that topVar of a variable ID returns its own ID
-    ASSERT_EQ(manager.topVar(a), a) << "Top variable of 'a' should be 'a' itself.";
-    ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
-    ASSERT_EQ(manager.topVar(c), c) << "Top variable of 'c' should be 'c' itself.";
-
-}*/
+    andNode();
+    //checks whether the top variable ID for the BDD node with ID 5 is indeed 3.
+    ASSERT_EQ(manager.topVar(5), 3);
+    // checks whether the top variable name for the BDD node with ID 6 is "c".
+    ASSERT_EQ(manager.getTopVarName(5), "a");
+}
+TEST_F(managerTest, GetTopVarNameTest) {
+    ClassProject::BDD_ID f = andNode();
+    //ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
+    ASSERT_EQ(manager.getTopVarName(f), "a");
+}
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
