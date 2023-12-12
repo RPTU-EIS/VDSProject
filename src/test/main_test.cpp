@@ -229,6 +229,21 @@ TEST_F(managerTest, GetTopVarNameTest) {
     //ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
     ASSERT_EQ(manager.getTopVarName(f), "a");
 }
+
+TEST_F(managerTest, findNodesTest)
+{
+    ClassProject::BDD_ID f = manager.and2(a,b);
+    std::set<ClassProject::BDD_ID> nodes;
+    manager.findNodes(f, nodes);
+
+    // Check if the set contains all nodes of the expression
+    ASSERT_TRUE(nodes.find(f) != nodes.end());
+    ASSERT_TRUE(nodes.find(a) != nodes.end());
+    ASSERT_TRUE(nodes.find(b) != nodes.end());
+    // ASSERT_EQ(nodes.size(), expected_size);
+}
+
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
