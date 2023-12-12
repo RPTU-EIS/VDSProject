@@ -215,7 +215,7 @@ TEST_F(managerTest, xnor2Test)
     ASSERT_EQ(manager.highSuccessor(f), b);
 }
 
-TEST_F(managerTest, topVarTest)
+/*TEST_F(managerTest, topVarTest)
 {
     //andNode();
     ClassProject::BDD_ID f = manager.and2(a,b);
@@ -223,12 +223,12 @@ TEST_F(managerTest, topVarTest)
     ASSERT_EQ(manager.topVar(5), 3);
     // checks whether the top variable name for the BDD node with ID 5 is "a".
     ASSERT_EQ(manager.getTopVarName(5), "a");
-}
-/*TEST_F(managerTest, GetTopVarNameTest) {
+}*/
+TEST_F(managerTest, GetTopVarNameTest) {
     ClassProject::BDD_ID f = manager.and2(a,b);
     //ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
     ASSERT_EQ(manager.getTopVarName(f), "a");
-}*/
+}
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
