@@ -61,7 +61,8 @@ TEST_F(managerTest, UniqueTableSizeIncreasesAfterCreatingVar) {
     manager.createVar("testVar2");
     //the ASSERT_GT macro is used for comparison testing to assert that the first argument is greater than the second argument
     ASSERT_GT(manager.uniqueTableSize(), sizeAfterFirstVar) << "Unique table size should increase after creating a new variable";
-}/*
+}
+/*
 TEST_F(managerTest, CreateNodeTest) {
 
 
@@ -71,44 +72,36 @@ TEST_F(managerTest, CreateNodeTest) {
     EXPECT_EQ(manager.uniqueTableMap.size(), 3);
     EXPECT_EQ(ID_a, 2);
 
-}
-/*
+}*/
 
 //Returns true if the given ID represents a leaf node
 TEST_F(managerTest, isconstantTest)
 {
     // Create a set of known constant IDs
-   /* std::set<ClassProject::BDD_ID> constants = {manager.True(), manager.False()};
-    for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i) {
-        if (constants.find(i) != constants.end()) {
-            // If 'i' is in the set of known constants, isConstant should return true
-            ASSERT_TRUE(manager.isConstant(i)) << "Node with ID " << i << " should be constant";
-        } else {
-            // If 'i' is not in the set of known constants, isConstant should return false
-            ASSERT_FALSE(manager.isConstant(i)) << "Node with ID " << i << " should not be constant";
-        }
-    }
+    //size_t tableSize = manager.uniqueTableSize();
     for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
     {
+        // a boolean variable out is declared and set to true if the current i is equal to the ID of the False node or the True node in the manager's unique table.
         bool out = (i == manager.False() || i == manager.True());
+        //If the assertion fails, it outputs the message "Node with ID [i] should be constant".
         ASSERT_EQ(manager.isConstant(i), out) << "Node with ID " << i << " should be constant";
     }
 }
 
-//
 TEST_F(managerTest, isvariableTest)
 {
-   /* ClassProject::BDD_ID ID_a = manager.createVar("a");
-    ClassProject::BDD_ID ID_b = manager.createVar("b");
-    ClassProject::BDD_ID ID_c = manager.createVar("c");
-    ASSERT_TRUE(manager.isVariable(a)) << "Variable 'a' should be recognized as a variable";
-    ASSERT_TRUE(manager.isVariable(b)) << "Variable 'b' should be recognized as a variable";
-    ASSERT_TRUE(manager.isVariable(c)) << "Variable 'c' should be recognized as a variable";
+    for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
+    {
+        // a boolean variable out is declared and set to true if the current i is equal to the ID of the variables we declared up there.
+        bool out = (i == a || i == b || i == c);
+        //If the assertion fails, it outputs the message "Node with ID [i] should be a variable".
+        ASSERT_EQ(manager.isVariable(i), out) << "Node with ID " << i << " should be a variable";
+    }
 
 }
 
 
-
+/*
 
 
 TEST_F(managerTest, keyGenTest) {
