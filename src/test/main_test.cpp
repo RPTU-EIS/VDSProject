@@ -233,13 +233,13 @@ TEST_F(managerTest, GetTopVarNameTest) {
 TEST_F(managerTest, findNodesTest)
 {
     ClassProject::BDD_ID f = manager.and2(a,b);
-    std::set<ClassProject::BDD_ID> nodes;
-    manager.findNodes(f, nodes);
+    std::set<ClassProject::BDD_ID> nodes_of_root;
+    manager.findNodes(f, nodes_of_root);
 
     // Check if the set contains all nodes of the expression
-    ASSERT_TRUE(nodes.find(f) != nodes.end());
-    ASSERT_TRUE(nodes.find(a) != nodes.end());
-    ASSERT_TRUE(nodes.find(b) != nodes.end());
+    ASSERT_TRUE(nodes_of_root.find(f) != nodes_of_root.end());
+    ASSERT_TRUE(nodes_of_root.find(a) != nodes_of_root.end());
+    ASSERT_TRUE(nodes_of_root.find(b) != nodes_of_root.end());
     // ASSERT_EQ(nodes.size(), expected_size);
 }
 
