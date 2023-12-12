@@ -104,7 +104,7 @@ TEST_F(managerTest, isvariableTest)
 TEST_F(managerTest, keyGenTest) {
 
 
-    size_t d = manager.keyGen(1,1,1);
+    ClassProject::BDD_ID d = manager.keyGen(1,1,1);
 
     EXPECT_EQ(d, 2);
     //EXPECT_EQ(ID_b, 3);
