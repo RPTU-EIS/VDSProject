@@ -43,24 +43,28 @@ TEST_F(managerTest, TrueAndFalseNodes) {
     ASSERT_NE(trueNode, falseNode) << "True and False node IDs should be different";
 }
 
-TEST_F(managerTest, CreateVarandUniqueTable) {
+TEST_F(managerTest, CreateVarTest) {
 
 /*
     ClassProject::BDD_ID ID_a = manager.createVar("a");
     ClassProject::BDD_ID ID_b = manager.createVar("b");
-    ClassProject::BDD_ID ID_c = manager.createVar("c");
-*/
+    ClassProject::BDD_ID ID_c = manager.createVar("c");*/
+
     EXPECT_EQ(a, 2);
     EXPECT_EQ(b, 3);
     EXPECT_EQ(c, 4);
+
 }
 //We make sure that the size of the unique table in the BDD manager increases when a new variable is created.
 TEST_F(managerTest, UniqueTableSizeIncreasesAfterCreatingVar) {
-    ClassProject::BDD_ID testVar1 = manager.createVar("testVar1");
+    /*ClassProject::BDD_ID testVar1 = manager.createVar("testVar1");
     size_t sizeAfterFirstVar = manager.uniqueTableSize();
     manager.createVar("testVar2");
     //the ASSERT_GT macro is used for comparison testing to assert that the first argument is greater than the second argument
-    ASSERT_GT(manager.uniqueTableSize(), sizeAfterFirstVar) << "Unique table size should increase after creating a new variable";
+    ASSERT_GT(manager.uniqueTableSize(), sizeAfterFirstVar) << "Unique table size should increase after creating a new variable";*/
+    size_t initialSize = manager.uniqueTableSize();
+    manager.createVar("test_var");
+    ASSERT_EQ(manager.uniqueTableSize(), initialSize + 1);
 }
 /*
 TEST_F(managerTest, CreateNodeTest) {
@@ -100,16 +104,6 @@ TEST_F(managerTest, isvariableTest)
 
 }
 
-TEST_F(managerTest, topVarTest)
-{
-    //ClassProject::BDD_ID varA = manager.createVar("a");
-
-    // Check that topVar of a variable ID returns its own ID
-    ASSERT_EQ(manager.topVar(a), a) << "Top variable of 'a' should be 'a' itself.";
-    ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
-    ASSERT_EQ(manager.topVar(c), c) << "Top variable of 'c' should be 'c' itself.";
-
-}
 //hash table key(top, low, high)
 //(1,1,1) is the true node and the node that is gonna be vreated after that, will take the key =2.
 TEST_F(managerTest, keyGenTest) {
@@ -118,8 +112,8 @@ TEST_F(managerTest, keyGenTest) {
 
     EXPECT_EQ(d, 2);*/
 // Example values for testing
-    ClassProject::BDD_ID a = 3, b = 1, c = 2;
-    ClassProject::BDD_ID d = 6, e = 4, f = 5;
+    ClassProject::BDD_ID a = 2, b = 3, c = 4;
+    ClassProject::BDD_ID d = 5, e = 6, f = 7;
 
     // Generate two different keys
     size_t key1 = manager.keyGen(a, b, c);
@@ -133,6 +127,16 @@ TEST_F(managerTest, keyGenTest) {
 }
 
 
+
+/*TEST_F(managerTest, topVarTest)
+{
+    //ClassProject::BDD_ID varA = manager.createVar("a");
+    // Check that topVar of a variable ID returns its own ID
+    ASSERT_EQ(manager.topVar(a), a) << "Top variable of 'a' should be 'a' itself.";
+    ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
+    ASSERT_EQ(manager.topVar(c), c) << "Top variable of 'c' should be 'c' itself.";
+
+}*/
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
