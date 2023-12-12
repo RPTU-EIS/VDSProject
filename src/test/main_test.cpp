@@ -125,14 +125,37 @@ TEST_F(managerTest, keyGenTest) {
     // Assert that the same inputs produce the same key
     ASSERT_EQ(key1, manager.keyGen(a, b, c)) << "Same inputs should produce the same key.";
 }
-
 TEST_F(managerTest, iteTest)
 {
+    // Test ite when the first argument is a constant
+    EXPECT_EQ(manager.ite(trueNode, a, b), a); // i is constant True, should return t
+    EXPECT_EQ(manager.ite(falseNode, a, b), b); // i is constant False, should return e
+
+    // Test ite when then and else branches are the same
+    EXPECT_EQ(manager.ite(a, b, b), b); // t and e are the same, should return t (or e)
+
+    // Test ite when it retrieves a result from the computed table
+    // Assuming the operation was previously computed and stored
     ClassProject::BDD_ID result = manager.ite(a, trueNode, falseNode);
     EXPECT_EQ(manager.ite(a, trueNode, falseNode), result);
+
+    // Test ite with a non-constant condition and different then/else branches
+    result = manager.ite(a, b, trueNode);
+    // Check that the result is a valid BDD ID and not the same as any of the inputs
+    EXPECT_NE(result, a);
+    EXPECT_NE(result, b);
+    EXPECT_NE(result, trueNode);
+    EXPECT_NE(result, falseNode);
 }
 
-/*TEST_F(managerTest, negTest)
+/*TEST_F(managerTest, coFactorTrueTest)
+{
+// Assuming varA is the top variable of some expression
+    ClassProject::BDD_ID expr = manager.and2(a, b); // expr has varA as top variable
+    EXPECT_EQ(manager.coFactorTrue(expr, b), manager.uniqueTable[expr].high);
+}*/
+
+/*1TEST_F(managerTest, negTest)
 {
     ASSERT_EQ(manager.neg(manager.True()), manager.False());
     ASSERT_EQ(manager.neg(manager.False()), manager.True());
