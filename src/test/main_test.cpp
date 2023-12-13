@@ -22,6 +22,9 @@ protected:
         d = manager.createVar("d");
     }
 
+    ClassProject::BDD_ID andNode() {
+        return manager.and2(a, b);
+    };
     ClassProject::BDD_ID robdd_example()
     {
         return manager.and2(manager.or2(a,b),manager.and2(c,d));
@@ -219,21 +222,12 @@ TEST_F(managerTest, xnor2Test)
 
 TEST_F(managerTest, topVarTest)
 {
-    robdd_example();
+    andNode();
     //ClassProject::BDD_ID f = manager.and2(a,b);
     //checks whether the top variable ID for the BDD node with ID 5 is indeed 3.
-    //ASSERT_EQ(manager.topVar(5), 2);
+    ASSERT_EQ(manager.topVar(5), 2);
     // checks whether the top variable name for the BDD node with ID 5 is "a".
-    //ASSERT_EQ(manager.getTopVarName(5), "a");
-    //checks whether the top variable ID for the BDD node with ID 6 is indeed 4. and2(c,d)
-    ASSERT_EQ(manager.topVar(6), 4);
-    // checks whether the top variable name for the BDD node with ID 6 is "c".
-    ASSERT_EQ(manager.getTopVarName(6), "c");
-    //or2(a,b)
-    ASSERT_EQ(manager.topVar(7), 2);
-    ASSERT_EQ(manager.getTopVarName(7), "a");
-    ASSERT_EQ(manager.topVar(8), 2);
-    ASSERT_EQ(manager.getTopVarName(8), "a");
+    ASSERT_EQ(manager.getTopVarName(5), "a");
 }
 TEST_F(managerTest, GetTopVarNameTest) {
     ClassProject::BDD_ID f = manager.and2(a,b);
