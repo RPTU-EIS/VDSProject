@@ -23,6 +23,24 @@ namespace ClassProject {
         }
     };
 
+    class VariablesTest : public testing::Test {
+
+        protected:
+
+        Manager testObj;
+
+        void SetUp() override {
+            testObj = Manager({
+                {.label = "0",   .data = {.low = 0, .high = 0, .topVar = 0}},                
+                {.label = "1",   .data = {.low = 1, .high = 1, .topVar = 1}},
+                {.label = "a",   .data = {.low = 0, .high = 1, .topVar = 2}},
+                {.label = "b",   .data = {.low = 0, .high = 1, .topVar = 3}},
+                {.label = "c",   .data = {.low = 0, .high = 1, .topVar = 4}},
+                {.label = "d",   .data = {.low = 0, .high = 1, .topVar = 5}}                
+            });           
+        }
+    };
+
     class FunctionsTest : public testing::Test {
 
         protected:
@@ -37,8 +55,7 @@ namespace ClassProject {
                 {.label = "b",   .data = {.low = 0, .high = 1, .topVar = 3}},
                 {.label = "c",   .data = {.low = 0, .high = 1, .topVar = 4}},
                 {.label = "d",   .data = {.low = 0, .high = 1, .topVar = 5}},
-                {.label = "a+b", .data = {.low = 1, .high = 3, .topVar = 2}},
-                {.label = "c*d", .data = {.low = 5, .high = 0, .topVar = 4}}
+                {.label = "c*d", .data = {.low = 0, .high = 5, .topVar = 4}}
             });           
         }
     };
@@ -95,7 +112,7 @@ namespace ClassProject {
         ASSERT_EQ(testObj.isVariable(6), false);  // function node (a+b)
     }
 
-    TEST_F(FunctionsTest, IteTerminalCases){
+    TEST_F(VariablesTest, IteTerminalCases){
         BDD_ID id_a = 2, id_b = 3;
         ASSERT_EQ(testObj.ite(1, id_a, id_b),    id_a);
         ASSERT_EQ(testObj.ite(0, id_a, id_b),    id_b);
@@ -103,7 +120,7 @@ namespace ClassProject {
         ASSERT_EQ(testObj.ite(id_a, id_b, id_b), id_b);
     }
 
-    TEST_F(FunctionsTest, IteVariables){
+    TEST_F(VariablesTest, IteVariables){
         BDD_ID id_a = 2, id_b = 3, id_c = 4;        
 
         BDD_ID id_n = testObj.ite(id_a, id_b, id_c);        
@@ -111,6 +128,46 @@ namespace ClassProject {
         ASSERT_EQ(testObj.high(id_n),   id_b);
         ASSERT_EQ(testObj.topVar(id_n), id_a); 
     }
+
+    TEST_F(VariablesTest, And2Constants){
+        BDD_ID id_n, id_a = 2;
+        id_n = testObj.and2(0, 0);
+        ASSERT_EQ(testObj.topVar(id_n), 0); 
+
+        id_n = testObj.and2(0, 1);
+        ASSERT_EQ(testObj.topVar(id_n), 0); 
+
+        id_n = testObj.and2(1, 0);        
+        ASSERT_EQ(testObj.topVar(id_n), 0); 
+
+        id_n = testObj.and2(1, 1);        
+        ASSERT_EQ(testObj.topVar(id_n), 1);
+
+        id_n = testObj.and2(id_a, 1);        
+        ASSERT_EQ(testObj.topVar(id_n), id_a);  
+
+        id_n = testObj.and2(1, id_a);        
+        ASSERT_EQ(testObj.topVar(id_n), id_a);  
+
+        id_n = testObj.and2(id_a, 0);        
+        ASSERT_EQ(testObj.topVar(id_n), 0);  
+
+        id_n = testObj.and2(0, id_a);        
+        ASSERT_EQ(testObj.topVar(id_n), 0); 
+    }    
+
+    TEST_F(VariablesTest, And2Variables){
+        BDD_ID id_n, id_a = 2, id_b = 3;
+        id_n = testObj.and2(id_a, id_b);
+        ASSERT_EQ(testObj.low(id_n),    0);
+        ASSERT_EQ(testObj.high(id_n),   id_b);
+        ASSERT_EQ(testObj.topVar(id_n), id_a);
+        
+        id_n = testObj.and2(id_b, id_a);
+        ASSERT_EQ(testObj.low(id_n),    0);
+        ASSERT_EQ(testObj.high(id_n),   id_b);
+        ASSERT_EQ(testObj.topVar(id_n), id_a);
+    }    
 }
 
 #endif
