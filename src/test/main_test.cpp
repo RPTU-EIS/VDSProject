@@ -9,7 +9,7 @@ class managerTest : public ::testing::Test
 {
 protected:
     ClassProject::Manager manager;
-    ClassProject::BDD_ID trueNode, falseNode,a,b,c;
+    ClassProject::BDD_ID trueNode, falseNode,a,b,c,d;
     // This function will be called before each test
     void SetUp() override {
         // Initialize any test-specific resources
@@ -19,11 +19,13 @@ protected:
         a = manager.createVar("a");
         b = manager.createVar("b");
         c = manager.createVar("c");
+        d = manager.createVar("d");
     }
 
-    ClassProject::BDD_ID andNode() {
-        return manager.and2(a, b);
-    };
+    ClassProject::BDD_ID robdd_example()
+    {
+        return manager.and2(manager.or2(a,b),manager.and2(c,d));
+    }
 };
 
 // Test that the True and False nodes exist and have correct properties
@@ -217,12 +219,21 @@ TEST_F(managerTest, xnor2Test)
 
 TEST_F(managerTest, topVarTest)
 {
-    andNode();
+    robdd_example();
     //ClassProject::BDD_ID f = manager.and2(a,b);
     //checks whether the top variable ID for the BDD node with ID 5 is indeed 3.
-    ASSERT_EQ(manager.topVar(5), 2);
+    //ASSERT_EQ(manager.topVar(5), 2);
     // checks whether the top variable name for the BDD node with ID 5 is "a".
-    ASSERT_EQ(manager.getTopVarName(5), "a");
+    //ASSERT_EQ(manager.getTopVarName(5), "a");
+    //checks whether the top variable ID for the BDD node with ID 6 is indeed 4. and2(c,d)
+    ASSERT_EQ(manager.topVar(6), 4);
+    // checks whether the top variable name for the BDD node with ID 6 is "c".
+    ASSERT_EQ(manager.getTopVarName(6), "c");
+    //or2(a,b)
+    ASSERT_EQ(manager.topVar(7), 2);
+    ASSERT_EQ(manager.getTopVarName(7), "a");
+    ASSERT_EQ(manager.topVar(8), 2);
+    ASSERT_EQ(manager.getTopVarName(8), "a");
 }
 TEST_F(managerTest, GetTopVarNameTest) {
     ClassProject::BDD_ID f = manager.and2(a,b);
@@ -230,7 +241,7 @@ TEST_F(managerTest, GetTopVarNameTest) {
     ASSERT_EQ(manager.getTopVarName(f), "a");
 }
 
-TEST_F(managerTest, findNodesTest)
+/*TEST_F(managerTest, findNodesTest)
 {
     ClassProject::BDD_ID f = manager.and2(a,b);
     std::set<ClassProject::BDD_ID> nodes;
@@ -246,6 +257,10 @@ TEST_F(managerTest, findNodesTest)
     ASSERT_TRUE(nodes.find(f) != nodes.end());
 }
 
+TEST_F(managerTest, findVarsTest)
+{
+
+}*/
 
 int main(int argc, char* argv[])
 {

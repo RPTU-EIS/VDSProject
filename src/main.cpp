@@ -9,6 +9,7 @@
 #include "Manager.h"
 
 using ClassProject::Manager;
+using ClassProject::BDD_ID;
 
 
 int main(int argc, char* argv[])
