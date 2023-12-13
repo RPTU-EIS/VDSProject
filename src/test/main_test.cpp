@@ -25,10 +25,6 @@ protected:
     ClassProject::BDD_ID andNode() {
         return manager.and2(a, b);
     };
-    ClassProject::BDD_ID robdd_example()
-    {
-        return manager.and2(manager.or2(a,b),manager.and2(c,d));
-    }
 };
 
 // Test that the True and False nodes exist and have correct properties
