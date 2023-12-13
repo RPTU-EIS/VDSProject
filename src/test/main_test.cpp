@@ -9,7 +9,7 @@ class managerTest : public ::testing::Test
 {
 protected:
     ClassProject::Manager manager;
-    ClassProject::BDD_ID trueNode, falseNode,a,b,c,d;
+    ClassProject::BDD_ID trueNode, falseNode,a,b,c;
     // This function will be called before each test
     void SetUp() override {
         // Initialize any test-specific resources
@@ -19,7 +19,7 @@ protected:
         a = manager.createVar("a");
         b = manager.createVar("b");
         c = manager.createVar("c");
-        d = manager.createVar("d");
+        //d = manager.createVar("d");
     }
 
     ClassProject::BDD_ID andNode() {
@@ -92,7 +92,7 @@ TEST_F(managerTest, isconstantTest)
     }
 }
 
-/*TEST_F(managerTest, isvariableTest)
+TEST_F(managerTest, isvariableTest)
 {
     for (ClassProject::BDD_ID i = 0; i < manager.uniqueTableSize(); ++i)
     {
@@ -102,7 +102,7 @@ TEST_F(managerTest, isconstantTest)
         ASSERT_EQ(manager.isVariable(i), out) << "Node with ID " << i << " should be a variable";
     }
 
-}*/
+}
 
 //hash table key(top, low, high)
 //(1,1,1) is the true node and the node that is gonna be vreated after that, will take the key =2.
@@ -216,7 +216,7 @@ TEST_F(managerTest, xnor2Test)
     ASSERT_EQ(manager.highSuccessor(f), b);
 }
 
-/*TEST_F(managerTest, topVarTest)
+TEST_F(managerTest, topVarTest)
 {
     andNode();
     //ClassProject::BDD_ID f = manager.and2(a,b);
@@ -224,7 +224,7 @@ TEST_F(managerTest, xnor2Test)
     ASSERT_EQ(manager.topVar(5), 2);
     // checks whether the top variable name for the BDD node with ID 5 is "a".
     ASSERT_EQ(manager.getTopVarName(5), "a");
-}*/
+}
 TEST_F(managerTest, GetTopVarNameTest) {
     ClassProject::BDD_ID f = manager.and2(a,b);
     //ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
