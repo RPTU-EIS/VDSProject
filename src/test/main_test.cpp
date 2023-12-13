@@ -228,7 +228,7 @@ TEST_F(managerTest, topVarTest)
 TEST_F(managerTest, GetTopVarNameTest) {
     ClassProject::BDD_ID f = manager.and2(a,b);
     //ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
-    //ASSERT_EQ(manager.getTopVarName(f), "a");
+    ASSERT_EQ(manager.getTopVarName(f), "a");
 }
 
 /*TEST_F(managerTest, findNodesTest)
