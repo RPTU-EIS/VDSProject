@@ -33,11 +33,11 @@ TEST_F(managerTest, TrueAndFalseNodes) {
 
     // Test that the True node has the expected properties
     ASSERT_EQ(manager.topVar(trueNode), trueNode) << "Top variable of True node should be itself";
-    //ASSERT_EQ(manager.getLabel( manager.True()), "True") << "Label of True node should be 'True'";
+    ASSERT_EQ(manager.getLabel( manager.True()), "True") << "Label of True node should be 'True'";
 
     // Test that the False node has the expected properties
     ASSERT_EQ(manager.topVar(falseNode), falseNode) << "Top variable of False node should be itself";
-    //ASSERT_EQ(manager.getLabel(manager.False()), "False") << "Label of False node should be 'False'";
+    ASSERT_EQ(manager.getLabel(manager.False()), "False") << "Label of False node should be 'False'";
 
     // Test that the True and False nodes are different
     ASSERT_NE(trueNode, falseNode) << "True and False node IDs should be different";
@@ -223,7 +223,7 @@ TEST_F(managerTest, topVarTest)
     //checks whether the top variable ID for the BDD node with ID 5 is indeed 3.
     ASSERT_EQ(manager.topVar(5), 2);
     // checks whether the top variable name for the BDD node with ID 5 is "a".
-    //ASSERT_EQ(manager.getTopVarName(5), "a");
+    ASSERT_EQ(manager.getTopVarName(5), "a");
 }
 TEST_F(managerTest, GetTopVarNameTest) {
     ClassProject::BDD_ID f = manager.and2(a,b);
