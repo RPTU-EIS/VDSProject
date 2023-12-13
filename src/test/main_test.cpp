@@ -9,7 +9,7 @@ class managerTest : public ::testing::Test
 {
 protected:
     ClassProject::Manager manager;
-    ClassProject::BDD_ID trueNode, falseNode,a,b,c;
+    ClassProject::BDD_ID trueNode, falseNode,a,b,c,d;
     // This function will be called before each test
     void SetUp() override {
         // Initialize any test-specific resources
@@ -19,6 +19,7 @@ protected:
         a = manager.createVar("a");
         b = manager.createVar("b");
         c = manager.createVar("c");
+        d = manager.createVar("d");
     }
 
     ClassProject::BDD_ID andNode() {
@@ -229,6 +230,28 @@ TEST_F(managerTest, GetTopVarNameTest) {
     //ASSERT_EQ(manager.topVar(b), b) << "Top variable of 'b' should be 'b' itself.";
     ASSERT_EQ(manager.getTopVarName(f), "a");
 }
+
+/*TEST_F(managerTest, findNodesTest)
+{
+    ClassProject::BDD_ID f = manager.and2(a,b);
+    std::set<ClassProject::BDD_ID> nodes;
+    manager.findNodes(f, nodes);
+
+    // Check if the set contains exactly 5 nodes.
+    // This includes a, b, f, TRUE, and FALSE nodes.
+    ASSERT_EQ(nodes.size(), 5);
+
+    // Additionally, you can check if the known nodes are indeed in the set.
+    ASSERT_TRUE(nodes.find(a) != nodes.end());
+    ASSERT_TRUE(nodes.find(b) != nodes.end());
+    ASSERT_TRUE(nodes.find(f) != nodes.end());
+}
+
+TEST_F(managerTest, findVarsTest)
+{
+
+}*/
+
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);
