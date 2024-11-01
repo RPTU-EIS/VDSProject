@@ -156,7 +156,7 @@ This is an example of how to list things you need to use the software and how to
 ### Installation
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/VDSProject
+   git clone https://github.com/udayaa-init/VDSProject_Group01.git
    ```
 **Installation with CLion**
 
