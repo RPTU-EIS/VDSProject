@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 project(VDSProject CXX C)
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -fPIC -std=c++17 ${LLVM_CXX_FLAGS} ")
 
+# Enable CTest framework for running the tests
+enable_testing()
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in ${CMAKE_SOURCE_DIR}/gtest/googletest-download/CMakeLists.txt)
