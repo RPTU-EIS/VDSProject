@@ -85,7 +85,7 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->or2(m->True(), m->True()), m->True());
     }
 
-    TEST_F(ManagerTest, xor2) {
+    TEST_F(ManagerTest, xor2_function) {
         // truth table
         EXPECT_EQ(m->xor2(m->False(), m->False()), m->False());
         EXPECT_EQ(m->xor2(m->False(), m->True()), m->True());
@@ -93,7 +93,7 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->xor2(m->True(), m->True()), m->False());
     }
 
-    TEST_F(ManagerTest, neg) {
+    TEST_F(ManagerTest, neg_function) {
         // returns the ID representing the negation of the given function.
 
         // truth table
@@ -101,7 +101,7 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->neg(m->False()), m->True());
     }
 
-    TEST_F(ManagerTest, nand2) {
+    TEST_F(ManagerTest, nand2_function) {
         // truth table
         EXPECT_EQ(m->nand2(m->False(), m->False()), m->True());
         EXPECT_EQ(m->nand2(m->False(), m->True()), m->True());
@@ -109,7 +109,7 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->nand2(m->True(), m->True()), m->False());
     }
 
-    TEST_F(ManagerTest, nor2) {
+    TEST_F(ManagerTest, nor2_function) {
         // truth table
         EXPECT_EQ(m->nor2(m->False(), m->False()), m->True());
         EXPECT_EQ(m->nor2(m->False(), m->True()), m->False());
@@ -117,7 +117,7 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->nor2(m->True(), m->True()), m->False());
     }
 
-    TEST_F(ManagerTest, xnor2) {
+    TEST_F(ManagerTest, xnor2_function) {
         // truth table
         EXPECT_EQ(m->xnor2(m->False(), m->False()), m->True());
         EXPECT_EQ(m->xnor2(m->False(), m->True()), m->False());
