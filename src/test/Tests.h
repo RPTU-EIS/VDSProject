@@ -49,67 +49,77 @@ class ManagerTest : public testing::Test {
 
 
     TEST_F(ManagerTest, isConstant) {
-        EXPECT_EQ(m->isConstant(m->False()), true);
-        EXPECT_EQ(m->isConstant(m->True()), true);
-        EXPECT_EQ(m->isConstant(a), false);
-        EXPECT_EQ(m->isConstant(b), false);
-        EXPECT_EQ(m->isConstant(c), false);
-        EXPECT_EQ(m->isConstant(d), false);
+        EXPECT_EQ(m->isConstant(m->False()), TrueId);
+        EXPECT_EQ(m->isConstant(m->True()), TrueId);
+        EXPECT_EQ(m->isConstant(a), FalseId);
+        EXPECT_EQ(m->isConstant(b), FalseId);
+        EXPECT_EQ(m->isConstant(c), FalseId);
+        EXPECT_EQ(m->isConstant(d), FalseId);
+    }
+
+    TEST_F(ManagerTest, variable_recognition) {
+        EXPECT_EQ(m->isVariable(a), TrueId);
+        EXPECT_EQ(m->isVariable(b), TrueId);
+        EXPECT_EQ(m->isVariable(c), TrueId);
+        EXPECT_EQ(m->isVariable(d), TrueId);
+
+        EXPECT_EQ(m->isVariable(m->False()), FalseId);
+        EXPECT_EQ(m->isVariable(m->True()), FalseId);
     }
 
     TEST_F(ManagerTest, and2_function) {
         // truth table
-        EXPECT_EQ(m->and2(m->False(), m->False()), m->False());
-        EXPECT_EQ(m->and2(m->False(), m->True()), m->False());
-        EXPECT_EQ(m->and2(m->True(), m->False()), m->False());
-        EXPECT_EQ(m->and2(m->True(), m->True()), m->True());
+        EXPECT_EQ(m->and2(m->False(), m->False()), FalseId);
+        EXPECT_EQ(m->and2(m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->and2(m->True(), m->False()), FalseId);
+        EXPECT_EQ(m->and2(m->True(), m->True()), TrueId);
     }
 
     TEST_F(ManagerTest, or2_function) {
         // truth table
-        EXPECT_EQ(m->or2(m->False(), m->False()), m->False());
-        EXPECT_EQ(m->or2(m->False(), m->True()), m->True());
-        EXPECT_EQ(m->or2(m->True(), m->False()), m->True());
-        EXPECT_EQ(m->or2(m->True(), m->True()), m->True());
+        EXPECT_EQ(m->or2(m->False(), m->False()), FalseId);
+        EXPECT_EQ(m->or2(m->False(), m->True()), TrueId);
+        EXPECT_EQ(m->or2(m->True(), m->False()), TrueId);
+        EXPECT_EQ(m->or2(m->True(), m->True()), TrueId);
     }
 
     TEST_F(ManagerTest, xor2_function) {
         // truth table
-        EXPECT_EQ(m->xor2(m->False(), m->False()), m->False());
-        EXPECT_EQ(m->xor2(m->False(), m->True()), m->True());
-        EXPECT_EQ(m->xor2(m->True(), m->False()), m->True());
-        EXPECT_EQ(m->xor2(m->True(), m->True()), m->False());
+        EXPECT_EQ(m->xor2(m->False(), m->False()), FalseId);
+        EXPECT_EQ(m->xor2(m->False(), m->True()), TrueId);
+        EXPECT_EQ(m->xor2(m->True(), m->False()), TrueId);
+        EXPECT_EQ(m->xor2(m->True(), m->True()), FalseId);
     }
 
     TEST_F(ManagerTest, neg_function) {
         // returns the ID representing the negation of the given function.
 
         // truth table
-        EXPECT_EQ(m->neg(m->True()), m->False());
-        EXPECT_EQ(m->neg(m->False()), m->True());
+        EXPECT_EQ(m->neg(m->True()), FalseId);
+        EXPECT_EQ(m->neg(m->False()), TrueId);
     }
 
     TEST_F(ManagerTest, nand2_function) {
         // truth table
-        EXPECT_EQ(m->nand2(m->False(), m->False()), m->True());
-        EXPECT_EQ(m->nand2(m->False(), m->True()), m->True());
-        EXPECT_EQ(m->nand2(m->True(), m->False()), m->True());
-        EXPECT_EQ(m->nand2(m->True(), m->True()), m->False());
+        EXPECT_EQ(m->nand2(m->False(), m->False()), TrueId);
+        EXPECT_EQ(m->nand2(m->False(), m->True()), TrueId);
+        EXPECT_EQ(m->nand2(m->True(), m->False()), TrueId);
+        EXPECT_EQ(m->nand2(m->True(), m->True()), FalseId);
     }
 
     TEST_F(ManagerTest, nor2_function) {
         // truth table
-        EXPECT_EQ(m->nor2(m->False(), m->False()), m->True());
-        EXPECT_EQ(m->nor2(m->False(), m->True()), m->False());
-        EXPECT_EQ(m->nor2(m->True(), m->False()), m->False());
-        EXPECT_EQ(m->nor2(m->True(), m->True()), m->False());
+        EXPECT_EQ(m->nor2(m->False(), m->False()), TrueId);
+        EXPECT_EQ(m->nor2(m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->nor2(m->True(), m->False()), FalseId);
+        EXPECT_EQ(m->nor2(m->True(), m->True()), FalseId);
     }
 
     TEST_F(ManagerTest, xnor2_function) {
         // truth table
-        EXPECT_EQ(m->xnor2(m->False(), m->False()), m->True());
-        EXPECT_EQ(m->xnor2(m->False(), m->True()), m->False());
-        EXPECT_EQ(m->xnor2(m->True(), m->False()), m->False());
-        EXPECT_EQ(m->xnor2(m->True(), m->True()), m->True());
+        EXPECT_EQ(m->xnor2(m->False(), m->False()), TrueId);
+        EXPECT_EQ(m->xnor2(m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->xnor2(m->True(), m->False()), FalseId);
+        EXPECT_EQ(m->xnor2(m->True(), m->True()), TrueId);
     }
 #endif
