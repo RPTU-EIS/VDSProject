@@ -16,6 +16,9 @@
 
 namespace ClassProject {
 
+    static const BDD_ID FalseId = 0;
+    static const BDD_ID TrueId = 1;
+
     struct uTableRow {
         BDD_ID id;
         BDD_ID high;
