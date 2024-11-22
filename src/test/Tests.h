@@ -39,12 +39,12 @@ class ManagerTest : public testing::Test {
     }
 
     TEST_F(ManagerTest, True) {
-        EXPECT_EQ(m->True(), 1);
+        EXPECT_EQ(m->True(), TrueId);
     }
 
 
     TEST_F(ManagerTest, False) {
-        EXPECT_EQ(m->False(), 0);
+        EXPECT_EQ(m->False(), FalseId);
     }
 
 
@@ -65,6 +65,26 @@ class ManagerTest : public testing::Test {
 
         EXPECT_EQ(m->isVariable(m->False()), FalseId);
         EXPECT_EQ(m->isVariable(m->True()), FalseId);
+    }
+
+    TEST_F(ManagerTest, ite) {
+        EXPECT_EQ(m->ite(m->True(), m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->ite(m->False(), m->False(), m->True()), TrueId);
+
+        EXPECT_EQ(m->ite(m->False(), a, b), b);
+        EXPECT_EQ(m->ite(m->True(), a, b), a);
+        EXPECT_EQ(m->ite(a, m->True(), m->False()), a);
+        EXPECT_EQ(m->ite(c, d, d), d);
+    }
+
+    TEST_F(ManagerTest, coFactorTrue) {
+        EXPECT_EQ(m->coFactorTrue(m->True()), TrueId);
+        EXPECT_EQ(m->coFactorTrue(a), TrueId);
+    }
+
+    TEST_F(ManagerTest, coFactorFalse) {
+        EXPECT_EQ(m->coFactorFalse(m->False()), FalseId);
+        EXPECT_EQ(m->coFactorFalse(a), FalseId);
     }
 
     TEST_F(ManagerTest, and2_function) {
