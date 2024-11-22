@@ -18,18 +18,6 @@ class ManagerTest : public testing::Test {
         BDD_ID c;
         BDD_ID d;
 
-        BDD_ID neg_a;
-        BDD_ID neg_b;
-        BDD_ID a_and_b;
-        BDD_ID a_or_b;
-        BDD_ID a_xor_b;
-        BDD_ID a_nand_b;
-        BDD_ID a_nor_b;
-        BDD_ID a_xnor_b;
-        BDD_ID c_or_d;
-        // f1 = a*b+c+d
-        BDD_ID f1;
-
         void SetUp() override {
             m = new Manager();
             a = m->createVar("a");  // ID 2
