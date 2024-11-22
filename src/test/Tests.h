@@ -142,4 +142,50 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->xnor2(m->True(), m->False()), FalseId);
         EXPECT_EQ(m->xnor2(m->True(), m->True()), TrueId);
     }
+
+
+    TEST_F(ManagerTest, getTopVarName) {
+        // returns the label of the given BDD_ID
+        EXPECT_EQ(m->getTopVarName(m->False()), "false");
+        EXPECT_EQ(m->getTopVarName(m->True()), "true");
+        EXPECT_EQ(m->getTopVarName(a), "a");
+
+    }
+
+
+    MATCHER_P(SetEq, expected, "") {
+        // matcher set comparison
+        return std::equal(arg.begin(), arg.end(), expected.begin(), expected.end());
+    }
+
+    TEST_F(ManagerTest, findNodes) {
+        ClassProject::BDD_ID a_or_b = m->or2(a, b);
+        ClassProject::BDD_ID c_and_d = m->and2(c, d);
+        ClassProject::BDD_ID f = m->and2(a_or_b, c_and_d);
+
+        std::set<BDD_ID> expected = {m->and2(b, c_and_d), c_and_d, d, m->True(), m->False()};
+        std::set<BDD_ID> nodes;
+        m->findNodes(m->and2(b, c_and_d), nodes);
+
+        EXPECT_THAT(nodes, SetEq(expected));
+    }
+
+    TEST_F(ManagerTest, findVars) {
+        ClassProject::BDD_ID a_or_b = m->or2(a, b);
+        ClassProject::BDD_ID c_and_d = m->and2(c, d);
+        ClassProject::BDD_ID f = m->and2(a_or_b, c_and_d);
+
+        std::set<BDD_ID> expected = {m->topVar(b), m->topVar(c), m->topVar(d)};
+        std::set<BDD_ID> vars;
+        m->findVars(m->and2(b, c_and_d), vars);
+
+        EXPECT_THAT(vars, SetEq(expected));
+    }
+
+    TEST_F(ManagerTest, uniqueTableSize) {
+        BDD_ID size = m->uniqueTableSize();
+        m->createVar("e");
+        EXPECT_EQ(m->uniqueTableSize(), size + 1);
+    }
+
 #endif
