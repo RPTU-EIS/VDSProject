@@ -60,6 +60,16 @@ namespace ClassProject {
 
         virtual void visualizeBDD(std::string filepath, BDD_ID &root) = 0;
     };
+
+
+
+
+
+
 }
+
+
+
+
 
 #endif

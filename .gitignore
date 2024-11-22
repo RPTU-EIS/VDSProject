@@ -1,1 +1,4 @@
 gtest/
+.idea/
+build/
+cmake-build-debug/
