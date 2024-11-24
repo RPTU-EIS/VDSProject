@@ -1,64 +1,72 @@
 {
-  "version": 3,
-  "cmakeMinimumRequired": {
-    "major": 3,
-    "minor": 19,
-    "patch": 0
-  },
-  "configurePresets": [
-    {
-      "name": "base",
-      "hidden": true,
-      "binaryDir": "${sourceDir}/build",
-      "generator": "Unix Makefiles",
-      "warnings": {
-        "dev": true,
-        "deprecated": true,
-        "systemVars": true,
-        "unusedCli": true,
-        "uninitialized": true
-      }
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 19,
+        "patch": 0
     },
-    {
-      "name": "debug",
-      "description": "Debug build",
-      "inherits": [
-        "base"
-      ],
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
-      "name": "release",
-      "description": "Release build",
-      "inherits": [
-        "base"
-      ],
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
-      }
-    },
-    {
-      "name": "relwithdebinfo",
-      "description": "Release build with debug info",
-      "inherits": [
-        "base"
-      ],
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-      }
-    },
-    {
-      "name": "ci",
-      "description": "Continuous integration build",
-      "inherits": [
-        "base"
-      ],
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-      }
-    }
-  ]
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build",
+            "generator": "Unix Makefiles",
+            "warnings": {
+                "dev": true,
+                "deprecated": true,
+                "systemVars": true,
+                "unusedCli": true,
+                "uninitialized": true
+            }
+        },
+        {
+            "name": "debug",
+            "description": "Debug build",
+            "inherits": [
+                "base"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "release",
+            "description": "Release build",
+            "inherits": [
+                "base"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "relwithdebinfo",
+            "description": "Release build with debug info",
+            "inherits": [
+                "base"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "ci",
+            "description": "Continuous integration build",
+            "inherits": [
+                "base"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "Debug preset",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "debug"
+        }
+    ]
 }
