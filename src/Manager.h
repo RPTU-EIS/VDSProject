@@ -33,9 +33,6 @@ namespace ClassProject {
         std::unordered_map<size_t, BDD_ID> unique_tb_map;
         std::unordered_map<size_t, BDD_ID> computed_tb;
 
-
-        void init_unique_tb();
-
         BDD_ID find_or_add_unique_tb(BDD_ID x, BDD_ID high, BDD_ID low);
 
         void print_unique_tb();
@@ -44,7 +41,10 @@ namespace ClassProject {
 
         void standard_triples(BDD_ID *i, BDD_ID *t, BDD_ID *e);
 
+        void init_unique_tb();
+
     public:
+
         Manager();
 
         ~Manager() = default;

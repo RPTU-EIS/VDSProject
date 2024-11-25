@@ -14,99 +14,98 @@ namespace ClassProject {
         unique_tb.push_back(true_node);
     }
 
-    Manager::~Manager(){
+    BDD_ID Manager::createVar(const std::string &label){
+        BDD_ID id = uniqueTableSize();
+        unique_tb.push_back((uTableRow) {.id=id, .high=True(), .low=False(), .topVar=id, .label=label});
+        return id;
     }
 
-    BDD_ID createVar(const std::string &label){
-    return 0;
+    const BDD_ID &Manager::True(){
+        return TrueId;
     }
 
-        const BDD_ID &True(){
+    const BDD_ID &Manager::False(){
+        return FalseId;
+    }
+
+    bool Manager::isConstant(BDD_ID f){
         return 0;
-        }
+    }
 
-        const BDD_ID &False(){
+    bool Manager::isVariable(BDD_ID x){
         return 0;
-        }
+    }
 
-        bool isConstant(BDD_ID f){
+    BDD_ID Manager::topVar(BDD_ID f){
         return 0;
-        }
+    }
 
-        bool isVariable(BDD_ID x){
+    BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
         return 0;
-        }
+    }
 
-        BDD_ID topVar(BDD_ID f){
+    BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x){
         return 0;
-        }
+    }
 
-        BDD_ID ite(BDD_ID i, BDD_ID t, BDD_ID e){
+    BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x){
         return 0;
-        }
+    }
 
-        BDD_ID coFactorTrue(BDD_ID f, BDD_ID x){
+    BDD_ID Manager::coFactorTrue(BDD_ID f){
         return 0;
-        }
+    }
 
-        BDD_ID coFactorFalse(BDD_ID f, BDD_ID x){
+    BDD_ID Manager::coFactorFalse(BDD_ID f){
         return 0;
-        }
+    }
 
-        BDD_ID coFactorTrue(BDD_ID f){
+    BDD_ID Manager::and2(BDD_ID a, BDD_ID b){
         return 0;
-        }
+    }
 
-        BDD_ID coFactorFalse(BDD_ID f){
+    BDD_ID Manager::or2(BDD_ID a, BDD_ID b){
         return 0;
-        }
+    }
 
-        BDD_ID and2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::xor2(BDD_ID a, BDD_ID b){
         return 0;
-        }
+    }
 
-        BDD_ID or2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::neg(BDD_ID a){
         return 0;
-        }
+    }
 
-        BDD_ID xor2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::nand2(BDD_ID a, BDD_ID b){
         return 0;
-        }
+    }
 
-        BDD_ID neg(BDD_ID a){
+    BDD_ID Manager::nor2(BDD_ID a, BDD_ID b){
         return 0;
-        }
+    }
 
-        BDD_ID nand2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::xnor2(BDD_ID a, BDD_ID b){
         return 0;
-        }
+    }
 
-        BDD_ID nor2(BDD_ID a, BDD_ID b){
+    std::string Manager::getTopVarName(const BDD_ID &root){
         return 0;
-        }
+    }
 
-        BDD_ID xnor2(BDD_ID a, BDD_ID b){
-        return 0;
-        }
+    void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root){
+    }
 
-        std::string getTopVarName(const BDD_ID &root){
-        return 0;
-        }
+    void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
 
-        void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root){
-        }
+    }
 
-        void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
+    size_t Manager::uniqueTableSize(){
+        return unique_tb.size();
+    }
 
-        }
+    void Manager::visualizeBDD(std::string filepath, BDD_ID &root){
 
-        size_t uniqueTableSize(){
-        return 0;
-        }
-
-        void visualizeBDD(std::string filepath, BDD_ID &root){
-
-        }
-      
+    }
+    
 }
 
