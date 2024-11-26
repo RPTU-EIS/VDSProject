@@ -55,10 +55,26 @@ namespace ClassProject {
 
         const BDD_ID &False() override;
 
+        /**
+        * isConstant determines if a node is a leafnode
+        * @param f ID of the Node under test
+        * @return true if f is a constant 0 or 1
+        */
         bool isConstant(BDD_ID f) override;
 
+        /**
+        * isVariable determines if a node is a variable
+        * @param x ID of the Node under test
+        * @return returns true if id of x is equal to topVar of x and x is not a leafnode
+        * see /doc/VDSCP_Part_1.pdf Tab. 2 for a better understanding
+        */
         bool isVariable(BDD_ID x) override;
 
+        /**
+        * topVar returns the top Variable of the node
+        * @param f ID of the Node under test
+        * @return topVar of f
+        */
         BDD_ID topVar(BDD_ID f) override;
 
         BDD_ID ite(BDD_ID i, BDD_ID t, BDD_ID e) override;

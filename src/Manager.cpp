@@ -1,5 +1,6 @@
 #include "Manager.h"
 
+#include <algorithm>
 
 
 namespace ClassProject {
@@ -29,19 +30,32 @@ namespace ClassProject {
     }
 
     bool Manager::isConstant(BDD_ID f){
-        return 0;
+        return f <= 1;
     }
 
     bool Manager::isVariable(BDD_ID x){
-        return 0;
+        return unique_tb.at(x).topVar == x && !isConstant(x);
     }
 
     BDD_ID Manager::topVar(BDD_ID f){
-        return 0;
+        return unique_tb.at(f).topVar;
     }
 
     BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
-        return 0;
+        if (isConstant(i)) {
+           return i == TrueId ? t : e;
+        }/**
+        else if(t == TrueId && e == FalseId) {
+            return i;
+        }
+        else if(alreadyexisting) {
+
+        }
+        else
+        {
+
+        }
+*/  return 0;
     }
 
     BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x){
