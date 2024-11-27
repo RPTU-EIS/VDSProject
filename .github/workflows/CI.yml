@@ -13,9 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Configure Cmake
-        run: cmake --preset ci
+        run: cmake -B ${{github.workspace}}/build
       - name: Build Cmake
-        run: cmake --build build -j4
+        run: cmake --build ${{github.workspace}}/build --target VDSProject_test -j4
       - name: Test
-        working-directory: build
-        run: VDSProject
+        run: ${{github.workspace}}/build/src/test/VDSProject_test
