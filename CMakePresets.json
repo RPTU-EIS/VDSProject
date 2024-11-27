@@ -60,13 +60,5 @@
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
         }
-    ],
-    "testPresets": [
-        {
-            "name": "Debug preset",
-            "description": "",
-            "displayName": "",
-            "configurePreset": "debug"
-        }
     ]
 }
