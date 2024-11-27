@@ -63,7 +63,7 @@ namespace ClassProject {
         {
             return high;
         };
-        BDD_ID res = find_or_add_unique_tb(x, low, high);
+        const BDD_ID res = find_or_add_unique_tb(x, high, low);
         computed_tb.insert(hashFunction(i,t,e), res);
         return res;
     }
