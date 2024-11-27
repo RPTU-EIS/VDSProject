@@ -44,18 +44,28 @@ namespace ClassProject {
     BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
         if (isConstant(i)) {
            return i == TrueId ? t : e;
-        }/**
-        else if(t == TrueId && e == FalseId) {
+        }
+        if(t == TrueId && e == FalseId) {
             return i;
         }
-        else if(alreadyexisting) {
-
-        }
-        else
+        //searches a computed entry in the computed table via a HashMap
+        auto comp_tb_res = computed_tb.find(hashFunction(i,t,e));
+        //Checks for existing entry
+        if (comp_tb_res != computed_tb.end())
         {
-
+            //returns result stored at comp_entry
+            return comp_tb_res->second;
         }
-*/  return 0;
+        BDD_ID x = topVar(i);
+        BDD_ID high = ite(coFactorTrue(i, x), coFactorTrue(t, x), coFactorTrue(e, x));
+        BDD_ID low = ite(coFactorFalse(i, x), coFactorFalse(t, x), coFactorFalse(e, x));
+        if (high == low)
+        {
+            return high;
+        };
+        BDD_ID res = find_or_add_unique_tb(x, low, high);
+        computed_tb.insert(hashFunction(i,t,e), res);
+        return res;
     }
 
     BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x){

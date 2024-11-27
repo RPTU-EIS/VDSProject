@@ -35,6 +35,8 @@ namespace ClassProject {
 
         BDD_ID find_or_add_unique_tb(BDD_ID x, BDD_ID high, BDD_ID low);
 
+        static size_t hashFunction(BDD_ID f, BDD_ID g, BDD_ID h);
+
         void print_unique_tb();
 
         static void swapID(BDD_ID *a, BDD_ID *b);
