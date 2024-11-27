@@ -67,46 +67,51 @@ namespace ClassProject {
     }
 
     BDD_ID Manager::coFactorTrue(BDD_ID f){
-        return 0;
+        return unique_tb.at(f).high;
     }
 
     BDD_ID Manager::coFactorFalse(BDD_ID f){
-        return 0;
+        return unique_tb.at(f).low;    
     }
 
     BDD_ID Manager::and2(BDD_ID a, BDD_ID b){
-        return 0;
+        return ite(a, b, FalseId);
     }
 
     BDD_ID Manager::or2(BDD_ID a, BDD_ID b){
-        return 0;
+        return ite(a, TrueId, b);
     }
 
     BDD_ID Manager::xor2(BDD_ID a, BDD_ID b){
-        return 0;
+        return ite(a, neg(b), b);
     }
 
     BDD_ID Manager::neg(BDD_ID a){
-        return 0;
+        return ite(a, FalseId, TrueId);
     }
 
     BDD_ID Manager::nand2(BDD_ID a, BDD_ID b){
-        return 0;
+        return ite(a, neg(b), TrueId);
     }
 
     BDD_ID Manager::nor2(BDD_ID a, BDD_ID b){
-        return 0;
+        return ite(a, FalseId, neg(b));
     }
 
     BDD_ID Manager::xnor2(BDD_ID a, BDD_ID b){
-        return 0;
+        return ite(a, b, neg(b));
     }
 
     std::string Manager::getTopVarName(const BDD_ID &root){
-        return 0;
+        return unique_tb.at(root).label;
     }
 
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root){
+        nodes_of_root.emplace(root);
+        if (root > TrueId){
+            findNodes(coFactorTrue(root), nodes_of_root);
+            findNodes(coFactorFalse(root), nodes_of_root);
+        }
     }
 
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
