@@ -48,24 +48,24 @@ class ManagerTest : public testing::Test {
     }
 
 
-    // TEST_F(ManagerTest, isConstant) {
-    //     EXPECT_EQ(m->isConstant(m->False()), TrueId);
-    //     EXPECT_EQ(m->isConstant(m->True()), TrueId);
-    //     EXPECT_EQ(m->isConstant(a), FalseId);
-    //     EXPECT_EQ(m->isConstant(b), FalseId);
-    //     EXPECT_EQ(m->isConstant(c), FalseId);
-    //     EXPECT_EQ(m->isConstant(d), FalseId);
-    // }
+    TEST_F(ManagerTest, isConstant) {
+        EXPECT_EQ(m->isConstant(m->False()), TrueId);
+        EXPECT_EQ(m->isConstant(m->True()), TrueId);
+        EXPECT_EQ(m->isConstant(a), FalseId);
+        EXPECT_EQ(m->isConstant(b), FalseId);
+        EXPECT_EQ(m->isConstant(c), FalseId);
+        EXPECT_EQ(m->isConstant(d), FalseId);
+    }
 
-    // TEST_F(ManagerTest, variable_recognition) {
-    //     EXPECT_EQ(m->isVariable(a), TrueId);
-    //     EXPECT_EQ(m->isVariable(b), TrueId);
-    //     EXPECT_EQ(m->isVariable(c), TrueId);
-    //     EXPECT_EQ(m->isVariable(d), TrueId);
+    TEST_F(ManagerTest, variable_recognition) {
+        EXPECT_EQ(m->isVariable(a), TrueId);
+        EXPECT_EQ(m->isVariable(b), TrueId);
+        EXPECT_EQ(m->isVariable(c), TrueId);
+        EXPECT_EQ(m->isVariable(d), TrueId);
 
-    //     EXPECT_EQ(m->isVariable(m->False()), FalseId);
-    //     EXPECT_EQ(m->isVariable(m->True()), FalseId);
-    // }
+        EXPECT_EQ(m->isVariable(m->False()), FalseId);
+        EXPECT_EQ(m->isVariable(m->True()), FalseId);
+    }
 
     // TEST_F(ManagerTest, ite) {
     //     EXPECT_EQ(m->ite(m->True(), m->False(), m->True()), FalseId);
@@ -77,90 +77,89 @@ class ManagerTest : public testing::Test {
     //     EXPECT_EQ(m->ite(c, d, d), d);
     // }
 
-    // TEST_F(ManagerTest, coFactorTrue) {
-    //     EXPECT_EQ(m->coFactorTrue(m->True()), TrueId);
-    //     EXPECT_EQ(m->coFactorTrue(a), TrueId);
-    // }
+    TEST_F(ManagerTest, coFactorTrue) {
+        EXPECT_EQ(m->coFactorTrue(m->True()), TrueId);
+        EXPECT_EQ(m->coFactorTrue(a), TrueId);
+    }
 
-    // TEST_F(ManagerTest, coFactorFalse) {
-    //     EXPECT_EQ(m->coFactorFalse(m->False()), FalseId);
-    //     EXPECT_EQ(m->coFactorFalse(a), FalseId);
-    // }
+    TEST_F(ManagerTest, coFactorFalse) {
+        EXPECT_EQ(m->coFactorFalse(m->False()), FalseId);
+        EXPECT_EQ(m->coFactorFalse(a), FalseId);
+    }
 
-    // TEST_F(ManagerTest, and2_function) {
-    //     // truth table
-    //     EXPECT_EQ(m->and2(m->False(), m->False()), FalseId);
-    //     EXPECT_EQ(m->and2(m->False(), m->True()), FalseId);
-    //     EXPECT_EQ(m->and2(m->True(), m->False()), FalseId);
-    //     EXPECT_EQ(m->and2(m->True(), m->True()), TrueId);
-    // }
+    TEST_F(ManagerTest, and2_function) {
+        // truth table
+        EXPECT_EQ(m->and2(m->False(), m->False()), FalseId);
+        EXPECT_EQ(m->and2(m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->and2(m->True(), m->False()), FalseId);
+        EXPECT_EQ(m->and2(m->True(), m->True()), TrueId);
+    }
 
-    // TEST_F(ManagerTest, or2_function) {
-    //     // truth table
-    //     EXPECT_EQ(m->or2(m->False(), m->False()), FalseId);
-    //     EXPECT_EQ(m->or2(m->False(), m->True()), TrueId);
-    //     EXPECT_EQ(m->or2(m->True(), m->False()), TrueId);
-    //     EXPECT_EQ(m->or2(m->True(), m->True()), TrueId);
-    // }
+    TEST_F(ManagerTest, or2_function) {
+        // truth table
+        EXPECT_EQ(m->or2(m->False(), m->False()), FalseId);
+        EXPECT_EQ(m->or2(m->False(), m->True()), TrueId);
+        EXPECT_EQ(m->or2(m->True(), m->False()), TrueId);
+        EXPECT_EQ(m->or2(m->True(), m->True()), TrueId);
+    }
 
-    // TEST_F(ManagerTest, xor2_function) {
-    //     // truth table
-    //     EXPECT_EQ(m->xor2(m->False(), m->False()), FalseId);
-    //     EXPECT_EQ(m->xor2(m->False(), m->True()), TrueId);
-    //     EXPECT_EQ(m->xor2(m->True(), m->False()), TrueId);
-    //     EXPECT_EQ(m->xor2(m->True(), m->True()), FalseId);
-    // }
+    TEST_F(ManagerTest, xor2_function) {
+        // truth table
+        EXPECT_EQ(m->xor2(m->False(), m->False()), FalseId);
+        EXPECT_EQ(m->xor2(m->False(), m->True()), TrueId);
+        EXPECT_EQ(m->xor2(m->True(), m->False()), TrueId);
+        EXPECT_EQ(m->xor2(m->True(), m->True()), FalseId);
+    }
 
-    // TEST_F(ManagerTest, neg_function) {
-    //     // returns the ID representing the negation of the given function.
+    TEST_F(ManagerTest, neg_function) {
+        // returns the ID representing the negation of the given function.
 
-    //     // truth table
-    //     EXPECT_EQ(m->neg(m->True()), FalseId);
-    //     EXPECT_EQ(m->neg(m->False()), TrueId);
-    // }
+        // truth table
+        EXPECT_EQ(m->neg(m->True()), FalseId);
+        EXPECT_EQ(m->neg(m->False()), TrueId);
+    }
 
-    // TEST_F(ManagerTest, nand2_function) {
-    //     // truth table
-    //     EXPECT_EQ(m->nand2(m->False(), m->False()), TrueId);
-    //     EXPECT_EQ(m->nand2(m->False(), m->True()), TrueId);
-    //     EXPECT_EQ(m->nand2(m->True(), m->False()), TrueId);
-    //     EXPECT_EQ(m->nand2(m->True(), m->True()), FalseId);
-    // }
+    TEST_F(ManagerTest, nand2_function) {
+        // truth table
+        EXPECT_EQ(m->nand2(m->False(), m->False()), TrueId);
+        EXPECT_EQ(m->nand2(m->False(), m->True()), TrueId);
+        EXPECT_EQ(m->nand2(m->True(), m->False()), TrueId);
+        EXPECT_EQ(m->nand2(m->True(), m->True()), FalseId);
+    }
 
-    // TEST_F(ManagerTest, nor2_function) {
-    //     // truth table
-    //     EXPECT_EQ(m->nor2(m->False(), m->False()), TrueId);
-    //     EXPECT_EQ(m->nor2(m->False(), m->True()), FalseId);
-    //     EXPECT_EQ(m->nor2(m->True(), m->False()), FalseId);
-    //     EXPECT_EQ(m->nor2(m->True(), m->True()), FalseId);
-    // }
+    TEST_F(ManagerTest, nor2_function) {
+        // truth table
+        EXPECT_EQ(m->nor2(m->False(), m->False()), TrueId);
+        EXPECT_EQ(m->nor2(m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->nor2(m->True(), m->False()), FalseId);
+        EXPECT_EQ(m->nor2(m->True(), m->True()), FalseId);
+    }
 
-    // TEST_F(ManagerTest, xnor2_function) {
-    //     // truth table
-    //     EXPECT_EQ(m->xnor2(m->False(), m->False()), TrueId);
-    //     EXPECT_EQ(m->xnor2(m->False(), m->True()), FalseId);
-    //     EXPECT_EQ(m->xnor2(m->True(), m->False()), FalseId);
-    //     EXPECT_EQ(m->xnor2(m->True(), m->True()), TrueId);
-    // }
+    TEST_F(ManagerTest, xnor2_function) {
+        // truth table
+        EXPECT_EQ(m->xnor2(m->False(), m->False()), TrueId);
+        EXPECT_EQ(m->xnor2(m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->xnor2(m->True(), m->False()), FalseId);
+        EXPECT_EQ(m->xnor2(m->True(), m->True()), TrueId);
+    }
 
 
-    // TEST_F(ManagerTest, getTopVarName) {
-    //     // returns the label of the given BDD_ID
-    //     EXPECT_EQ(m->getTopVarName(m->False()), "false");
-    //     EXPECT_EQ(m->getTopVarName(m->True()), "true");
-    //     EXPECT_EQ(m->getTopVarName(a), "a");
+    TEST_F(ManagerTest, getTopVarName) {
+        // returns the label of the given BDD_ID
+        EXPECT_EQ(m->getTopVarName(m->False()), "false");
+        EXPECT_EQ(m->getTopVarName(m->True()), "true");
+        EXPECT_EQ(m->getTopVarName(a), "a");
+    }
 
-    // }
+    TEST_F(ManagerTest, findNodes) {
+        ClassProject::BDD_ID a_or_b = m->or2(a, b);
+        ClassProject::BDD_ID c_and_d = m->and2(c, d);
+        ClassProject::BDD_ID f = m->and2(a_or_b, c_and_d);
 
-    // TEST_F(ManagerTest, findNodes) {
-    //     ClassProject::BDD_ID a_or_b = m->or2(a, b);
-    //     ClassProject::BDD_ID c_and_d = m->and2(c, d);
-    //     ClassProject::BDD_ID f = m->and2(a_or_b, c_and_d);
-
-    //     std::set<BDD_ID> expected = {m->and2(b, c_and_d), c_and_d, d, m->True(), m->False()};
-    //     std::set<BDD_ID> nodes;
-    //     m->findNodes(m->and2(b, c_and_d), nodes);
-    // }
+        std::set<BDD_ID> expected = {m->and2(b, c_and_d), c_and_d, d, m->True(), m->False()};
+        std::set<BDD_ID> nodes;
+        m->findNodes(m->and2(b, c_and_d), nodes);
+    }
 
     // TEST_F(ManagerTest, findVars) {
     //     ClassProject::BDD_ID a_or_b = m->or2(a, b);
@@ -172,10 +171,10 @@ class ManagerTest : public testing::Test {
     //     m->findVars(m->and2(b, c_and_d), vars);        
     // }
 
-    // TEST_F(ManagerTest, uniqueTableSize) {
-    //     BDD_ID size = m->uniqueTableSize();
-    //     m->createVar("e");
-    //     EXPECT_EQ(m->uniqueTableSize(), size + 1);
-    // }
+    TEST_F(ManagerTest, uniqueTableSize) {
+        BDD_ID size = m->uniqueTableSize();
+        m->createVar("e");
+        EXPECT_EQ(m->uniqueTableSize(), size + 1);
+    }
 
 #endif
