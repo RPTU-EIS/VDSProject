@@ -7,19 +7,20 @@
 
 #include <gtest/gtest.h>
 #include "../Manager.h"
+#include <memory>
 
 using namespace ClassProject;
 
 class ManagerTest : public testing::Test {
     protected:
-        Manager *m;
+        std::unique_ptr<Manager> m;;
         BDD_ID a;
         BDD_ID b;
         BDD_ID c;
         BDD_ID d;
 
         void SetUp() override {
-            m = new Manager();
+            m = std::make_unique<Manager>();
             a = m->createVar("a");  // ID 2
             b = m->createVar("b");  // ID 3
             c = m->createVar("c");  // ID 4
@@ -27,7 +28,7 @@ class ManagerTest : public testing::Test {
         }
 
         void TearDown() override {
-            m->~Manager();
+            // m->~Manager();
         }
 };
 
