@@ -220,7 +220,54 @@ namespace ClassProject {
     }
 
     void Manager::visualizeBDD(std::string filepath, BDD_ID &root){
+        // Open file to write DOT-file
+        std::ofstream file(filepath);
 
+        // Check if file could be opened
+        if (!file.is_open())
+        {
+            std::cerr << "Error opening file " << filepath << std::endl;
+            return;
+        }
+
+        // Begin of DOT_Visualization
+        file << "BDD {" << std::endl;
+        file << "  rankdir=TB" << std::endl;
+
+        // set to store reachable nodes
+        std::set<BDD_ID> nodes_of_root;
+        findNodes(root, nodes_of_root);
+
+        // Set for variables
+        std::set<BDD_ID> vars_of_root;
+        findVars(root, vars_of_root);
+
+        // Iterate through all Nodes
+        for (const auto &node : nodes_of_root)
+        {
+            // take node from table
+            const auto &nodeData = unique_tb.at(node);
+
+            //create Node in DOT-format
+            if (vars_of_root.find(node) != vars_of_root.end()) {
+                file << "  " << node << " [label=\"" << nodeData.label << "\", shape=ellipse, color=blue];" << std::endl;
+            } else {
+                file << "  " << node << " [label=\"" << nodeData.label << "\", shape=box, color=black];" << std::endl;
+            }
+
+            // Add edges to following high and low
+            if (!isConstant(node)) {
+                file << "  " << node << " -> " << nodeData.high << " [label=\"1\"];" << std::endl;
+                file << "  " << node << " -> " << nodeData.low << " [label=\"0\"];" << std::endl;
+            }
+        }
+
+        // End of DOT-visualization
+        file << "}" << std::endl;
+
+        // Close file
+        file.close();
+        }
     }
     
 }
