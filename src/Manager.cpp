@@ -41,7 +41,7 @@ namespace ClassProject {
         return unique_tb.at(f).topVar;
     }
 
-    BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
+    BDD_ID Manager::ite(const BDD_ID i, const BDD_ID t, const BDD_ID e){
         // Check for terminal cases
         if (isConstant(i)) {
            return i == True() ? t : e;
