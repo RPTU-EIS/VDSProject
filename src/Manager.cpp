@@ -267,8 +267,6 @@ namespace ClassProject {
 
         // Close file
         file.close();
-        }
     }
-    
 }
 
