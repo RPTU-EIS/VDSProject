@@ -15,8 +15,8 @@
 
 namespace ClassProject {
 
-    static const BDD_ID FalseId = 0;
-    static const BDD_ID TrueId = 1;
+    static constexpr BDD_ID FalseId = 0;
+    static constexpr BDD_ID TrueId = 1;
 
     struct uTableRow {
         BDD_ID high;
@@ -35,7 +35,7 @@ namespace ClassProject {
         }
     };
 
-    struct uTableRowHasher
+    struct uTableRowHash
     {
         size_t operator()(const uTableRow& row) const
         {
@@ -45,9 +45,9 @@ namespace ClassProject {
 
   class Manager : public ManagerInterface {
     private:
-        std::vector<uTableRow> unique_tb;
-        std::unordered_map<BDD_ID, uTableRow> unique_tb_map;
-        std::unordered_map<uTableRow, BDD_ID, uTableRowHasher> computed_tb;
+        // std::vector<uTableRow> unique_tb;
+        std::unordered_map<BDD_ID, uTableRow> unique_tb;
+        std::unordered_map<uTableRow, BDD_ID, uTableRowHash> computed_tb;
 
         void print_unique_tb();
 
