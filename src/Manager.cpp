@@ -87,7 +87,7 @@ namespace ClassProject {
         }
     }
 
-    BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x) {
+    BDD_ID Manager::coFactorTrue(const BDD_ID f, BDD_ID x) {
         // Check for terminal Case and relevancy of x
         if (isConstant(f) || topVar(f) > x) {
             return f;
@@ -105,7 +105,7 @@ namespace ClassProject {
         return ite(topVar(f), high, low);
     }
 
-    BDD_ID Manager::coFactorFalse(BDD_ID f, BDD_ID x){
+    BDD_ID Manager::coFactorFalse(const BDD_ID f, BDD_ID x){
         // Check for terminal Case and relevancy of x
         if (isConstant(f) || topVar(f) > x) {
             return f;
@@ -123,46 +123,46 @@ namespace ClassProject {
         return ite(topVar(f), high, low);
     }
 
-    BDD_ID Manager::coFactorTrue(BDD_ID f){
+    BDD_ID Manager::coFactorTrue(const BDD_ID f){
         return unique_tb.at(f).high;
     }
 
-    BDD_ID Manager::coFactorFalse(BDD_ID f){
+    BDD_ID Manager::coFactorFalse(const BDD_ID f){
         return unique_tb.at(f).low;    
     }
 
     // Slide 2-15
-    BDD_ID Manager::and2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::and2(const BDD_ID a, const BDD_ID b){
         return ite(a, b, False());
     }
 
     // Slide 2-15
-    BDD_ID Manager::or2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::or2(const BDD_ID a, const BDD_ID b){
         return ite(a, True(), b);
     }
 
     // Slide 2-15
-    BDD_ID Manager::xor2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::xor2(const BDD_ID a, const BDD_ID b){
         return ite(a, neg(b), b);
     }
 
     // Slide 2-15
-    BDD_ID Manager::neg(BDD_ID a){
+    BDD_ID Manager::neg(const BDD_ID a){
         return ite(a, False(), True());
     }
 
     // Abb. 4 https://agra.informatik.uni-bremen.de/doc/software/manual/index.html
-    BDD_ID Manager::nand2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::nand2(const BDD_ID a, const BDD_ID b){
         return ite(a, neg(b), True());
     }
 
     // Abb. 4 https://agra.informatik.uni-bremen.de/doc/software/manual/index.html
-    BDD_ID Manager::nor2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::nor2(const BDD_ID a, const BDD_ID b){
         return ite(a, False(), neg(b));
     }
 
     // Abb. 4 https://agra.informatik.uni-bremen.de/doc/software/manual/index.html
-    BDD_ID Manager::xnor2(BDD_ID a, BDD_ID b){
+    BDD_ID Manager::xnor2(const BDD_ID a, const BDD_ID b){
         return ite(a, b, neg(b));
     }
 
@@ -171,15 +171,48 @@ namespace ClassProject {
     }
 
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root){
-        nodes_of_root.emplace(root);
-        if (root > TrueId){
-            findNodes(coFactorTrue(root), nodes_of_root);
-            findNodes(coFactorFalse(root), nodes_of_root);
+        // Check if node is already processed
+        if (nodes_of_root.find(root) != nodes_of_root.end())
+        {
+            return;
         }
+        // Add current node to the set
+        nodes_of_root.emplace(root);
+
+        // Check for terminal node (also terminate case for recursion
+        if (isConstant(root))
+        {
+            return;
+        }
+
+        // recursive call for following nodes (high and low)
+        findNodes(unique_tb.at(root).high, nodes_of_root);
+        findNodes(unique_tb.at(root).low, nodes_of_root);
     }
 
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
+        // Check if node is already processed
+        if (vars_of_root.find(root) != vars_of_root.end())
+        {
+            return;
+        }
 
+        // Check for terminal node (also terminate case for recursion
+        if (isConstant(root))
+        {
+            return;
+        }
+
+        // Check for Variable
+        if (isVariable(root))
+        {
+            // Add current node to the set
+            vars_of_root.emplace(root);
+        }
+
+        // recursive call for following nodes (high and low)
+        findNodes(unique_tb.at(root).high, vars_of_root);
+        findNodes(unique_tb.at(root).low, vars_of_root);
     }
 
     size_t Manager::uniqueTableSize(){
