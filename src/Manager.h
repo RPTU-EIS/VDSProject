@@ -7,7 +7,6 @@
 
 #include "ManagerInterface.h"
 #include <vector>
-#include <array>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -20,22 +19,35 @@ namespace ClassProject {
     static const BDD_ID TrueId = 1;
 
     struct uTableRow {
-        BDD_ID id;
         BDD_ID high;
         BDD_ID low;
         BDD_ID topVar;
         std::string label;
+
+        uTableRow(BDD_ID high, BDD_ID low, BDD_ID topVar, const std::string& label)
+            : high(high), low(low), topVar(topVar), label(label) {}
+
+        uTableRow(BDD_ID high, BDD_ID low, BDD_ID top_var);
+
+        bool operator==(const uTableRow& rhs) const
+        {
+            return high == rhs.high && low == rhs.low && topVar == rhs.topVar;
+        }
+    };
+
+    struct uTableRowHasher
+    {
+        size_t operator()(const uTableRow& row) const
+        {
+            return std::hash<BDD_ID>()(row.high) ^ std::hash<BDD_ID>()(row.low) ^ std::hash<BDD_ID>()(row.topVar);
+        }
     };
 
   class Manager : public ManagerInterface {
     private:
         std::vector<uTableRow> unique_tb;
-        std::unordered_map<size_t, BDD_ID> unique_tb_map;
-        std::unordered_map<size_t, BDD_ID> computed_tb;
-
-        BDD_ID find_or_add_unique_tb(BDD_ID x, BDD_ID high, BDD_ID low);
-
-        static size_t hashFunction(BDD_ID f, BDD_ID g, BDD_ID h);
+        std::unordered_map<BDD_ID, uTableRow> unique_tb_map;
+        std::unordered_map<uTableRow, BDD_ID, uTableRowHasher> computed_tb;
 
         void print_unique_tb();
 
@@ -44,6 +56,11 @@ namespace ClassProject {
         void standard_triples(BDD_ID *i, BDD_ID *t, BDD_ID *e);
 
         void init_unique_tb();
+
+        BDD_ID get_nextID()
+        {
+            return uniqueTableSize();
+        }
 
     public:
 

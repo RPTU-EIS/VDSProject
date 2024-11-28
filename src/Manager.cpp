@@ -9,15 +9,15 @@ namespace ClassProject {
     }
 
     void Manager::init_unique_tb() {
-        uTableRow false_node = {.id=uniqueTableSize(), .high=False(), .low=False(), .topVar=False(), .label="false"};
-        unique_tb.push_back(false_node);
-        uTableRow true_node = {.id=uniqueTableSize(), .high=True(), .low=True(), .topVar=True(), .label="true"};
-        unique_tb.push_back(true_node);
+        computed_tb[uTableRow {False(), False(), False(), "false"}] = False();
+        unique_tb_map.emplace(uniqueTableSize(), uTableRow {False(), False(), False(), "false"});
+        computed_tb[uTableRow{True(), True(), True(), "true"}] = True();
+        unique_tb_map.emplace(uniqueTableSize(), uTableRow{True(), True(), True(), "true"});
     }
 
     BDD_ID Manager::createVar(const std::string &label){
-        BDD_ID id = uniqueTableSize();
-        unique_tb.push_back((uTableRow) {.id=id, .high=True(), .low=False(), .topVar=id, .label=label});
+        const BDD_ID id = get_nextID();
+        unique_tb_map.emplace(uniqueTableSize(), uTableRow{True(), False(), id, label});
         return id;
     }
 
@@ -29,43 +29,62 @@ namespace ClassProject {
         return FalseId;
     }
 
-    bool Manager::isConstant(BDD_ID f){
+    bool Manager::isConstant(const BDD_ID f){
         return f <= 1;
     }
 
-    bool Manager::isVariable(BDD_ID x){
+    bool Manager::isVariable(const BDD_ID x){
         return unique_tb.at(x).topVar == x && !isConstant(x);
     }
 
-    BDD_ID Manager::topVar(BDD_ID f){
+    BDD_ID Manager::topVar(const BDD_ID f){
         return unique_tb.at(f).topVar;
     }
 
     BDD_ID Manager::ite(BDD_ID i, BDD_ID t, BDD_ID e){
+        // Check for terminal cases
         if (isConstant(i)) {
-           return i == TrueId ? t : e;
+           return i == True() ? t : e;
         }
-        if(t == TrueId && e == FalseId) {
+        if (t == TrueId && e == FalseId) {
             return i;
         }
-        //searches a computed entry in the computed table via a HashMap
-        auto comp_tb_res = computed_tb.find(hashFunction(i,t,e));
-        //Checks for existing entry
-        if (comp_tb_res != computed_tb.end())
+        if (t == e)
         {
-            //returns result stored at comp_entry
-            return comp_tb_res->second;
+            return t;
         }
+        // find the smallest top index for x
         BDD_ID x = topVar(i);
+        if (topVar(t) < x && isVariable(topVar(t)))
+        {
+            x = topVar(t);
+        } else if (topVar(e) < x && isVariable(topVar(e))) {
+            x = topVar(e);
+        }
+
+        // calculate r_high and r_low like Slide 2-17 VDS Lecture
         BDD_ID high = ite(coFactorTrue(i, x), coFactorTrue(t, x), coFactorTrue(e, x));
         BDD_ID low = ite(coFactorFalse(i, x), coFactorFalse(t, x), coFactorFalse(e, x));
         if (high == low)
         {
             return high;
-        };
-        const BDD_ID res = find_or_add_unique_tb(x, high, low);
-        computed_tb.insert(hashFunction(i,t,e), res);
-        return res;
+        }
+
+        // Check for entry already existing entry in computed table (dummy is not used for find)
+        auto comp_tb_entry = computed_tb.find(uTableRow(high, low, x));
+        // Entry not found
+        if (comp_tb_entry == computed_tb.end())
+        {
+            // Add Entry
+            computed_tb[uTableRow(high, low, x)] = get_nextID();
+            // Generate Label for Visualization
+            auto label = "if" + unique_tb_map.at(x).label + " then " + unique_tb_map.at(high).label + " else " + unique_tb_map.at(low).label;
+            unique_tb_map.emplace(get_nextID(), uTableRow(high, low, x, label));
+            return get_nextID();
+            // Entry found -> return result
+        } else {
+            return comp_tb_entry->second;
+        }
     }
 
     BDD_ID Manager::coFactorTrue(BDD_ID f, BDD_ID x){
