@@ -27,7 +27,8 @@ namespace ClassProject {
         uTableRow(BDD_ID high, BDD_ID low, BDD_ID topVar, const std::string& label)
             : high(high), low(low), topVar(topVar), label(label) {}
 
-        uTableRow(BDD_ID high, BDD_ID low, BDD_ID top_var);
+        uTableRow(BDD_ID high, BDD_ID low, BDD_ID top_var)
+            : high(high), low(low), topVar(topVar) {}
 
         bool operator==(const uTableRow& rhs) const
         {
@@ -43,7 +44,7 @@ namespace ClassProject {
         }
     };
 
-  class Manager : public ManagerInterface {
+  class Manager final : public ManagerInterface {
     private:
         // std::vector<uTableRow> unique_tb;
         std::unordered_map<BDD_ID, uTableRow> unique_tb;
