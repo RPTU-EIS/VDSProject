@@ -177,7 +177,7 @@ namespace ClassProject {
             return;
         }
         // Add current node to the set
-        nodes_of_root.emplace(root);
+        nodes_of_root.insert(root);
 
         // Check for terminal node (also terminate case for recursion
         if (isConstant(root))
@@ -207,7 +207,7 @@ namespace ClassProject {
         if (isVariable(root))
         {
             // Add current node to the set
-            vars_of_root.emplace(root);
+            vars_of_root.insert(root);
         }
 
         // recursive call for following nodes (high and low)
@@ -225,6 +225,13 @@ namespace ClassProject {
                       << ", Label: " << entry.second.label
                       << ", Low: " << entry.second.low
                       << ", High: " << entry.second.high << std::endl;
+        }
+
+        for (const auto& entry : computed_tb) {
+            std::cout << "ID: " << entry.second
+                      << ", Label: " << entry.first.label
+                      << ", Low: " << entry.first.low
+                      << ", High: " << entry.first.high << std::endl;
         }
 
         // Open file to write DOT-file
