@@ -231,7 +231,7 @@ namespace ClassProject {
         }
 
         // Begin of DOT_Visualization
-        file << "BDD {" << std::endl;
+        file << "digraph {" << std::endl;
         file << "  rankdir=TB" << std::endl;
 
         // set to store reachable nodes
