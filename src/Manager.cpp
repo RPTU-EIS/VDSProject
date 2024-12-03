@@ -237,22 +237,6 @@ namespace ClassProject {
     }
 
     void Manager::visualizeBDD(std::string filepath, BDD_ID &root){
-        for (const auto& entry : unique_tb) {
-            std::cout << "ID: " << entry.first
-                      << ", Label: " << entry.second.label
-                      << ", Low: " << entry.second.low
-                      << ", High: " << entry.second.high << std::endl;
-        }
-
-        std::cout << "Computed Table Size: " << std::endl;
-
-        for (const auto& entry : computed_tb) {
-            std::cout << "ID: " << entry.second
-                      << ", Label: " << entry.first.label
-                      << ", Low: " << entry.first.low
-                      << ", High: " << entry.first.high << std::endl;
-        }
-
         // Open file to write DOT-file
         std::ofstream file(filepath);
 

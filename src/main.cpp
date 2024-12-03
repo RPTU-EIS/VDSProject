@@ -20,7 +20,12 @@ int main(int argc, char* argv[])
     BDD_ID c = m->createVar("c");
     BDD_ID d = m->createVar("d");
 
-    BDD_ID f = m->and2(m->or2(a, b), m->and2(c, d));
+    BDD_ID e = m->or2(a, b);
+    BDD_ID f = m->and2(c, d);
+    BDD_ID g = m->and2(f,e);
 
-    m->visualizeBDD("ROBDD.dot", f);
+    BDD_ID test = m->and2(a, b);
+    m->visualizeBDD("Test.dot", test);
+
+    m->visualizeBDD("ROBDD.dot", g);
 }
