@@ -60,31 +60,41 @@ namespace ClassProject {
             x = topVar(t);
         } else if (topVar(e) < x && isVariable(topVar(e))) {
             x = topVar(e);
+        } else
+        {
+            if (const auto ite_entry = computed_tb.find(uTableRow(i, t, e)); ite_entry != computed_tb.end())
+            {
+                // Entry found -> return result
+                return ite_entry->second;
+            }
         }
 
         // calculate r_high and r_low like Slide 2-17 VDS Lecture
         const BDD_ID high = ite(coFactorTrue(i, x), coFactorTrue(t, x), coFactorTrue(e, x));
         const BDD_ID low = ite(coFactorFalse(i, x), coFactorFalse(t, x), coFactorFalse(e, x));
+
         if (high == low)
         {
+            computed_tb.emplace(uTableRow(i, t, e), high);
             return high;
         }
 
         // Check for entry already existing entry in computed table (dummy is not used for find)
-        // Entry not found
-        if (const auto comp_tb_entry = computed_tb.find(uTableRow(high, low, x)); comp_tb_entry == computed_tb.end())
+        if (const auto comp_tb_entry = computed_tb.find(uTableRow(high, low, x)); comp_tb_entry != computed_tb.end())
         {
-            // Add Entry
-            const BDD_ID new_id = get_nextID();
-            computed_tb[uTableRow(high, low, x)] = new_id;
-            // Generate Label for Visualization
-            const auto label = "if" + unique_tb.at(x).label + " then " + unique_tb.at(high).label + " else " + unique_tb.at(low).label;
-            unique_tb.emplace(new_id, uTableRow(high, low, x, label));
-            return get_nextID();
-        // Entry found -> return result
-        } else {
+            // Entry found -> return result
             return comp_tb_entry->second;
         }
+        // Entry not found
+        // Add Entry
+        const BDD_ID new_id = get_nextID();
+        computed_tb[uTableRow(high, low, x)] = new_id;
+        // Generate Label for Visualization
+        const auto label = "if" + unique_tb.at(x).label + " then " + unique_tb.at(high).label + " else " + unique_tb.at(low).label;
+        unique_tb.emplace(new_id, uTableRow(high, low, x, label));
+
+        return new_id;
+
     }
 
     BDD_ID Manager::coFactorTrue(const BDD_ID f, BDD_ID x) {
@@ -226,6 +236,8 @@ namespace ClassProject {
                       << ", Low: " << entry.second.low
                       << ", High: " << entry.second.high << std::endl;
         }
+
+        std::cout << "Computed Table Size: " << std::endl;
 
         for (const auto& entry : computed_tb) {
             std::cout << "ID: " << entry.second
