@@ -5,19 +5,22 @@
 #include <iostream>
 #include <string>
 #include "Manager.h"
+#include <memory>
 
 int main(int argc, char* argv[])
 {
     std::cout << "Hello world :)" << std::endl;
     using namespace ClassProject;
-    Manager m = Manager();
 
-    BDD_ID a = m.createVar("a");
-    BDD_ID b = m.createVar("b");
-    BDD_ID c = m.createVar("c");
-    BDD_ID d = m.createVar("d");
+    std::unique_ptr<Manager> m;
+    m = std::make_unique<Manager>();
 
-    BDD_ID f = m.and2(m.or2(a, b), m.and2(c, d));
+    BDD_ID a = m->createVar("a");
+    BDD_ID b = m->createVar("b");
+    BDD_ID c = m->createVar("c");
+    BDD_ID d = m->createVar("d");
 
-    m.visualizeBDD("ROBDD.dot", f);
+    BDD_ID f = m->and2(m->or2(a, b), m->and2(c, d));
+
+    m->visualizeBDD("ROBDD.dot", f);
 }
