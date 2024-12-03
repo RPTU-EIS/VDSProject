@@ -76,6 +76,7 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->ite(m->True(), a, b), a);
         EXPECT_EQ(m->ite(a, m->True(), m->False()), a);
         EXPECT_EQ(m->ite(c, d, d), d);
+        EXPECT_EQ(m->ite(a, m->False(), m->True()), FalseId);
     }
 
     TEST_F(ManagerTest, coFactorTrue) {
