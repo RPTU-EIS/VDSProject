@@ -53,6 +53,12 @@ namespace ClassProject {
         {
             return t;
         }
+        // Check if node already exists
+        if (const auto ite_entry = computed_tb.find(uTableRow(i, t, e)); ite_entry != computed_tb.end())
+        {
+            // Entry found -> return result
+            return ite_entry->second;
+        }
         // find the smallest top index for x
         BDD_ID x = topVar(i);
         if (topVar(t) < x && isVariable(topVar(t)))
@@ -60,13 +66,6 @@ namespace ClassProject {
             x = topVar(t);
         } else if (topVar(e) < x && isVariable(topVar(e))) {
             x = topVar(e);
-        } else
-        {
-            if (const auto ite_entry = computed_tb.find(uTableRow(i, t, e)); ite_entry != computed_tb.end())
-            {
-                // Entry found -> return result
-                return ite_entry->second;
-            }
         }
 
         // calculate r_high and r_low like Slide 2-17 VDS Lecture
@@ -79,16 +78,18 @@ namespace ClassProject {
             return high;
         }
 
+        const BDD_ID new_id = get_nextID();
+
         // Check for entry already existing entry in computed table (dummy is not used for find)
         if (const auto comp_tb_entry = computed_tb.find(uTableRow(high, low, x)); comp_tb_entry != computed_tb.end())
         {
             // Entry found -> return result
+            computed_tb.emplace(uTableRow(high, low, x), new_id);
             return comp_tb_entry->second;
         }
         // Entry not found
         // Add Entry
-        const BDD_ID new_id = get_nextID();
-        computed_tb[uTableRow(high, low, x)] = new_id;
+        computed_tb.emplace(uTableRow(high, low, x), new_id);
         // Generate Label for Visualization
         const auto label = "if" + unique_tb.at(x).label + " then " + unique_tb.at(high).label + " else " + unique_tb.at(low).label;
         unique_tb.emplace(new_id, uTableRow(high, low, x, label));
