@@ -243,7 +243,7 @@ namespace ClassProject {
         findVars(root, vars_of_root);
 
         // Iterate through all Nodes
-        for (const auto &node : nodes_of_root)
+        for (const auto& node : nodes_of_root)
         {
             // take node from table
             const auto &nodeData = unique_tb.at(node);
