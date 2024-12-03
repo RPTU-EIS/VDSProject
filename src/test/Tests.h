@@ -95,6 +95,8 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->and2(m->False(), m->True()), FalseId);
         EXPECT_EQ(m->and2(m->True(), m->False()), FalseId);
         EXPECT_EQ(m->and2(m->True(), m->True()), TrueId);
+
+        EXPECT_EQ(m->and2(a,b),m->ite(a,b,m->False()));
     }
 
     TEST_F(ManagerTest, or2_function) {
@@ -103,6 +105,8 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->or2(m->False(), m->True()), TrueId);
         EXPECT_EQ(m->or2(m->True(), m->False()), TrueId);
         EXPECT_EQ(m->or2(m->True(), m->True()), TrueId);
+
+        EXPECT_EQ(m->or2(a, b), m->ite(a, m->True(), b));
     }
 
     TEST_F(ManagerTest, xor2_function) {
@@ -177,6 +181,12 @@ class ManagerTest : public testing::Test {
         BDD_ID size = m->uniqueTableSize();
         m->createVar("e");
         EXPECT_EQ(m->uniqueTableSize(), size + 1);
+    }
+
+    TEST_F(ManagerTest, Example_ROBDD){
+        BDD_ID f = m->and2(m->or2(a, b), m->and2(c, d));
+
+        m->visualizeBDD("ROBDD.txt",f);
     }
 
 #endif
