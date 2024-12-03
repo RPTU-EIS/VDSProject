@@ -68,15 +68,15 @@ class ManagerTest : public testing::Test {
         EXPECT_EQ(m->isVariable(m->True()), FalseId);
     }
 
-    // TEST_F(ManagerTest, ite) {
-    //     EXPECT_EQ(m->ite(m->True(), m->False(), m->True()), FalseId);
-    //     EXPECT_EQ(m->ite(m->False(), m->False(), m->True()), TrueId);
+    TEST_F(ManagerTest, ite) {
+        EXPECT_EQ(m->ite(m->True(), m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->ite(m->False(), m->False(), m->True()), TrueId);
 
-    //     EXPECT_EQ(m->ite(m->False(), a, b), b);
-    //     EXPECT_EQ(m->ite(m->True(), a, b), a);
-    //     EXPECT_EQ(m->ite(a, m->True(), m->False()), a);
-    //     EXPECT_EQ(m->ite(c, d, d), d);
-    // }
+        EXPECT_EQ(m->ite(m->False(), a, b), b);
+        EXPECT_EQ(m->ite(m->True(), a, b), a);
+        EXPECT_EQ(m->ite(a, m->True(), m->False()), a);
+        EXPECT_EQ(m->ite(c, d, d), d);
+    }
 
     TEST_F(ManagerTest, coFactorTrue) {
         EXPECT_EQ(m->coFactorTrue(m->True()), TrueId);
@@ -162,15 +162,15 @@ class ManagerTest : public testing::Test {
         m->findNodes(m->and2(b, c_and_d), nodes);
     }
 
-    // TEST_F(ManagerTest, findVars) {
-    //     ClassProject::BDD_ID a_or_b = m->or2(a, b);
-    //     ClassProject::BDD_ID c_and_d = m->and2(c, d);
-    //     ClassProject::BDD_ID f = m->and2(a_or_b, c_and_d);
+    TEST_F(ManagerTest, findVars) {
+        ClassProject::BDD_ID a_or_b = m->or2(a, b);
+        ClassProject::BDD_ID c_and_d = m->and2(c, d);
+        ClassProject::BDD_ID f = m->and2(a_or_b, c_and_d);
 
-    //     std::set<BDD_ID> expected = {m->topVar(b), m->topVar(c), m->topVar(d)};
-    //     std::set<BDD_ID> vars;
-    //     m->findVars(m->and2(b, c_and_d), vars);        
-    // }
+        std::set<BDD_ID> expected = {m->topVar(b), m->topVar(c), m->topVar(d)};
+        std::set<BDD_ID> vars;
+        m->findVars(m->and2(b, c_and_d), vars);        
+    }
 
     TEST_F(ManagerTest, uniqueTableSize) {
         BDD_ID size = m->uniqueTableSize();
