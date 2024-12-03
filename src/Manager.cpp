@@ -53,8 +53,10 @@ namespace ClassProject {
         {
             return t;
         }
+
         // Check if node already exists
-        if (const auto ite_entry = computed_tb.find(uTableRow(i, t, e)); ite_entry != computed_tb.end())
+        const auto ite_entry = computed_tb.find(uTableRow(i, t, e));
+        if (ite_entry != computed_tb.end())
         {
             // Entry found -> return result
             return ite_entry->second;
@@ -64,7 +66,9 @@ namespace ClassProject {
         if (topVar(t) < x && isVariable(topVar(t)))
         {
             x = topVar(t);
-        } else if (topVar(e) < x && isVariable(topVar(e))) {
+        }
+
+        if (topVar(e) < x && isVariable(topVar(e))) {
             x = topVar(e);
         }
 
@@ -81,7 +85,8 @@ namespace ClassProject {
         const BDD_ID new_id = get_nextID();
 
         // Check for entry already existing entry in computed table (dummy is not used for find)
-        if (const auto comp_tb_entry = computed_tb.find(uTableRow(high, low, x)); comp_tb_entry != computed_tb.end())
+        const auto comp_tb_entry = computed_tb.find(uTableRow(high, low, x));
+        if (comp_tb_entry != computed_tb.end())
         {
             // Entry found -> return result
             computed_tb.emplace(uTableRow(high, low, x), new_id);
@@ -100,7 +105,7 @@ namespace ClassProject {
 
     BDD_ID Manager::coFactorTrue(const BDD_ID f, BDD_ID x) {
         // Check for terminal Case and relevancy of x
-        if (isConstant(f) || topVar(f) > x) {
+        if (isConstant(f) || topVar(f) > x || isConstant(x)) {
             return f;
         }
 
@@ -118,7 +123,7 @@ namespace ClassProject {
 
     BDD_ID Manager::coFactorFalse(const BDD_ID f, BDD_ID x){
         // Check for terminal Case and relevancy of x
-        if (isConstant(f) || topVar(f) > x) {
+        if (isConstant(f) || topVar(f) > x || isConstant(x)) {
             return f;
         }
 
@@ -182,13 +187,15 @@ namespace ClassProject {
     }
 
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root){
+
+        // Attempt to add current node to the set
+        bool insert_successful = nodes_of_root.insert(root).second;
+
         // Check if node is already processed
-        if (nodes_of_root.find(root) != nodes_of_root.end())
+        if (!insert_successful)
         {
             return;
         }
-        // Add current node to the set
-        nodes_of_root.insert(root);
 
         // Check for terminal node (also terminate case for recursion
         if (isConstant(root))
@@ -202,10 +209,16 @@ namespace ClassProject {
     }
 
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
-        // Check if node is already processed
-        if (vars_of_root.find(root) != vars_of_root.end())
+        // Check for Variable
+        if (isVariable(root))
         {
-            return;
+            // Attempt to add current node to the set
+            bool insert_successful = vars_of_root.insert(root).second;
+            // Check if node is already processed
+            if (!insert_successful)
+            {
+                return;
+            }
         }
 
         // Check for terminal node (also terminate case for recursion
@@ -214,16 +227,9 @@ namespace ClassProject {
             return;
         }
 
-        // Check for Variable
-        if (isVariable(root))
-        {
-            // Add current node to the set
-            vars_of_root.insert(root);
-        }
-
         // recursive call for following nodes (high and low)
-        findNodes(unique_tb.at(root).high, vars_of_root);
-        findNodes(unique_tb.at(root).low, vars_of_root);
+        findVars(unique_tb.at(root).high, vars_of_root);
+        findVars(unique_tb.at(root).low, vars_of_root);
     }
 
     size_t Manager::uniqueTableSize(){
