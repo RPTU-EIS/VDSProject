@@ -3,3 +3,4 @@ gtest/
 build/
 cmake-build-debug/
 .vscode/
+cmake-build-debug-coverage/

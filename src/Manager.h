@@ -28,7 +28,7 @@ namespace ClassProject {
             : high(high), low(low), topVar(topVar), label(label) {}
 
         uTableRow(BDD_ID high, BDD_ID low, BDD_ID top_var)
-            : high(high), low(low), topVar(topVar) {}
+            : high(high), low(low), topVar(top_var) {}
 
         bool operator==(const uTableRow& rhs) const
         {

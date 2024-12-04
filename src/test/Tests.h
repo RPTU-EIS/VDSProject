@@ -13,11 +13,13 @@ using namespace ClassProject;
 
 class ManagerTest : public testing::Test {
 public:
-        std::unique_ptr<Manager> m;;
+        std::unique_ptr<Manager> m;
         BDD_ID a;
         BDD_ID b;
         BDD_ID c;
         BDD_ID d;
+        BDD_ID a_and_b_id;
+        BDD_ID b_and_a_id;
 
         void SetUp() override {
             m = std::make_unique<Manager>();
@@ -25,19 +27,23 @@ public:
             b = m->createVar("b");  // ID 3
             c = m->createVar("c");  // ID 4
             d = m->createVar("d");  // ID 5
+            a_and_b_id = m->and2(a, b);
+            b_and_a_id = m->and2(b, a);
         }
 
         void TearDown() override {
+            m.reset();
             // m->~Manager();
         }
 
-        BDD_ID a_and_b_id = m->and2(a, b);
-        ClassProject::BDD_ID b_and_a_id = m->and2(b, a);
+
 };
     // Tests Lukas Philipp begin
     TEST_F(ManagerTest, test) /* NOLINT */
     {
         EXPECT_EQ(a_and_b_id, b_and_a_id);
+        m->visualizeBDD("a_and_b.dot", a_and_b_id);
+        m->visualizeBDD("b_and_a.dot", b_and_a_id);
     }
 
     TEST_F(ManagerTest, IsVariableTest) /* NOLINT */
@@ -174,8 +180,8 @@ public:
 
     TEST_F(ManagerTest, getTopVarName) {
         // returns the label of the given BDD_ID
-        EXPECT_EQ(m->getTopVarName(m->False()), "false");
-        EXPECT_EQ(m->getTopVarName(m->True()), "true");
+        EXPECT_EQ(m->getTopVarName(m->False()), "False");
+        EXPECT_EQ(m->getTopVarName(m->True()), "True");
         EXPECT_EQ(m->getTopVarName(a), "a");
     }
 

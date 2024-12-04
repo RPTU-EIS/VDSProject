@@ -76,7 +76,7 @@ namespace ClassProject {
         const BDD_ID high = ite(coFactorTrue(i, x), coFactorTrue(t, x), coFactorTrue(e, x));
         const BDD_ID low = ite(coFactorFalse(i, x), coFactorFalse(t, x), coFactorFalse(e, x));
 
-        std::cout << x << " " << high << " " << low << std::endl;
+        //std::cout << x << " " << high << " " << low << std::endl;
 
         if (high == low)
         {
@@ -94,7 +94,8 @@ namespace ClassProject {
         }
         // Entry not found
         // Add Entry
-        const BDD_ID new_id = get_nextID() - 1;
+        const BDD_ID new_id = get_nextID();
+        auto temp_1 = uTableRow(high, low, x);
         computed_tb.emplace(uTableRow(high, low, x), new_id);
         // Generate Label for Visualization
         const auto label = "if" + unique_tb.at(x).label + " then " + unique_tb.at(high).label + " else " + unique_tb.at(low).label;
@@ -118,6 +119,11 @@ namespace ClassProject {
         //recursiv high and low
         BDD_ID high = coFactorTrue(unique_tb.at(f).high, x);
         BDD_ID low = coFactorTrue(unique_tb.at(f).low, x);
+
+        if (high == low) {
+            return high;
+        }
+
         // compute result with ite-function
         return ite(topVar(f), high, low);
     }
@@ -136,6 +142,11 @@ namespace ClassProject {
         //recursiv high and low
         BDD_ID high = coFactorFalse(unique_tb.at(f).high, x);
         BDD_ID low = coFactorFalse(unique_tb.at(f).low, x);
+
+        if (high == low) {
+            return high;
+        }
+
         // compute result with ite-function
         return ite(topVar(f), high, low);
     }
@@ -184,7 +195,7 @@ namespace ClassProject {
     }
 
     std::string Manager::getTopVarName(const BDD_ID &root){
-        return unique_tb.at(root).label;
+        return unique_tb.at(topVar(root)).label;
     }
 
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root){
@@ -210,7 +221,7 @@ namespace ClassProject {
     }
 
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
-        // Check for Variable
+        // // Check for Variable
         // if (isVariable(root))
         // {
         //     // Attempt to add current node to the set
@@ -225,10 +236,11 @@ namespace ClassProject {
         findNodes(root, nodes);
         for(const BDD_ID &node : nodes)
         {
+            BDD_ID top = topVar(node);
             // Check for terminal node
-            if (isVariable(node))
+            if (isVariable(top))
             {
-                vars_of_root.insert(node);
+                vars_of_root.insert(top);
             }
         }
 

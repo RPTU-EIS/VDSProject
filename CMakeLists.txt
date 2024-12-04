@@ -5,7 +5,15 @@ set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -fPIC -std=c++17 ${LLVM_CXX_FLAGS} ")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage")
 
+option(ENABLE_ADDRESS_SANITIZER "Enable AddressSanitizer for memory leak detection" OFF)
+If(ENABLE_ADDRESS_SANITIZER)
 
+    set(ASAN_FLAGS "-fsanitize=address")
+
+    add_compile_options(${ASAN_FLAGS})
+
+    add_link_options(${ASAN_FLAGS})
+endif()
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in ${CMAKE_SOURCE_DIR}/gtest/googletest-download/CMakeLists.txt)
@@ -51,6 +59,15 @@ link_directories(${CMAKE_SOURCE_DIR}/src/bench/)
 include_directories(${CMAKE_SOURCE_DIR}/src/verify/)
 link_directories(${CMAKE_SOURCE_DIR}/src/verify/)
 
+#target_link_libraries(VDSProject Manager)
+#target_link_libraries(VDSProject gtest gtest_main pthread)
+
 add_subdirectory(src)
 add_executable(VDSProject src/main.cpp)
-target_link_libraries(VDSProject Manager)
+#target_link_libraries(VDSProject Manager)
+# Verlinke die gtest- und gtest_main-Bibliotheken
+target_link_libraries(VDSProject
+        Manager
+        gtest
+        gtest_main
+)
