@@ -30,7 +30,29 @@ public:
         void TearDown() override {
             // m->~Manager();
         }
+
+        BDD_ID a_and_b_id = m->and2(a, b);
+        ClassProject::BDD_ID b_and_a_id = m->and2(b, a);
 };
+    // Tests Lukas Philipp begin
+    TEST_F(ManagerTest, test) /* NOLINT */
+    {
+        EXPECT_EQ(a_and_b_id, b_and_a_id);
+    }
+
+    TEST_F(ManagerTest, IsVariableTest) /* NOLINT */
+    {
+        EXPECT_FALSE(m->isVariable(a_and_b_id));
+    }
+
+    TEST_F(ManagerTest, GetTopVarNameTest) /* NOLINT */
+    {
+        EXPECT_EQ(m->getTopVarName(m->False()), "False");
+        EXPECT_EQ(m->getTopVarName(m->True()), "True");
+        EXPECT_EQ(m->getTopVarName(a_and_b_id), "a");
+        EXPECT_EQ(m->topVar(a_and_b_id), m->topVar(a));
+    }
+    //end Tests Lukas Philipp
 
     TEST_F(ManagerTest, createVar) {
         EXPECT_EQ(a, 2);
@@ -76,7 +98,7 @@ public:
         EXPECT_EQ(m->ite(m->True(), a, b), a);
         EXPECT_EQ(m->ite(a, m->True(), m->False()), a);
         EXPECT_EQ(m->ite(c, d, d), d);
-        EXPECT_EQ(m->ite(a, m->False(), m->True()), FalseId);
+        EXPECT_EQ(m->ite(a, m->False(), m->True()), m->neg(a));
     }
 
     TEST_F(ManagerTest, coFactorTrue) {

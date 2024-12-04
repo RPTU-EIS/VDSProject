@@ -9,10 +9,10 @@ namespace ClassProject {
     }
 
     void Manager::init_unique_tb() {
-        computed_tb[uTableRow {False(), False(), False(), "false"}] = False();
-        unique_tb.emplace(uniqueTableSize(), uTableRow {False(), False(), False(), "false"});
-        computed_tb[uTableRow{True(), True(), True(), "true"}] = True();
-        unique_tb.emplace(uniqueTableSize(), uTableRow{True(), True(), True(), "true"});
+        computed_tb[uTableRow {False(), False(), False(), "False"}] = False();
+        unique_tb.emplace(uniqueTableSize(), uTableRow {False(), False(), False(), "False"});
+        computed_tb[uTableRow{True(), True(), True(), "True"}] = True();
+        unique_tb.emplace(uniqueTableSize(), uTableRow{True(), True(), True(), "True"});
     }
 
     BDD_ID Manager::createVar(const std::string &label){
@@ -94,7 +94,7 @@ namespace ClassProject {
         }
         // Entry not found
         // Add Entry
-        const BDD_ID new_id = get_nextID();
+        const BDD_ID new_id = get_nextID() - 1;
         computed_tb.emplace(uTableRow(high, low, x), new_id);
         // Generate Label for Visualization
         const auto label = "if" + unique_tb.at(x).label + " then " + unique_tb.at(high).label + " else " + unique_tb.at(low).label;
