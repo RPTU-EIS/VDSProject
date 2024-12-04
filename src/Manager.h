@@ -75,6 +75,11 @@ namespace ClassProject {
 
         const BDD_ID &False() override;
 
+
+      bool computedTableContains(const uTableRow& row) const {
+          return computed_tb.find(row) != computed_tb.end();
+      }
+
         /**
         * isConstant determines if a node is a leafnode
         * @param f ID of the Node under test

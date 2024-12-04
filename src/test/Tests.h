@@ -165,6 +165,10 @@ class ManagerTest : public testing::Test {
         std::set<BDD_ID> expected = {m->and2(b, c_and_d), c_and_d, d, m->True(), m->False()};
         std::set<BDD_ID> nodes;
         m->findNodes(m->and2(b, c_and_d), nodes);
+
+        // Assert that the nodes found match the expected nodes
+        EXPECT_EQ(nodes, expected);
+
     }
 
     TEST_F(ManagerTest, findVars) {
@@ -174,7 +178,9 @@ class ManagerTest : public testing::Test {
 
         std::set<BDD_ID> expected = {m->topVar(b), m->topVar(c), m->topVar(d)};
         std::set<BDD_ID> vars;
-        m->findVars(m->and2(b, c_and_d), vars);        
+        m->findVars(m->and2(b, c_and_d), vars);
+
+        EXPECT_EQ(vars, expected);
     }
 
     TEST_F(ManagerTest, uniqueTableSize) {
