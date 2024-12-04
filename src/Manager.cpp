@@ -76,24 +76,25 @@ namespace ClassProject {
         const BDD_ID high = ite(coFactorTrue(i, x), coFactorTrue(t, x), coFactorTrue(e, x));
         const BDD_ID low = ite(coFactorFalse(i, x), coFactorFalse(t, x), coFactorFalse(e, x));
 
+        std::cout << x << " " << high << " " << low << std::endl;
+
         if (high == low)
         {
             computed_tb.emplace(uTableRow(i, t, e), high);
             return high;
         }
 
-        const BDD_ID new_id = get_nextID();
-
-        // Check for entry already existing entry in computed table (dummy is not used for find)
-        const auto comp_tb_entry = computed_tb.find(uTableRow(high, low, x));
-        if (comp_tb_entry != computed_tb.end())
+        // Check for entry already existing entry in computed table
+        const auto computed_tb_entry = computed_tb.find(uTableRow(high, low, x));
+        if (computed_tb_entry != computed_tb.end())
         {
             // Entry found -> return result
-            computed_tb.emplace(uTableRow(high, low, x), new_id);
-            return comp_tb_entry->second;
+            // computed_tb.emplace(uTableRow(high, low, x), new_id);
+            return computed_tb_entry->second;
         }
         // Entry not found
         // Add Entry
+        const BDD_ID new_id = get_nextID();
         computed_tb.emplace(uTableRow(high, low, x), new_id);
         // Generate Label for Visualization
         const auto label = "if" + unique_tb.at(x).label + " then " + unique_tb.at(high).label + " else " + unique_tb.at(low).label;
@@ -129,7 +130,7 @@ namespace ClassProject {
 
         // CoFactor of f w.r.t x is low path
         if (topVar(f) == x) {
-            return unique_tb.at(f).high;
+            return unique_tb.at(f).low;
         }
 
         //recursiv high and low
@@ -210,26 +211,31 @@ namespace ClassProject {
 
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root){
         // Check for Variable
-        if (isVariable(root))
+        // if (isVariable(root))
+        // {
+        //     // Attempt to add current node to the set
+        //     bool insert_successful = vars_of_root.insert(root).second;
+        //     // Check if node is already processed
+        //     if (!insert_successful)
+        //     {
+        //         return;
+        //     }
+        // }
+        std::set<BDD_ID> nodes;
+        findNodes(root, nodes);
+        for(const BDD_ID &node : nodes)
         {
-            // Attempt to add current node to the set
-            bool insert_successful = vars_of_root.insert(root).second;
-            // Check if node is already processed
-            if (!insert_successful)
+            // Check for terminal node
+            if (isVariable(node))
             {
-                return;
+                vars_of_root.insert(node);
             }
         }
 
-        // Check for terminal node (also terminate case for recursion
-        if (isConstant(root))
-        {
-            return;
-        }
 
-        // recursive call for following nodes (high and low)
-        findVars(unique_tb.at(root).high, vars_of_root);
-        findVars(unique_tb.at(root).low, vars_of_root);
+        // // recursive call for following nodes (high and low)
+        // findVars(unique_tb.at(root).high, vars_of_root);
+        // findVars(unique_tb.at(root).low, vars_of_root);
     }
 
     size_t Manager::uniqueTableSize(){

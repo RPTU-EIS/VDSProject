@@ -12,7 +12,7 @@
 using namespace ClassProject;
 
 class ManagerTest : public testing::Test {
-    protected:
+public:
         std::unique_ptr<Manager> m;;
         BDD_ID a;
         BDD_ID b;
